@@ -7,8 +7,10 @@ Rails app with utilities such as JSON converters, HTTP stubs, XSLT transformatio
 
 TODO list (features):
 * XML formatter
+* XML escaper\unescaper
 * JSON -> XML converter
 * XML -> JSON converter
+* Unicode entity translator
 * JavaScript evaluator (Rhino with configurable Java context)
 * XSLT transformations
 * XSD validation (with XSD definitions placed in multiple files)

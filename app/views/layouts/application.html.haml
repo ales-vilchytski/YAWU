@@ -1,0 +1,13 @@
+!!!
+%html
+%head
+  %title YAWU - Yet Another Web Utilities
+  = stylesheet_link_tag "application", media: "all"
+  = yield :stylesheet
+  = stylesheet_link_tag params[:controller], media: "all" if Rails.application.assets.find_asset params[:controller]
+  = javascript_include_tag "application"
+  = yield :javascript
+  = javascript_include_tag params[:controller] if Rails.application.assets.find_asset params[:controller]
+  = csrf_meta_tags
+
+= (content_for? :content) ? (yield :content) : (yield)

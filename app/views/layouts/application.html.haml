@@ -10,4 +10,58 @@
   = javascript_include_tag params[:controller] if Rails.application.assets.find_asset params[:controller]
   = csrf_meta_tags
 
-= (content_for? :content) ? (yield :content) : (yield)
+%body
+  %nav.navbar.navbar-default.navbar-static-top{ 'role' => "navigation" }
+    .container-fluid
+      .navbar-header
+        %a.navbar-brand{href: root_url}= YAWU
+        
+      %div
+        %ul.nav.navbar-nav
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              XML
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{href: "#"} Format
+              %li
+                %a{href: "#"} Escape
+              %li
+                %a{href: "#"} To JSON
+              %li
+                %a{href: "#"} XSLT
+              %li
+                %a{href: "#"} XSD
+              %li.divider
+              %li
+                %a{href: "#"} Generic tool
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              JavaScript
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{href: "#"} JSON to XML
+              %li
+                %a{href: "#"} XML to JSON
+              %li
+                %a{href: "#"} Evaluate
+              %li.divider
+              %li
+                %a{href: "#"} Generic tool          
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Another stuff
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{href: "#"} Tool 1
+                %li
+                  %a{href: "#"} Tool 2
+                %li.divider
+                %li
+                  %a{href: "#"} Another tool
+  
+  = (content_for? :content) ? (yield :content) : (yield)
+  

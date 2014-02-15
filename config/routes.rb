@@ -1,7 +1,8 @@
 YAWU::Application.routes.draw do
-  get 'probe/index', controller: 'probe#show'
+  get 'probe/index' => 'probe#get'
+  post 'probe/index' => 'probe#post'
   
-  root to: 'probe#show'
+  root to: 'probe#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,1 +1,5 @@
-%div#editor probe
+%div.container
+  %div.editor#input_editor #{ @input }
+  %div.editor#output_editor #{ @result }
+= form_tag( { action: 'post' }, method: 'post', remote: true, id: 'input_submit', :'data-type' => 'json' ) do
+  = button_to('transfer', {}, data: { disable_with: "wait" } )

@@ -24,7 +24,7 @@
               %b.caret
             %ul.dropdown-menu
               %li
-                %a{href: "#"} Format
+                =link_to 'Format', xml_format_path
               %li
                 %a{href: "#"} Escape
               %li
@@ -62,6 +62,6 @@
                 %li.divider
                 %li
                   %a{href: "#"} Another tool
-  
+
   = (content_for? :content) ? (yield :content) : (yield)
   

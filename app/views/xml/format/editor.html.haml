@@ -1,0 +1,9 @@
+%div.container
+  %div.editor#input_editor
+    :escaped
+      <sample><xml will='be itended'>smooth</xml></sample>
+
+  = form_tag( { action: 'format' }, method: 'post', remote: true, id: 'input_submit', :'data-type' => 'json' ) do
+    = button_to('Indent', {}, data: { disable_with: "wait" }, class: 'btn' )
+
+  %div.editor#output_editor try it!

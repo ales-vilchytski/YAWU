@@ -12,6 +12,8 @@ gem 'ace-rails-ap', '~> 2.0.1'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'haml', '~> 4.0.5'
 
+gem 'nokogiri', '~> 1.6.1'
+
 group :development do
   gem 'haml-rails', '~> 0.5.3'
 end

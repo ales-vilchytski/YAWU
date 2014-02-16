@@ -1,8 +1,12 @@
 YAWU::Application.routes.draw do
-  get 'probe/index' => 'probe#get'
-  post 'probe/index' => 'probe#post'
   
-  root to: 'probe#index'
+  root 'welcome#index'
+  
+  namespace :xml do
+    get 'format' => 'format#editor'
+    post 'format' => 'format#format'
+  end  
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

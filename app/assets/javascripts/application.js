@@ -13,5 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require bootstrap/collapse
 //= require_tree ./application

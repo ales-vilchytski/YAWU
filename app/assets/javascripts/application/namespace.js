@@ -27,7 +27,7 @@ this.namespace = function(name, creator) {
     }
 
     if (creator) {
-        creator.apply(ns, name);
+        creator.call(ns, name);
     }
     return ns;
 };

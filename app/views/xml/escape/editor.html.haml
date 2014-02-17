@@ -1,9 +1,9 @@
 %div.container
-  = form_tag( { action: 'format', format: 'json' }, method: 'post', remote: true, 'data-editor' => 'form' ) do
+  = form_tag( { action: 'escape' }, method: 'post', remote: true, 'data-editor' => 'form' ) do
     %div.editor{ 'data-editor' => 'input', 'data-editor-settings' => '{ "name": "input", "mode": "ace/mode/xml" }' }
       :escaped
-        <sample><xml will='be intended'>by 4 spaces</xml></sample>
+        <sample><xml will='be escaped'>with xml entities</xml></sample>
   
-    = button_tag('Indent', data: { disable_with: "wait" }, class: 'btn' )
+    = button_tag('Escape', data: { disable_with: "wait" }, class: 'btn' )
     
     %div.editor{ 'data-editor' => 'output', 'data-editor-settings' => '{ "name": "result", "mode": "ace/mode/xml"}' } try it!

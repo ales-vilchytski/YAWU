@@ -3,8 +3,14 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+# you've limited to :test, :development, :production or :assets.
+Bundler.require(:default, :assets, Rails.env)
+
+# Add all folder to load path for application, deployed by warbler
+%w[.].each do |folder|
+  path = File.expand_path( "../../#{ folder }", __FILE__ )
+  $LOAD_PATH.unshift( path ) unless $LOAD_PATH.include?( path )
+end
 
 module YAWU
   class Application < Rails::Application
@@ -19,5 +25,14 @@ module YAWU
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    
+    # Configure the default encoding used in templates for Ruby 1.9.
+    config.encoding = "utf-8"
+    
+    config.assets.enabled = true
+    config.assets.initialize_on_precompile = false
+    
+    config.assets.precompile += %w( editor.js editor.css )
+    
   end
 end

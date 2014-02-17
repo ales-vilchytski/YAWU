@@ -4,10 +4,8 @@
   %title YAWU - Yet Another Web Utilities
   = stylesheet_link_tag "application", media: "all"
   = yield :stylesheet
-  = stylesheet_link_tag params[:controller], media: "all" if Rails.application.assets.find_asset params[:controller]
   = javascript_include_tag "application"
   = yield :javascript
-  = javascript_include_tag params[:controller] if Rails.application.assets.find_asset params[:controller]
   = csrf_meta_tags
 
 %body
@@ -26,7 +24,7 @@
               %li
                 =link_to 'Format', xml_format_path
               %li
-                %a{href: "#"} Escape
+                =link_to 'Escape', xml_escape_path
               %li
                 %a{href: "#"} To JSON
               %li

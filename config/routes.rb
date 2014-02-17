@@ -5,7 +5,10 @@ YAWU::Application.routes.draw do
   namespace :xml do
     get 'format' => 'format#editor'
     post 'format' => 'format#format'
-  end  
+    
+    get 'escape' => 'escape#editor'
+    post 'escape' => 'escape#escape'
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

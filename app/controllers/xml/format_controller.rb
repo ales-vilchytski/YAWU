@@ -1,6 +1,8 @@
 module Xml
+  
   class FormatController < ::EditorController
-        
+    protect_from_forgery only: :format, with: :null_session
+    
     def editor
       respond_to do |format|
         format.html { render :editor }
@@ -14,4 +16,5 @@ module Xml
     end
     
   end
+  
 end

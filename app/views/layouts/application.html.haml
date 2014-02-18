@@ -2,9 +2,9 @@
 %html
 %head
   %title YAWU - Yet Another Web Utilities
-  = stylesheet_link_tag "application", media: "all"
+  = stylesheet_link_tag "application", charset: "UTF-8", media: "all"
   = yield :stylesheet
-  = javascript_include_tag "application"
+  = javascript_include_tag "application", charset: "UTF-8"
   = yield :javascript
   = csrf_meta_tags
 

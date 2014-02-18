@@ -11,16 +11,16 @@ gem 'nokogiri', '~> 1.6.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
-#group :assets do
+group :assets do
   gem 'sass-rails',   '~> 4.0.0'
   gem 'coffee-rails', '~> 4.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyrhino'
 
-  gem 'uglifier', '~> 1.3.0'
+  gem 'yui-compressor', '~> 0.12.0'
   gem 'bootstrap-sass', '~> 3.1.0'
-#end
+end
 
 group :development do
   gem 'haml-rails', '~> 0.5.3'

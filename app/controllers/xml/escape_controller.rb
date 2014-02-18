@@ -1,6 +1,7 @@
 module Xml
   
   class EscapeController < EditorController
+    protect_from_forgery with: :null_session
     
     def editor
       respond_to do |format|

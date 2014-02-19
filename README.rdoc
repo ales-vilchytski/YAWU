@@ -1,28 +1,26 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+  Developed on Ruby 1.9.2 with JRuby 1.7.10 (Java 7).
 
 * System dependencies
+  Ruby 1.9.2;
+  -in future- Java 6 for some extensions;
 
 * Configuration
+  All files are in utf-8 and on Java it's preferable to specify option 
+  -Dfile.encoding=UTF-8 (e.g. JAVA_OPTS=-Dfile.encoding=UTF-8).
 
 * Database creation
+  Not yet.
 
 * Database initialization
+  Not yet.
 
 * How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+  Not yet.
 
 * Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+  To create .war distribution execute Rake task war:all - it will compile assets,
+  package all dependencies and JRuby libraries to single web-archive.
+  This .war file can be deployed on any servlet or EAR container (e.g. Tomcat or WebSphere).

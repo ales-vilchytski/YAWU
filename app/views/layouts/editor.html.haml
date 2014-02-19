@@ -6,5 +6,5 @@
 = render template: 'layouts/application'
 
 %div.container
-  %input#debug_toggle{ type: "checkbox" } Show debug panel
+  %input#debug_toggle{ type: "checkbox" }= t('editor.debug_panel.show')
   %div#debug_editor.hide

@@ -1,7 +1,7 @@
 !!!
 %html
 %head
-  %title YAWU - Yet Another Web Utilities
+  %title= t('title')
   = stylesheet_link_tag "application", charset: "UTF-8", media: "all"
   = yield :stylesheet
   = javascript_include_tag "application", charset: "UTF-8"
@@ -12,42 +12,42 @@
   %nav.navbar.navbar-default.navbar-static-top{ 'role' => "navigation" }
     .container-fluid
       .navbar-header
-        %a.navbar-brand{href: root_url}= YAWU
+        %a.navbar-brand{href: root_url}= t('label')
         
       %div
         %ul.nav.navbar-nav
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-              XML
+              = t('application.xml.label')
               %b.caret
             %ul.dropdown-menu
               %li
-                =link_to 'Format', xml_format_path
+                =link_to t('application.xml.format'), xml_format_path
               %li
-                =link_to 'Escape', xml_escape_path
+                =link_to t('application.xml.escape'), xml_escape_path
               %li
-                %a{href: "#"} To JSON
+                %a{href: "#"}= t('application.xml.json')
               %li
-                %a{href: "#"} XSLT
+                %a{href: "#"}= t('application.xml.xslt')
               %li
-                %a{href: "#"} XSD
+                %a{href: "#"}= t('application.xml.xsd')
               %li.divider
               %li
-                %a{href: "#"} Generic tool
+                %a{href: "#"}= t('application.xml.generic')
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-              JavaScript
+              = t('application.js.label')
               %b.caret
             %ul.dropdown-menu
               %li
-                %a{href: "#"} JSON to XML
+                %a{href: "#"}= t('application.js.json_xml')
               %li
-                %a{href: "#"} XML to JSON
+                %a{href: "#"}= t('application.js.xml_json')
               %li
-                %a{href: "#"} Evaluate
+                %a{href: "#"}= t('application.js.eval')
               %li.divider
               %li
-                %a{href: "#"} Generic tool          
+                %a{href: "#"}= t('application.js.generic')         
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
                 Another stuff

@@ -1,8 +1,9 @@
 %div.container
-  = form_tag( { action: 'format', format: 'json' }, method: 'post', remote: true, 'data-editor' => 'form' ) do
+  %form{ 'data-editor' => 'form' }
     %div.editor{ 'data-editor' => 'input', 'data-editor-settings' => '{ "name": "input", "mode": "ace/mode/xml" }' }<
       = t('.sample')
   
-    = button_tag(t('.form_button'), data: { disable_with: "wait" }, class: 'btn' )
+  = form_tag( { action: 'format' }, method: 'post', remote: true, 'data-editor' => 'submit', data: { type: 'json'}) do
+    = button_tag(t('.form_submit.label'), data: { disable_with: t('.form_submit.disable') }, class: 'btn' )
     
-    %div.editor{ 'data-editor' => 'output', 'data-editor-settings' => '{ "name": "result", "mode": "ace/mode/xml"}' } try it!
+  %div.editor{ 'data-editor' => 'output', 'data-editor-settings' => '{ "name": "result", "mode": "ace/mode/xml"}' } try it!

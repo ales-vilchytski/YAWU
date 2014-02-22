@@ -1,0 +1,10 @@
+%div.panel.panel-default
+  %div.panel-heading
+    %h4= defined?(header) ? header : t('.output')
+    %a{'id' => (defined?(anchor_id) ? anchor_id : 'result'), 'name' => (defined?(anchor_name) ? anchor_name : 'result'), 'data-editor-anchor' => 'true'}
+          
+  %div.panel-body
+    %div.panel.panel-default
+      %div.panel-body.editor{ 'data-editor' => 'output', 'data-editor-settings' => defined?(settings_json) ? settings_json : '' }<
+        = defined?(content) ? content : nil
+  

@@ -1,9 +1,27 @@
-%div.container
-  %form{ 'data-editor' => 'form' }
-    %div.editor{ 'data-editor' => 'input', 'data-editor-settings' => '{ "name": "input", "mode": "ace/mode/xml" }' }<
-      = t('.sample')
+%div.row{ 'data-editor' => 'form' }
   
-  = form_tag( { action: 'format' }, method: 'post', remote: true, 'data-editor' => 'submit', data: { type: 'json'}) do
-    = button_tag(t('.form_submit.label'), data: { disable_with: t('.form_submit.disable') }, class: 'btn' )
+  %div.col-md-8
+    = render( partial: 'editor/input_editor', locals: {  |
+      header: t('.input'),   |
+      content: t('.sample'), |
+      settings_json: '{ "name": "input", "mode": "ace/mode/xml" }' }) |
+  
+  %div.col-md-4
+    %div.panel.panel-default
+      %div.panel-heading
+        %h4= t('.settings')
+      
+      %div.panel-body
+        %form.form-horizontal{role: 'form'}
+          = settings_text_field_tag(name: 'indent_text', label: t('.indent_text.label'), placeholder: t('.indent_text.placeholder'), tab_allowed: true)
+          = settings_text_field_tag(name: 'encoding', label: t('.encoding.label'), placeholder: t('.encoding.placeholder'))
     
-  %div.editor{ 'data-editor' => 'output', 'data-editor-settings' => '{ "name": "result", "mode": "ace/mode/xml"}' } try it!
+        = submit_form_tag( action: 'format' )
+    
+%div.row
+  %div.col-md-8
+    = render( partial: 'editor/output_editor', locals: {  |
+      header: t('.output'),  |
+      anchor_id: 'result',   |
+      anchor_name: 'result', |
+      settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |

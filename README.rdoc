@@ -9,7 +9,7 @@
 
 * Configuration
   All files are in utf-8 and on Java it's preferable to specify option 
-  -Dfile.encoding=UTF-8 (e.g. JAVA_OPTS=-Dfile.encoding=UTF-8).
+  -Dfile.encoding=UTF-8 (e.g. $ export JAVA_OPTS=-Dfile.encoding=UTF8).
 
 * Database creation
   Not yet.

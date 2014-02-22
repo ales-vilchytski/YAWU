@@ -1,0 +1,7 @@
+%div.panel.panel-default
+  %div.panel-heading
+    %h4= defined?(header) ? header : t('.input')
+  %div.panel-body        
+    %div.panel.panel-default
+      %div.panel-body.editor{ 'data-editor' => 'input', 'data-editor-settings' => defined?(settings_json) ? settings_json : '' }<
+        = defined?(content) ? content : nil

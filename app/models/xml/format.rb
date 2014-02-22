@@ -1,14 +1,18 @@
 module Xml
   class Format
-    attr_accessor :input_xml
+    attr_accessor :settings
     
-    def initialize(input_xml)
-      @input_xml = input_xml
+    def initialize(opts)
+      @settings = {
+        indent: 4, 
+        indent_text: ' ',
+        encoding: nil,
+      }.merge(opts || {})
     end
     
-    def format
-      doc = Nokogiri::XML.parse(input_xml)
-      doc.to_xml(indent: 4, indent_text: ' ')
+    def format(xml)
+      doc = Nokogiri::XML.parse(xml)
+      doc.to_xml(settings)
     end
     
   end

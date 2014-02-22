@@ -1,0 +1,26 @@
+ru:
+  label: ЕщОВИ
+  title: ЕщОВИ - Ещё Одни Веб-Инструменты
+  
+  welcome:
+    hello: Добро пожаловать в ЕщОВИ - Ещё Одни Веб-Инструменты
+  
+  application:
+    xml:
+      label: XML
+      format: Форматирование
+      escape: Экранирование
+      json: Преобразование в JSON
+      xslt: XSLT трансформация
+      xsd: XSD валидация
+      generic: Общий инструментарий
+    js: 
+      label: JavaScript
+      json_xml: Преобразование JSON в XML
+      xml_json: Преобразование XML to JSON
+      eval: Исполнение скрипта
+      generic: Общий инструментарий
+  
+  editor:
+    debug_panel:
+      show: Показать отладочную панель

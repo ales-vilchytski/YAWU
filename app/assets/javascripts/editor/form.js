@@ -8,16 +8,19 @@
  *                                  in AJAX requests
  *      mode : for editor - mode of editor (default is ace/mode/javascript)
  *      theme : for editor - theme of ace editor (default is ace/theme/eclipse)
+ *   [data-editor-anchor] - anchor which marks section with results. This anchor
+ *                          is focused after successful AJAX request 
  *
- * All inputs (editors or input fields) should be wrapped by 
- * [data-editor='form'] tag.
+ * All inputs (editors or input fields) should be wrapped by [data-editor='form'] tag.
  * Forms setting 'name' means "namespace" of all parameters (or no namespace 
  * if setting is omitted). Only 1 level nesting is supported.
  * All outputs (editors) should have name settings according to results 
  * receiving from server.
  * Any submission of [data-editor='submit'] form grabs all inputs, compose them 
- * as JSON tree and passes this tree to server with AJAX. Results are mapped to
- * outputs.
+ * as JSON tree and passes this tree to server using AJAX. Results are mapped to
+ * outputs. 
+ * After successful request anchor with 'data-editor-anchor' attribute is focused.
+ * Combination 'Ctrl+Enter' on the document submits form.
  */
 $(document).ready(function() {
 
@@ -37,6 +40,9 @@ $(document).ready(function() {
         holder[name] = editor;
     }
     
+    /*
+     * Create inputs and outputs holders. Every holder responds to 'getValue()' method
+     */
     $('[data-editor="form"]').each(function(i, form) {
         var formSettings = $(form).data('editorSettings') || {};
         var formName = formSettings['name'];
@@ -68,6 +74,9 @@ $(document).ready(function() {
         createAceEditor(output, outputs);
     });
     
+    /*
+     * AJAX handling
+     */
     $('[data-editor="submit"]')
         .on('ajax:beforeSend', function(e, xhr, settings) {
             var request = {};
@@ -93,7 +102,20 @@ $(document).ready(function() {
         })
         .on('ajax:success', function(e, data, status, xhr) {
             for (var i in data) {
+                var j = i;
                 outputs[i].setValue(data[i]);
+            }
+            
+            /*
+             * Focus on anchor with results of request
+             */
+            var resultAnchor = $('[data-editor-anchor]').attr('name');
+            if (resultAnchor) {
+                resultAnchor = '#' + resultAnchor;
+                // add if none or replace if present anchor to current URL
+                var anchorRegex = new RegExp('($)|(#*' + resultAnchor + '$)');
+                var newLoc = new String(window.location).replace(anchorRegex, resultAnchor);
+                window.location = newLoc;
             }
          })
         .on('ajax:error', function(e, xhr, status, error) {
@@ -105,6 +127,46 @@ $(document).ready(function() {
         .on('ajax:complete', function(e, xhr, status) {
             YAWU.debug.debugAjaxComplete(e, xhr, status);
         });
-      
+    
+    /*
+     * Map shortcut 'Ctrl+Enter' for submitting form with ['data-editor="submit"]
+     */
+    var keyState = {};
+    $(document).on('keydown', keyState, function(e) {
+        if (e.which == 17) {
+            e.data.ctrl = 'pressed';
+        }
+    });
+    
+    $(document).on('keyup', keyState, function(e) {
+        if (e.which == 17) {
+            e.data.ctrl = null;
+        } else if (e.which == 13 && e.data.ctrl == 'pressed') {
+            $('[data-editor="submit"]').trigger('submit');
+        }
+    });
 });
 
+
+/*
+ * Adds for inputs with [data-input="tab-allowed"] ability to enter tabs.
+ * Works with selections
+ */
+$(document).ready(function() {
+    $('[data-input="tab-allowed"]').on('keydown', function(e) {
+        if(e.which == 9 && e.target == this) {
+            var input = $(this);
+            var start = this.selectionStart,  end = this.selectionEnd;
+            var current = input.val();
+            
+            var result = current.slice(0, start) + '\t' + current.slice(end);
+            input.val(result);
+            
+            this.selectionStart = start + 1;
+            this.selectionEnd = start + 1;
+            
+            e.preventDefault();
+        }
+    });
+
+});

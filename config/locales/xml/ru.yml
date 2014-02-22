@@ -1,0 +1,24 @@
+ru:
+  xml:
+    escape:
+      editor:
+        sample: <?xml encoding='utf-8'?><Пример ИксЭмЭль='будет'>экранирован</Пример>
+        form_submit: 
+          label: Экранировать
+          disable: Обработка
+    
+    format:
+      editor:
+        input: Введите XML
+        output: Результат
+        sample: <?xml encoding='utf-8'?><Пример><Иксэмэль будет='Отформатирован'>используя указанный отступ</Иксэмэль></Пример>
+        settings: Настройки
+        form_submit: 
+          label: Форматировать
+          disable: Обработка
+        indent_text:
+          label: Отступ
+          placeholder: любой текст для отступов
+        encoding:
+          label: Кодировка
+          placeholder: если необходимо изменить

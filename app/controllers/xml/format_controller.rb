@@ -1,6 +1,6 @@
 module Xml
   
-  class FormatController < ::EditorController
+  class FormatController < EditorController
     
     def editor      
       respond_to do |format|
@@ -16,9 +16,14 @@ module Xml
         # string is encoded properly
         encoding: (params[:encoding] == '') ? (nil) : params[:encoding],
       }
+      
       formatter = Xml::Format.new(opts)
+      result = execute_for_json do |r|
+        r[:result] = formatter.format(params[:input])
+      end
+      
       respond_to do |format|
-        format.json { render json: { :result => formatter.format(params[:input]) } }
+        format.json { render json: result }
       end
     end
     

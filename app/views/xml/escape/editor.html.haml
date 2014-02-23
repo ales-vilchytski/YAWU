@@ -1,9 +1,18 @@
-%div.container
-  %form{ 'data-editor' => 'form' }
-    %div.editor{ 'data-editor' => 'input', 'data-editor-settings' => '{ "name": "input", "mode": "ace/mode/xml" }' }<
-      = t('.sample')
+%div.row{ 'data-editor' => 'form' }
   
-  = form_tag( { action: 'escape' }, method: 'post', remote: true, 'data-editor' => 'submit', data: { type: 'json'}) do
-    = button_tag(t('.form_submit.label'), data: { disable_with: t('.form_submit.disable') }, class: 'btn' )
-    
-  %div.editor{ 'data-editor' => 'output', 'data-editor-settings' => '{ "name": "result", "mode": "ace/mode/xml"}' } try it!
+  %div.col-md-8
+    = render( partial: 'editor/input_editor', locals: { |
+      header: t('.input'),   |
+      content: t('.sample'), |
+      settings_json: '{ "name": "input", "mode": "ace/mode/xml" }' }) |
+  
+  %div.col-md-4
+    = submit_form_tag( action: 'escape' )
+     
+%div.row
+  %div.col-md-8
+    = render( partial: 'editor/output_editor', locals: {  |
+      header: t('.output'),  |
+      anchor_id: 'result',   |
+      anchor_name: 'result', |
+      settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |

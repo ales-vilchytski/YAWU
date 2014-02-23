@@ -3,8 +3,28 @@
 - content_for :javascript do
   - javascript_include_tag "editor", charset: "UTF-8"
 
+- content_for :content do
+  %div.row#errPane
+    %div.col-md-8.col-md-offset-2
+      %div.panel.panel-danger.collapse#error_pane
+        %div.panel-heading
+          %div.row
+            %div.col-md-11
+              %h4{ 'data-editor' => 'error-heading', 'data-target' => '#error_pane'  }
+            %div.col-md-1
+              %button.btn{ 'data-toggle' => 'collapse', 'data-target' => '#error_pane' } X
+        %div.panel-body{ 'data-editor' => 'error-body', 'data-default-error' => t('editor.error.default') }
+  
+  = yield
+          
 = render template: 'layouts/application'
 
-%div.container
-  %input#debug_toggle{ type: "checkbox" }= t('editor.debug_panel.show')
-  %div#debug_editor.hide
+%hr
+
+%div.row
+  %div.col-md-8.col-md-offset-2
+    %div.panel.panel-default
+      %div.panel-heading
+        %button.btn{ 'data-toggle' => 'collapse', 'data-target' => '#debug_editor_wrapper' }= t('editor.debug_panel.show')
+      %div.panel-body#debug_editor_wrapper.collapse
+        %div#debug_editor

@@ -22,5 +22,7 @@ en:
       generic: Generic tool
   
   editor:
+    error:
+      default: We are sorry, but something went wrong
     debug_panel:
-      show: Show debug panel 
+      show: Show debug panel

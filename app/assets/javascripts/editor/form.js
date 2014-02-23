@@ -1,8 +1,16 @@
 /**
  * Binds Ace editors to AJAX requests and responses according to data-attributes:
- *   [data-editor='input|output|form|submit'] - input source, output destination 
- *                                              form with editors or AJAX 
- *                                              submitting form accordingly
+ *   [data-editor='/Type/'] - editor component. Available types:
+ *      input - input source, i.e. element for Ace editor holding named input argument
+ *      output - output source, i.e. element for Ace editor holding named result 
+ *      form - form with inputs (Ace editors or plain html-fields) which combine 
+ *             them into namespace
+ *      submit - form with 'data-remote: true' for submitting inputs via AJAX
+ *      error-heading - pane heading for error message (standard XHR error object)
+ *      error-body - pane body for error description from 'error' field 
+ *                   retrieved from server
+ *                   'error' from server should be object with 'message' and 
+ *                   'description' fields
  *   [data-editor-settings='{JSON}'] - parameters of editor or form:
  *      name : for editor or form - name of input or output parameter 
  *                                  in AJAX requests
@@ -20,7 +28,7 @@
  * as JSON tree and passes this tree to server using AJAX. Results are mapped to
  * outputs. 
  * After successful request anchor with 'data-editor-anchor' attribute is focused.
- * Combination 'Ctrl+Enter' on the document submits form.
+ * Combination 'Ctrl+Enter' on the [data-editor='form'] submits form.
  */
 $(document).ready(function() {
 
@@ -68,15 +76,27 @@ $(document).ready(function() {
             }
         });
     });
-    
-   
+       
     $('[data-editor="output"]').each(function(i, output) {
         createAceEditor(output, outputs);
     });
-    
+
+ 
     /*
      * AJAX handling
      */
+    var $errHead = $('[data-editor="error-heading"]');
+    var $errBody = $('[data-editor="error-body"]');
+    var $resultAnchor = $('[data-editor-anchor]');
+   
+    function showError(header, body) {
+        $errHead.text(header);
+        $errBody.text(body || $errBody.data('defaultError'));
+        
+        var collapseTarget = $errHead.data('target') || $errBody.data('target');
+        $(collapseTarget).collapse('show');
+    }
+    
     $('[data-editor="submit"]')
         .on('ajax:beforeSend', function(e, xhr, settings) {
             var request = {};
@@ -101,28 +121,29 @@ $(document).ready(function() {
             YAWU.debug.debugAjaxBeforeSend(e, xhr, settings);
         })
         .on('ajax:success', function(e, data, status, xhr) {
-            for (var i in data) {
-                var j = i;
-                outputs[i].setValue(data[i]);
-            }
-            
-            /*
-             * Focus on anchor with results of request
-             */
-            var resultAnchor = $('[data-editor-anchor]').attr('name');
-            if (resultAnchor) {
-                resultAnchor = '#' + resultAnchor;
-                // add if none or replace if present anchor to current URL
-                var anchorRegex = new RegExp('($)|(#*' + resultAnchor + '$)');
-                var newLoc = new String(window.location).replace(anchorRegex, resultAnchor);
-                window.location = newLoc;
+            if (data.error) {
+                showError(data.error.message, data.error.description);
+            } else {
+                for (var i in data) {
+                    var j = i;
+                    outputs[i].setValue(data[i]);
+                }
+                
+                /*
+                 * Focus on anchor with results of request
+                 */
+                var resultAnchor = $resultAnchor.attr('name');
+                if (resultAnchor) {
+                    resultAnchor = '#' + resultAnchor;
+                    // add if none or replace if present anchor to current URL
+                    var anchorRegex = new RegExp('(#*' + resultAnchor + '$)|($)');
+                    var newLoc = new String(window.location).replace(anchorRegex, resultAnchor);
+                    window.location = newLoc;
+                }
             }
          })
         .on('ajax:error', function(e, xhr, status, error) {
-            //TODO - create error pane for err. messages
-            for (var i in outputs) {
-                outputs[i].setValue("ERROR: " + error);
-            }
+            showError(String(xhr.status) + ' ' + error);
         })
         .on('ajax:complete', function(e, xhr, status) {
             YAWU.debug.debugAjaxComplete(e, xhr, status);
@@ -132,13 +153,13 @@ $(document).ready(function() {
      * Map shortcut 'Ctrl+Enter' for submitting form with ['data-editor="submit"]
      */
     var keyState = {};
-    $(document).on('keydown', keyState, function(e) {
+    $('[data-editor="form"]').on('keydown', keyState, function(e) {
         if (e.which == 17) {
             e.data.ctrl = 'pressed';
         }
     });
     
-    $(document).on('keyup', keyState, function(e) {
+    $('[data-editor="form"]').on('keyup', keyState, function(e) {
         if (e.which == 17) {
             e.data.ctrl = null;
         } else if (e.which == 13 && e.data.ctrl == 'pressed') {

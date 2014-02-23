@@ -6,14 +6,6 @@ $(document).ready(function() {
     var debugEditor = ace.edit($debugEditor[0]);
     debugEditor.getSession().setUseWrapMode(true);
     
-    $("#debug_toggle").change(function() {
-        if(this.checked) {
-            $debugEditor.removeClass('hide');
-        } else {
-            $debugEditor.addClass('hide');
-        }
-    });
-    
     global.namespace('YAWU.debug');
     
     YAWU.debug.clearDebugPanel = function() {

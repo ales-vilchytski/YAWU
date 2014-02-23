@@ -2,6 +2,8 @@ en:
   xml:
     escape:
       editor:
+        input: Input XML
+        output: Result XML
         sample: <sample><xml will='be'>escaped</xml></sample>
         form_submit: 
           label: Escape
@@ -9,8 +11,8 @@ en:
       
     format:
       editor:
-        input_hint: Copy-paste XML in field below. Settings are placed near this field.
-        output_hint: "Result:"
+        input: Input XML
+        output: Result XML
         sample: <sample><xml will='be intended'>by specified text</xml></sample>
         settings: Settings
         form_submit: 
@@ -21,5 +23,5 @@ en:
           placeholder: any text for indentation
         encoding:
           label: Encoding
-          placeholder: if you need it to be changed
+          placeholder: encoding of output XML
   

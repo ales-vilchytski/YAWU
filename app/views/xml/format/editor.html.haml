@@ -15,8 +15,10 @@
         %form.form-horizontal{role: 'form'}
           = settings_text_field_tag(name: 'indent_text', label: t('.indent_text.label'), placeholder: t('.indent_text.placeholder'), tab_allowed: true)
           = settings_text_field_tag(name: 'encoding', label: t('.encoding.label'), placeholder: t('.encoding.placeholder'))
-    
-        = submit_form_tag( action: 'format' )
+
+%div.row
+  %div.col-md-4
+    = submit_form_tag( action: 'format' )
     
 %div.row
   %div.col-md-8

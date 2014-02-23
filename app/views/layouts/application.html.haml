@@ -9,7 +9,7 @@
   = csrf_meta_tags
 
 %body
-  %nav.navbar.navbar-default{ 'role' => "navigation" }
+  %nav.navbar.navbar-default.condensed{ 'role' => "navigation" }
     .container-fluid
       .navbar-header
         %button.navbar-toggle{ 'type' => "button", 'data-toggle' => "collapse", 'data-target' => "#yawu_application_navbar" }
@@ -32,7 +32,7 @@
               %li
                 %a{href: "#"}= t('application.xml.json')
               %li
-                %a{href: "#"}= t('application.xml.xslt')
+                =link_to t('application.xml.xslt'), xml_xslt_path
               %li
                 %a{href: "#"}= t('application.xml.xsd')
               %li.divider

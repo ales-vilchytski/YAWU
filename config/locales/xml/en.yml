@@ -2,8 +2,8 @@ en:
   xml:
     escape:
       editor:
-        input: Input XML
-        output: Result XML
+        input: Input text
+        output: Escaped text
         sample: <sample><xml will='be'>escaped</xml></sample>
         form_submit: 
           label: Escape
@@ -12,7 +12,7 @@ en:
     format:
       editor:
         input: Input XML
-        output: Result XML
+        output: Formatted document
         sample: <sample><xml will='be intended'>by specified text</xml></sample>
         settings: Settings
         form_submit: 
@@ -25,3 +25,12 @@ en:
           label: Encoding
           placeholder: encoding of output XML
   
+    xslt:
+      editor:
+        xml: Input XML
+        xslt: Input XSLT
+        output: Transformed XML
+        form_submit:
+          label: Transform
+          disable: Processing
+   

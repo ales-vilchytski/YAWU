@@ -4,7 +4,7 @@
   - javascript_include_tag "editor", charset: "UTF-8"
 
 - content_for :content do
-  %div.row#errPane
+  %div.row
     %div.col-md-8.col-md-offset-2
       %div.panel.panel-danger.collapse#error_pane
         %div.panel-heading
@@ -12,12 +12,19 @@
             %div.col-md-11
               %h4{ 'data-editor' => 'error-heading', 'data-target' => '#error_pane'  }
             %div.col-md-1
-              %button.btn{ 'data-toggle' => 'collapse', 'data-target' => '#error_pane' } X
+              %button.close{ 'type' => 'button', 'data-toggle' => 'collapse', 'data-target' => '#error_pane' } &times
         %div.panel-body{ 'data-editor' => 'error-body', 'data-default-error' => t('editor.error.default') }
   
   = yield
           
 = render template: 'layouts/application'
+
+%div.container-fluid
+  %div.row
+    %div.col-md-4
+      %button.btn.separated{ 'data-show' => 'up' }
+        %span.glyphicon.glyphicon-arrow-up
+        = t('editor.up')
 
 %hr
 

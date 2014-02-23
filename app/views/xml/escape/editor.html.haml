@@ -1,14 +1,16 @@
 %div.row{ 'data-editor' => 'form' }
   
-  %div.col-md-8
+  %div.col-md-12
     = render( partial: 'editor/input_editor', locals: { |
       header: t('.input'),   |
       content: t('.sample'), |
       settings_json: '{ "name": "input", "mode": "ace/mode/xml" }' }) |
   
+%div.row
   %div.col-md-4
+  
     = submit_form_tag( action: 'escape' )
-     
+  
 %div.row
   %div.col-md-8
     = render( partial: 'editor/output_editor', locals: {  |

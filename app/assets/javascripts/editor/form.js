@@ -94,7 +94,10 @@ $(document).ready(function() {
         $errBody.text(body || $errBody.data('defaultError'));
         
         var collapseTarget = $errHead.data('target') || $errBody.data('target');
-        $(collapseTarget).collapse('show');
+        var $collapseTarget = $(collapseTarget);
+        $collapseTarget.collapse('show');
+        
+        scrollTo($collapseTarget);
     }
     
     $('[data-editor="submit"]')
@@ -129,17 +132,7 @@ $(document).ready(function() {
                     outputs[i].setValue(data[i]);
                 }
                 
-                /*
-                 * Focus on anchor with results of request
-                 */
-                var resultAnchor = $resultAnchor.attr('name');
-                if (resultAnchor) {
-                    resultAnchor = '#' + resultAnchor;
-                    // add if none or replace if present anchor to current URL
-                    var anchorRegex = new RegExp('(#*' + resultAnchor + '$)|($)');
-                    var newLoc = new String(window.location).replace(anchorRegex, resultAnchor);
-                    window.location = newLoc;
-                }
+               scrollTo($resultAnchor);
             }
          })
         .on('ajax:error', function(e, xhr, status, error) {
@@ -169,8 +162,8 @@ $(document).ready(function() {
 });
 
 
-/*
- * Adds for inputs with [data-input="tab-allowed"] ability to enter tabs.
+/**
+ * Adds ability to enter tabs for inputs with [data-input="tab-allowed"].
  * Works with selections
  */
 $(document).ready(function() {
@@ -188,6 +181,25 @@ $(document).ready(function() {
             
             e.preventDefault();
         }
+    });
+
+});
+
+/**
+ * Adds functionality of 'return up' and 'go down' for buttons with data attrs:
+ *   [data-show="up"]
+ *   [data-show="down"]
+ */
+$(document).ready(function() {
+    var $up = $('body');
+    var $down = $('body *').filter(':last');
+    
+    $('[data-show="up"]').on('click', function() {
+        scrollTo($up);
+    });
+    
+    $('[data-show="down"]').on('click', function() {
+        scrollTo($down);
     });
 
 });

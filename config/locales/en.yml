@@ -24,5 +24,6 @@ en:
   editor:
     error:
       default: We are sorry, but something went wrong
+    up: Return up
     debug_panel:
       show: Show debug panel

@@ -1,15 +1,14 @@
 module Xml
+  
   class Escape
-    
-    attr_accessor :xml_input
-    
-    def initialize(xml_input)
-      @xml_input = xml_input
+        
+    def initialize()
     end
     
-    def escape
-      ERB::Util.html_escape(@xml_input)
+    def escape(xml)
+      ERB::Util.html_escape(xml)
     end
     
   end
+
 end

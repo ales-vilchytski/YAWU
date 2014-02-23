@@ -2,8 +2,8 @@ ru:
   xml:
     escape:
       editor:
-        input: Введите XML
-        output: Результат
+        input: Введите текст
+        output: Экранированный текст для вставки в XML
         sample: <?xml encoding='utf-8'?><Пример ИксЭмЭль='будет'>экранирован</Пример>
         form_submit: 
           label: Экранировать
@@ -12,7 +12,7 @@ ru:
     format:
       editor:
         input: Введите XML
-        output: Результат
+        output: Форматированный документ
         sample: <?xml encoding='utf-8'?><Пример><Иксэмэль будет='Отформатирован'>используя указанный отступ</Иксэмэль></Пример>
         settings: Настройки
         form_submit: 
@@ -24,3 +24,12 @@ ru:
         encoding:
           label: Кодировка
           placeholder: кодировка выходного XML
+    
+    xslt:
+      editor:
+        xml: Введите XML
+        xslt: Введите XSLT
+        output: Трансформированный XML
+        form_submit:
+          label: Трансформировать
+          disable: Обработка

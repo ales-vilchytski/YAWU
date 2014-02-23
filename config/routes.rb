@@ -8,6 +8,9 @@ YAWU::Application.routes.draw do
     
     get 'escape' => 'escape#editor'
     post 'escape' => 'escape#escape'
+    
+    get 'xslt' => 'xslt#editor'
+    post 'transform' => 'xslt#transform'
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

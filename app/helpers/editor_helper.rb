@@ -1,5 +1,9 @@
 module EditorHelper
   
+  def get_sample_xml(name)
+    File.read( File.join( Rails.root, 'samples', 'xml', name) )
+  end
+  
   def settings_text_field_tag(opts)
     opts = {
       name: nil,
@@ -37,7 +41,7 @@ module EditorHelper
     button_txt = opts[:name] ||= t('.form_submit.label')
     html_opts = { 
       'data' => { disable_with: t('.form_submit.disable') }, 
-      'class' => 'btn btn-default' 
+      'class' => 'btn btn-default separated' 
     }.merge(html_opts ||= {})
     
     form_tag( { action: action }, method: 'post', remote: true, data: { type: 'json', editor: 'submit' }) do

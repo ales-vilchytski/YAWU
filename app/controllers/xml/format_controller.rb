@@ -17,8 +17,9 @@ module Xml
         encoding: (params[:encoding] == '') ? (nil) : params[:encoding],
       }
       
-      formatter = Xml::Format.new(opts)
       result = execute_for_json do |r|
+        formatter = Xml::Format.new(opts)
+        
         r[:result] = formatter.format(params[:input])
       end
       

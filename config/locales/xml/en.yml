@@ -33,4 +33,27 @@ en:
         form_submit:
           label: Transform
           disable: Processing
-   
+    
+    json:
+      editor:
+        input: Input XML
+        output: JSON
+        settings: Settings
+        mode:
+          label: Output mode
+          pretty: Pretty printed
+          one_line: Oneliner
+        form_submit:
+          label: Convert
+          disable: Processing
+    
+    xsd:
+      valid: Document is validated against XSD without errors
+      editor:
+        xml: Input XML
+        xsd: Input XSD
+        output: Result
+        mode:
+        form_submit:
+          label: Validate
+          disable: Processing

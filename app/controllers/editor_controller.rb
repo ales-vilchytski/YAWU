@@ -12,8 +12,26 @@ class EditorController < ApplicationController
   layout 'editor'
   
   protected
-
+  
+  # Assigns nil for all values in hash which .empty? returns true
+  #
+  # @hash [Hash, #write]
+  def nil_if_empty(hash)
+    hash.each { |k, v| hash[k] = (v.empty?) ? (nil) : (v) }
+  end
+  
+  # Deletes all values from hash which .empty? or .nil? returns true
+  # 
+  # @hash [Hash, #write]
+  def nothing_if_empty_or_nil(hash) 
+    hash.delete_if { |k, v| v.empty? || v.nil? }
+  end
+  
   # Useful method with error handling for JSON responses
+  # Executes block passing hash storing results of execution, return error object
+  # if any exception is raised
+  #
+  # @result [Hash, #write]
   def execute_for_json(result = {}, &block)
     begin
       yield(result)

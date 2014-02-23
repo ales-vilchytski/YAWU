@@ -1,6 +1,6 @@
 module Xml
 
-  class XsltController < EditorController
+  class JsonController < EditorController
     
     def editor
       respond_to do |format|
@@ -8,11 +8,16 @@ module Xml
       end
     end
     
-    def xslt
+    def json
+      opts = {
+      }.merge(nothing_if_empty_or_nil({
+          mode: params[:mode]
+        })
+      )
       result = execute_for_json do |r|
-        xslt = Xml::Xslt.new(params[:xslt])
+        json = Xml::Json.new(opts)
         
-        r[:result] = xslt.transform(params[:xml])
+        r[:result] = json.xml_to_json(params[:input])
       end
       
       respond_to do |format|

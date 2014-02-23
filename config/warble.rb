@@ -11,7 +11,7 @@ $WARBLER_CONFIG = Warbler::Config.new do |config|
   # config.features = %w(gemjar)
 
   # Application directories to be included in the webapp.
-  config.dirs = %w(app config db lib vendor public)
+  config.dirs = %w(app config db lib vendor public samples)
   
   # Additional files/directories to exclude
   config.excludes = FileList["lib/tasks/*"]

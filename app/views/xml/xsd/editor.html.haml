@@ -8,13 +8,13 @@
   
   %div.col-md-6
     = render( partial: 'editor/input_editor', locals: { |
-      header: t('.xslt'),   |
-      content: get_sample_xml('sample.xslt'), |
-      settings_json: '{ "name": "xslt", "mode": "ace/mode/xml" }' }) |
+      header: t('.xsd'),   |
+      content: get_sample_xml('sample.xsd'), |
+      settings_json: '{ "name": "xsd", "mode": "ace/mode/xml" }' }) |
 
 %div.row
   %div.col-md-1
-    = submit_form_tag( action: 'xslt' )
+    = submit_form_tag( action: 'xsd' )
       
 %div.row
   %div.col-md-8

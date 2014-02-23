@@ -33,3 +33,27 @@ ru:
         form_submit:
           label: Трансформировать
           disable: Обработка
+   
+    json:
+      editor:
+        input: Введите XML
+        output: Соответствующий JSON
+        settings: Настройки
+        mode:
+          label: Режим вывода
+          pretty: Форматированный
+          one_line: В одну строку
+        form_submit:
+          label: Преобразовать
+          disable: Обработка
+
+    xsd:
+      valid: Документ прошёл XSD-валидацию без ошибок
+      editor:
+        xml: Введите XML
+        xsd: Введите XSD
+        output: Результат валидации
+        mode:
+        form_submit:
+          label: Валидировать
+          disable: Обработка

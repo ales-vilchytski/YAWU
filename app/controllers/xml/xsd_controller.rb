@@ -1,6 +1,6 @@
 module Xml
 
-  class XsltController < EditorController
+  class XsdController < EditorController
     
     def editor
       respond_to do |format|
@@ -8,11 +8,12 @@ module Xml
       end
     end
     
-    def xslt
+    def xsd
       result = execute_for_json do |r|
-        xslt = Xml::Xslt.new(params[:xslt])
+        xsd = Xml::Xsd.new(params[:xsd])
         
-        r[:result] = xslt.transform(params[:xml])
+        errors = xsd.validate(params[:xml])
+        r[:result] = errors.empty? ? t('xml.xsd.valid') : errors.join("\n")
       end
       
       respond_to do |format|

@@ -9,8 +9,14 @@ YAWU::Application.routes.draw do
     get 'escape' => 'escape#editor'
     post 'escape' => 'escape#escape'
     
+    get 'json' => 'json#editor'
+    post 'json' => 'json#json'
+    
     get 'xslt' => 'xslt#editor'
-    post 'transform' => 'xslt#transform'
+    post 'xslt' => 'xslt#xslt'
+    
+    get 'xsd' => 'xsd#editor'
+    post 'xsd' => 'xsd#xsd'
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

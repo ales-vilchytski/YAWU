@@ -2,7 +2,7 @@ module Xml
   class Format
     attr_accessor :settings
     
-    def initialize(opts)
+    def initialize(opts = nil)
       @settings = {
         indent: 4, 
         indent_text: ' ',

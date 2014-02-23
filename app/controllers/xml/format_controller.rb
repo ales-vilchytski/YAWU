@@ -11,11 +11,13 @@ module Xml
     def format
       opts = {
         indent: 1,
-        indent_text: (params[:indent_text] == '') ? (nil) : params[:indent_text],
-        # there can be issue with internal encoding on front, by on the Ruby side
-        # string is encoded properly
-        encoding: (params[:encoding] == '') ? (nil) : params[:encoding],
-      }
+      }.merge(nil_if_empty({      
+          indent_text: params[:indent_text],
+          # there can be issue with internal encoding on front, by on the Ruby side
+          # string is encoded properly
+          encoding: params[:encoding],
+        })
+      );
       
       result = execute_for_json do |r|
         formatter = Xml::Format.new(opts)

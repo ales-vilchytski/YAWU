@@ -24,7 +24,7 @@ class EditorController < ApplicationController
   # 
   # @hash [Hash, #write]
   def nothing_if_empty_or_nil(hash) 
-    hash.delete_if { |k, v| v.empty? || v.nil? }
+    hash.delete_if { |k, v| v.nil? || v.empty? }
   end
   
   # Useful method with error handling for JSON responses

@@ -27,3 +27,12 @@ en:
     up: Return up
     debug_panel:
       show: Show debug panel
+
+  concerns:
+    uploads:
+      form:
+        button: 'Add files'
+        label: 'Files will be loaded and will become accessible to use'
+        success: 'Success'
+        error: 'Error'
+        clean_status: 'Clean status'

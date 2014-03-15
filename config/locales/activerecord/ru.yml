@@ -1,0 +1,19 @@
+ru:
+  activerecord:
+    models:
+      uploads/uploaded_file: загруженный файл
+    
+    attributes:
+      uploads/uploaded_file:
+        uploaded: файл
+        uploaded_content_type: тип содержимого
+        uploaded_file_name: имя файла
+        
+    errors:
+      models:
+        uploads/uploaded_file:
+          attributes:
+            uploaded_content_type:
+              invalid: запрещён
+            uploaded_file_name:
+              invalid: запрещено

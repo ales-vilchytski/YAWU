@@ -1,0 +1,19 @@
+en:
+  activerecord:
+    models:
+      uploads/uploaded_file: uploaded file
+    
+    attributes:
+      uploads/uploaded_file:
+        uploaded: file
+        uploaded_content_type: content type
+        uploaded_file_name: file name
+        
+    errors:
+      models:
+        uploads/uploaded_file:
+          attributes:
+            uploaded_content_type:
+              invalid: is forbidden
+            uploaded_file_name:
+              invalid: is forbidden

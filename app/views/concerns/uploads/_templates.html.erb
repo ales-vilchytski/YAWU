@@ -1,0 +1,23 @@
+<script id="template-uploaded" type="text/x-tmpl">
+{% o.files.forEach(function(file) { %}
+	{% var rowClass = (file.error) ? ('danger') : (''); %}
+	{% var info = (file.error) ? (file.error) : ('<%= t("concerns.uploads.form.success")%>'); %}
+	<tr class='{%= rowClass %}'>
+	    <td>
+	        {%= file.name %}
+	    </td>
+	    <td>
+	    	{% if (info.length && info.forEach) { %}
+	    	<%= t('concerns.uploads.form.error') %>
+	    	<ul>
+	    	    {% info.forEach(function(elem) { %}
+	    	    <li>{%= elem %}</li>  
+	    	    {% }); %}
+	    	</ul>
+	        {% } else { %} 
+	            {%= info %}
+	        {% } %}
+	    </td>
+	</tr>
+{% }); %}
+</script>

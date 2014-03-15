@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'
-gem 'activerecord-jdbcsqlite3-adapter', '1.3.6'
+gem 'activerecord-jdbcderby-adapter', '1.3.6'
+gem "paperclip", "4.1"
 gem 'jquery-rails', '3.1.0'
+gem "jquery-fileupload-rails", "0.4.1"
 
 gem 'ace-rails-ap', '2.0.1'
 gem 'haml', '4.0.5'

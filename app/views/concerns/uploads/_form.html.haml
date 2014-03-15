@@ -1,0 +1,28 @@
+- opts = { |
+    type: (defined? upload_type) ? (upload_type) : (nil),  |
+    name: 'files[]', |
+    action: "/#{params[:controller]}/upload", |
+  }.merge(opts ? (opts) : ({}))
+
+%span{data: { upload: 'form', action: "#{opts[:action]}", type: opts[:type] } }
+  
+  %div.row
+    %div.col-md-4
+      %div.row.btn.btn-default.fileinput-button
+        %i.glyphicon.glyphicon-plus
+        %span= t('.button')
+        %input{multiple: "multiple", name: "#{opts[:name]}", type: "file"}
+    %div.col-md-8
+      = t('.label')
+      
+  %div.row
+    %div.progress.progress-striped.active{"aria-valuemax" => "100", "aria-valuemin" => "0", role: "progressbar"}
+      %span.progress-bar.progress-bar-default{style: "width:0%;"}
+
+  %div.row.collapse{ data: { upload: 'status' } }
+    %table.table.table-striped
+      %tbody.files
+    %div.col-md-3.btn.btn-default{ data: { upload: 'clean-status' }}
+      = t('.clean_status')
+  
+= render :partial => 'concerns/uploads/templates'

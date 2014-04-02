@@ -2,19 +2,19 @@
 #   gem 'activerecord-jdbcderby-adapter'
 #
 development:
- adapter: derby
- driver: org.apache.derby.jdbc.EmbeddedDriver
- url: jdbc:derby:db/development;create=true
+  adapter: derby
+  driver: org.apache.derby.jdbc.EmbeddedDriver
+  url: jdbc:derby:<%= Rails.root %>/db/development;create=true
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
- adapter: derby
- driver: org.apache.derby.jdbc.EmbeddedDriver
- url: jdbc:derby:db/test;create=true
+  adapter: derby
+  driver: org.apache.derby.jdbc.EmbeddedDriver
+  url: jdbc:derby:<%= Rails.root %>/db/test;create=true
 
 production:
- adapter: derby
- driver: org.apache.derby.jdbc.EmbeddedDriver
- url: jdbc:derby:db/production;create=true
+  adapter: derby
+  driver: org.apache.derby.jdbc.EmbeddedDriver
+  url: jdbc:derby:<%= Rails.root %>/db/production;create=true

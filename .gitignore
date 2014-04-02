@@ -8,15 +8,17 @@
 /.bundle
 
 # Ignore databases.
-/db/*.sqlite3
-/db/*.sqlite3-journal
 /db/development
+/db/production
+/db/test
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/derby.log
 /tmp
 /uploads
 
 # Ignore compiled assets
+/public/development-assets
 /public/assets
-/public/dev-assets
+/public/test-assets

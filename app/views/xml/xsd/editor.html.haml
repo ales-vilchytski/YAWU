@@ -1,25 +1,26 @@
-%div.row{ 'data-editor' => 'form' }
+%form{ action: xml_xsd_path, method: 'post', data: { remote: true, editor: 'form' } }
   
-  %div.col-md-6
-    = render( partial: 'editor/input_editor', locals: { |
-      header: t('.xml'),   |
-      content: get_sample_xml('sample.xml'), |
-      settings_json: '{ "name": "xml", "mode": "ace/mode/xml" }' }) |
-  
-  %div.col-md-6
-    = render( partial: 'editor/input_editor', locals: { |
-      header: t('.xsd'),   |
-      content: get_sample_xml('sample.xsd'), |
-      settings_json: '{ "name": "xsd", "mode": "ace/mode/xml" }' }) |
+  %div.row
+    %div.col-md-6
+      = render( partial: 'editor/input_editor', locals: { |
+        header: t('.xml'),   |
+        content: get_sample_xml('sample.xml'), |
+        settings_json: '{ "name": "xml", "mode": "ace/mode/xml" }' }) |
 
-%div.row
-  %div.col-md-1
-    = submit_form_tag( action: 'xsd' )
-      
-%div.row
-  %div.col-md-8
-    = render( partial: 'editor/output_editor', locals: {  |
-      header: t('.output'),  |
-      anchor_id: 'result',   |
-      anchor_name: 'result', |
-      settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |
+    %div.col-md-6
+      = render( partial: 'editor/input_editor', locals: { |
+        header: t('.xsd'),   |
+        content: get_sample_xml('sample.xsd'), |
+        settings_json: '{ "name": "xsd", "mode": "ace/mode/xml" }' }) |
+
+  %div.row
+    %div.col-md-1
+      = submit_button_tag
+
+  %div.row
+    %div.col-md-8
+      = render( partial: 'editor/output_editor', locals: {  |
+        header: t('.output'),  |
+        anchor_id: 'result',   |
+        anchor_name: 'result', |
+        settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |

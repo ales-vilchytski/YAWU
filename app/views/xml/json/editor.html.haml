@@ -1,31 +1,33 @@
-%div.row{ 'data-editor' => 'form' }
-  
-  %div.col-md-8
-    = render( partial: 'editor/input_editor', locals: {  |
-      header: t('.input'),   |
-      content: get_sample_xml('sample.xml'), |
-      settings_json: '{ "name": "input", "mode": "ace/mode/xml" }' }) |
-  
-  %div.col-md-4
-    %div.panel.panel-default
-      %div.panel-heading
-        %h4= t('.settings')
-      
-      %div.panel-body
-        %form.form-horizontal{role: 'form'}
-          %label{ 'name' => 'mode' }= t('.mode.label')
-          %select.form-control{ 'name' => 'mode' }
-            %option{ 'value' => 'pretty' }= t('.mode.pretty') 
-            %option{ 'value' => 'one_line' }= t('.mode.one_line')
+%form{ action: xml_json_path, method: 'post', data: { remote: true, editor: 'form' } }
 
-%div.row
-  %div.col-md-4
-    = submit_form_tag( action: 'json' )
-    
-%div.row
-  %div.col-md-8
-    = render( partial: 'editor/output_editor', locals: {  |
-      header: t('.output'),  |
-      anchor_id: 'result',   |
-      anchor_name: 'result', |
-      settings_json: '{ "name": "result", "mode": "ace/mode/javascript" }' }) |
+  %div.row{ 'data-editor' => 'form' }
+
+    %div.col-md-8
+      = render( partial: 'editor/input_editor', locals: {  |
+        header: t('.input'),   |
+        content: get_sample_xml('sample.xml'), |
+        settings_json: '{ "name": "input", "mode": "ace/mode/xml" }' }) |
+
+    %div.col-md-4
+      %div.panel.panel-default
+        %div.panel-heading
+          %h4= t('.settings')
+
+        %div.panel-body
+          %div.form-horizontal{role: 'form'}
+            %label{ 'for' => 'mode' }= t('.mode.label')
+            %select.form-control#mode{ 'name' => 'mode' }
+              %option{ 'value' => 'pretty' }= t('.mode.pretty')
+              %option{ 'value' => 'one_line' }= t('.mode.one_line')
+
+  %div.row
+    %div.col-md-4
+      = submit_button_tag
+
+  %div.row
+    %div.col-md-8
+      = render( partial: 'editor/output_editor', locals: {  |
+        header: t('.output'),  |
+        anchor_id: 'result',   |
+        anchor_name: 'result', |
+        settings_json: '{ "name": "result", "mode": "ace/mode/javascript" }' }) |

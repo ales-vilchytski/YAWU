@@ -5,14 +5,15 @@ YAWU::Application.routes.draw do
   # Helper defining routes for tools
   # Creates get and post methods and optional upload path
   # 
-  # @name [String, #read] - path
-  # @opts [Hash, #read] - additional settings. Supports:
-  #                         :upload => 'action'
-  def tool(name, opts = nil)
+  # @param name [String, #read] path and action
+  # @param tools [Array, #read] nested paths and actions instead of first-level action
+  def tool(name, tools = [])
     get name => "#{name}#editor"
-    post name => "#{name}##{name}"
-    if (opts && opts[:upload])
-      post "#{name}/upload" => "#{name}##{opts[:upload]}"
+    
+    if (!tools || tools.empty?)
+      post name => "#{name}##{name}"
+    else
+      tools.each { |t| post "#{name}/#{t}" => "#{name}##{t}" }
     end
   end
   
@@ -25,7 +26,7 @@ YAWU::Application.routes.draw do
  
     tool('xslt')
     
-    tool('xsd', upload: 'upload')
+    tool('xsd')
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

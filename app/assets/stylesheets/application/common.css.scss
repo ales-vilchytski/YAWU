@@ -6,3 +6,10 @@
 .separated {
     margin: 5px 5px 5px 5px;
 }
+
+.clear {
+  clear: both;
+//  float: left;
+  display: block;
+  position: relative;
+}

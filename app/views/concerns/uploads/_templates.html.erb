@@ -21,3 +21,9 @@
 	</tr>
 {% }); %}
 </script>
+
+<script id="template-list-element" type="text/x-tmpl">
+{% o.files.forEach(function(file) { %}
+	<option value="{%= file.id %}">{%= file.name %}</option>
+{% }); %}
+</script>

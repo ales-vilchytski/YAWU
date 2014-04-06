@@ -26,7 +26,7 @@ YAWU::Application.routes.draw do
  
     tool('xslt')
     
-    tool('xsd')
+    tool('xsd', ['validate', 'upload'])
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

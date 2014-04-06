@@ -52,8 +52,10 @@ en:
       editor:
         xml: Input XML
         xsd: Input XSD
+        xsd_file: Choose XSD file
+        prolog_note: (files without prolog are forbidden)
         output: Result
-        mode:
+        file: File
         form_submit:
           label: Validate
           disable: Processing

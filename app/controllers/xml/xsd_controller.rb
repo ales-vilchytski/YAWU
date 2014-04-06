@@ -1,16 +1,26 @@
 module Xml
 
   class XsdController < EditorController
+    include Uploads::Uploadable
+    
+    upload_class :xsd_file 
     
     def editor
+      @files = Uploads::XsdFile.all
       respond_to do |format|
         format.html { render :editor }
       end
     end
     
-    def xsd
+    def validate
       result = execute_for_json do |r|
-        xsd = Xml::Xsd.new(params[:xsd])
+        xsd_string = if (params[:mode] == 'file')
+          Uploads::XsdFile.find(params[:file]).read
+        else
+          params[:xsd]
+        end
+        
+        xsd = Xml::Xsd.new(xsd_string)
         
         errors = xsd.validate(params[:xml])
         r[:result] = errors.empty? ? t('xml.xsd.valid') : errors.join("\n")

@@ -9,7 +9,9 @@ module MonkeyPatch
   module DatabaseCleaner
     module DerbyTruncationAdapter
       def truncate_table(table_name)
-        execute("TRUNCATE TABLE #{quote_table_name(table_name)}")
+        ActiveRecord::Base.transaction do
+          execute("TRUNCATE TABLE #{quote_table_name(table_name)}")
+        end
       end
     end
   end
@@ -20,7 +22,7 @@ ActiveRecord::ConnectionAdapters::JdbcAdapter.class_eval { include MonkeyPatch::
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
-  config.after :each do
+  config.after :all do
     DatabaseCleaner.clean
   end
 
@@ -39,7 +41,7 @@ RSpec.configure do |config|
       path = "#{Rails.root.join("tmp")}/rspec/files"
       FileUtils.mkpath(path)
       file = "#{path}/FAILED-#{filename}-#{line_number}"
-      
+            
       page.save_screenshot(file + ".png")
       page.save_page(file + ".html")
     end

@@ -1,19 +1,21 @@
 - opts = { |
     type: (defined? upload_type) ? (upload_type) : (nil),  |
     name: 'files[]', |
-    action: "/#{params[:controller]}/upload", |
+    id: 'filess',   |
+    action: url_for(action: 'upload'), |
+    label: t('.label'), |
   }.merge(opts ? (opts) : ({}))
 
-%span{data: { upload: 'form', action: "#{opts[:action]}", type: opts[:type] } }
+%div.container-fluid{data: { upload: 'form', action: "#{opts[:action]}", type: opts[:type] } }
   
   %div.row
     %div.col-md-4
       %div.row.btn.btn-default.fileinput-button
         %i.glyphicon.glyphicon-plus
-        %span= t('.button')
-        %input{multiple: "multiple", name: "#{opts[:name]}", type: "file"}
+        %span{ for: "#{opts[:id]}" }= t('.button')
+        %input{ id: "#{opts[:id]}", multiple: "multiple", name: "#{opts[:name]}", type: "file"}
     %div.col-md-8
-      = t('.label')
+      = opts[:label]
       
   %div.row
     %div.progress.progress-striped.active{"aria-valuemax" => "100", "aria-valuemin" => "0", role: "progressbar"}

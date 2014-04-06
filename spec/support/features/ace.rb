@@ -1,6 +1,7 @@
 module Features
   module Ace
     include ActionView::Helpers::JavaScriptHelper
+    # Also depends on Features::Common
     
     def get_ace_settings(label, type)
       script = %Q{return (function() \{
@@ -117,17 +118,9 @@ module Features
     # @see #js_finding_ace_editor
     def ace_value_should_eq(expected, opts = {})
       result = nil
-      begin
-        timeout(opts[:timeout] || Capybara.default_wait_time) do
-          loop do
-            result = get_ace_value(opts)
-            break if result == expected
-          end
-        end
-      rescue Timeout::Error
-      end
+      wait_until(opts) { (result = get_ace_value(opts)) == expected }
       result.should == expected
     end
-           
+    
   end
 end

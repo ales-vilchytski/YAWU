@@ -13,7 +13,7 @@ namespace :war do
   task :compile_assets do
     if (ENV['RAILS_ENV'] == 'production')
       renv = "RAILS_ENV=#{ENV['RAILS_ENV']}"
-      relative = "RAILS_RELATIVE_URL_ROOT=/#{$WARBLER_CONFIG.jar_name}"
+      relative = "RAILS_RELATIVE_URL_ROOT='/#{$WARBLER_CONFIG.jar_name}'"
       
       system "bundle exec jruby -S rake assets:precompile #{renv} #{relative}"
       abort('ERROR precompiling assets') if $?.exitstatus != 0

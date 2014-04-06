@@ -8,74 +8,92 @@ module Uploads
   module Uploadable
     extend ActiveSupport::Concern
     
-    included do
-      # Action processing file upload.
-      # Needs instance method 'upload_class' returning actual class of upload model
-      def upload
-        do_upload(upload_class)
-      end
+    module ClassMethods
       
-      # Useful method for views with file upload form to set file type automagically
-      def upload_type
-        upload_class.name.underscore
-      end
-      
-      helper_method :upload_type
-      
-      protected
-      
-      # Implementation of uploading files
-      # TODO implement common JSON interface for results
+      # Defines class of upload in controller or returns the one if argument is nil
       # 
-      # @upload_claz [Class, #read] - class (constant) extending Uploads::UploadedFile
-      def do_upload(upload_claz)
-        uploaded_files_info = { files: [] }
-        params['files'].each do |file|
-          uf = Uploads::UploadedFile.new()
-          
-          if (!(upload_claz && upload_claz.is_a?(Class) && upload_claz < Uploads::UploadedFile))
-            raise ArgumentError.new("Upload class should be class extending #{Uploads::UploadedFile.name}")
-          end
-          uf = uf.becomes(upload_claz)
-          
-          uf.type = upload_claz.name
-          uf.uploaded = file.tempfile
-          uf.uploaded_file_name = file.original_filename
-          
-          if uf.save
-            uploaded_files_info[:files] << to_jq_fileupload(uf)
+      # @param clazz [Class or Symbol, #read] class constant or name of upload model
+      def upload_class(clazz = nil)
+        if (clazz == nil)
+          return @@_upload_class
+        else
+          if (clazz.is_a? Class)
+            @@_upload_class = clazz
           else
-            uploaded_files_info[:files] << to_jq_upload_error(uf)
+            @@_upload_class = Uploads.const_get(clazz.to_s.camelize)
           end
         end
-        render :json => uploaded_files_info
       end
       
-      # Returns JSON representing information about uploaded file
-      #
-      # @uploaded [Uploads::UploadedFile, #read] - instance of uploaded file
-      def to_jq_fileupload(uploaded)
-        return {
-          id: uploaded.read_attribute(:id),
-          scope: uploaded.read_attribute(:scope),
-          name: uploaded.read_attribute(:uploaded_file_name),
-          size: uploaded.read_attribute(:upload_file_size),
-          url: uploaded.uploaded.url(:original) 
-        }
-      end
-
-      # Returns JSON representing information about errors during upload process
-      #
-      # @uploaded [Uploads::UploadedFile, #read] - instance of uploaded file
-      def to_jq_upload_error(uploaded)
-        res = {
-          name: uploaded.read_attribute(:uploaded_file_name),
-          size: uploaded.read_attribute(:upload_file_size),
-          error: uploaded.errors.full_messages
-        }
-        return res
-      end
+    end
+    
+    # Action processing file upload
+    def upload
+      do_upload(self.class.upload_class)
+    end
+    
+    # Useful method for views with file upload form to set file type automagically
+    def upload_type
+      self.class.upload_class.name.underscore
+    end
+    
+    included do
+      helper_method :upload_type
+    end
+    
+    protected
+    
+    # Implementation of uploading files
+    # TODO implement common JSON interface for results
+    # TODO process all ActionDispatch::Http::UploadedFile instances from params
+    # 
+    # @param upload_claz [Class, #read] - class (constant) extending Uploads::UploadedFile
+    def do_upload(upload_claz)
+      uploaded_files_info = { files: [] }
+      params['files'].each do |file|
+        uf = Uploads::UploadedFile.new()
         
+        if (!(upload_claz && upload_claz.is_a?(Class) && upload_claz < Uploads::UploadedFile))
+          raise ArgumentError.new("Upload class should be class extending #{Uploads::UploadedFile.name}")
+        end
+        uf = uf.becomes(upload_claz)
+        
+        uf.type = upload_claz.name
+        uf.uploaded = file.tempfile
+        uf.uploaded_file_name = file.original_filename
+        
+        if uf.save
+          uploaded_files_info[:files] << to_jq_fileupload(uf)
+        else
+          uploaded_files_info[:files] << to_jq_upload_error(uf)
+        end
+      end
+      render :json => uploaded_files_info
+    end
+    
+    # Returns JSON representing information about uploaded file
+    #
+    # @param uploaded [Uploads::UploadedFile, #read] instance of uploaded file
+    def to_jq_fileupload(uploaded)
+      return {
+        id: uploaded.read_attribute(:id),
+        scope: uploaded.read_attribute(:scope),
+        name: uploaded.read_attribute(:uploaded_file_name),
+        size: uploaded.read_attribute(:upload_file_size),
+        url: uploaded.uploaded.url(:original) 
+      }
+    end
+
+    # Returns JSON representing information about errors during upload process
+    #
+    # @param uploaded [Uploads::UploadedFile, #read] instance of uploaded file
+    def to_jq_upload_error(uploaded)
+      res = {
+        name: uploaded.read_attribute(:uploaded_file_name),
+        size: uploaded.read_attribute(:upload_file_size),
+        error: uploaded.errors.full_messages
+      }
+      return res
     end
   end
   

@@ -52,8 +52,10 @@ ru:
       editor:
         xml: Введите XML
         xsd: Введите XSD
+        xsd_file: Выберите файл
+        prolog_note: (файлы без пролога запрещены)
         output: Результат валидации
-        mode:
+        file: Файл 
         form_submit:
           label: Валидировать
           disable: Обработка

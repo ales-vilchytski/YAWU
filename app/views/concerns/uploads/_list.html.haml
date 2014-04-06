@@ -1,8 +1,9 @@
 - opts = { |
     type: (defined?(upload_type)) ? (upload_type) : (nil),  |
-    name: 'file', |
+    name: 'file',    |
+    id: 'file_list', |
   }.merge(opts ? (opts) : ({}))
 
-%select{ name: "#{opts[:name]}", data: { upload: 'list', type: opts[:type] } }
+%select.form-control{ id: "#{opts[:id]}", name: "#{opts[:name]}", data: { upload: 'list', type: opts[:type] } }
   - ((defined?(files)) ? (files) : (@files)).each do |file|
     %option{ value: "#{file.id}" }= file.uploaded_file_name

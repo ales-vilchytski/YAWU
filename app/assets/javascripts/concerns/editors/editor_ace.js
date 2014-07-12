@@ -1,7 +1,6 @@
 namespace('editors', function() {
-    function AceEditor(id) {
+    widgets.inheritWidgetBase(this, 'editor_ace', function (id, clazz) {
         var $container = $('#' + id);
-        var type = $container.data('editor_ace');
         
         var editor = ace.edit($container.attr('id'));
         
@@ -12,7 +11,7 @@ namespace('editors', function() {
             theme: _settings['theme'] || 'eclipse'
         }
         
-        switch (type) {
+        switch (clazz) {
         case 'output':
             break;
         case 'input':
@@ -26,15 +25,7 @@ namespace('editors', function() {
         default:
             //TODO log error 
         }
-        
-        this.getId = function() {
-            return $container.attr('id');
-        };
-
-        this.getContainer = function() {
-            return editor.container;
-        };
-        
+                
         this.getAce = function() {
             return editor;
         };
@@ -67,28 +58,6 @@ namespace('editors', function() {
         this.setReadOnly(settings['readOnly']);
         this.setMode(settings['mode']);
         this.setTheme(settings['theme']);
-    };
-
-    var instances = {};
-
-    this.widget = function(id) {
-        if (instances[id]) {
-            return instances[id];
-        } else {
-            var widget = new AceEditor(id);
-            instances[widget.getId()] = widget;
-            return widget;
-        }
-    };
+    });
 
 });
-
-$(document).ready(function() {
-    $('[data-editor_ace]').each(function(i, container) {
-        var $element = $(container);
-        if (!$element.attr('id')) {
-            $element.attr('id', 'editor_ace' + i);
-        }
-        editors.widget($element.attr('id'));
-    });
-})

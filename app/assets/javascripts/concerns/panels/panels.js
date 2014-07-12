@@ -1,7 +1,6 @@
 namespace('panels', function() {
-    function Panel(id) {
+    widgets.inheritWidgetBase(this, 'panel', function (id, clazz) {
         var $container = $('#' + id);
-        var type = $container.data('panel');
         
         var $header = $('[data-panel-header]', $container);
         var $body = $('[data-panel-body]', $container);
@@ -9,7 +8,7 @@ namespace('panels', function() {
         var defaultHeader = $header.data('panelHeader');
         var defaultBody = $body.data('panelBody');
         
-        switch(type) {
+        switch(clazz) {
         case 'plain':
             var $collapseIcon = $('#' + id + '_form_panel_collapse_icon');
             var shownClass = $collapseIcon.data('panelShown');
@@ -39,15 +38,7 @@ namespace('panels', function() {
         default:
             //TODO log error
         }
-               
-        this.getId = function() {
-            return $container.attr('id');
-        };
-
-        this.getContainer = function() {
-            return $container;
-        };
-        
+                
         this.setHeader = function(header) {
             $header.text(header);
         };
@@ -64,28 +55,7 @@ namespace('panels', function() {
             return $body.text();
         };
         
-    };
-        
-    var instances = {};
+    });
 
-    this.widget = function(id) {
-        if (instances[id]) {
-            return instances[id];
-        } else {
-            var widget = new Panel(id);
-            instances[widget.getId()] = widget;
-            return widget;
-        }
-    };
-    
 });
 
-$(document).ready(function() {
-    $('[data-panel]').each(function(i, container) {
-        var $element = $(container);
-        if (!$element.attr('id')) {
-            $element.attr('id', 'panel' + i);
-        }
-        panels.widget($element.attr('id'));
-    }); 
-});

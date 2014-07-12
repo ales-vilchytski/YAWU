@@ -1,0 +1,8 @@
+- id ||= nil
+- content ||= nil
+- name ||= nil
+
+%div.editor{ id: id, 'data-editor_ace' => 'input', }<
+  = content
+- if name
+  %input{ id: "ace_text_area_#{id}", type: 'hidden', name: name }

@@ -36,3 +36,5 @@ ru:
         success: 'Успешно загружен'
         error: 'Возникла ошибка'
         clean_status: 'Очистить'
+    buttons:
+      up: Вверх

@@ -1,0 +1,9 @@
+- id ||= nil
+- name ||= t('.form_submit.label')
+- disable_with ||= t('.form_submit.disable')
+    
+%button.btn.btn-default.separated{ id: id, |
+  disable_with: disable_with,              |
+  data: { button: 'submit' },              |
+  type: 'submit', name: 'submit' }
+  = name

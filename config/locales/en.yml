@@ -36,3 +36,6 @@ en:
         success: 'Success'
         error: 'Error'
         clean_status: 'Clean status'
+    buttons:
+      up: Up
+

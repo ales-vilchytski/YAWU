@@ -1,8 +1,9 @@
 - id ||= nil
 - content ||= nil
 - name ||= nil
+- settings ||= {}
 
-%div.editor{ id: id, 'data-editor_ace' => 'input', }<
+%div.editor{ id: id, 'data-editor_ace' => 'input', 'data-editor_ace-settings' => settings.to_json }<
   = content
 - if name
   %input{ id: "ace_text_area_#{id}", type: 'hidden', name: name }

@@ -1,0 +1,12 @@
+- id ||= nil
+- defaultTitle ||= t(".error.title")
+- defaultText ||= t(".error.text")
+
+%div.panel.panel-danger.collapse{ id: id, 'data-panel' => 'error' }
+  %div.panel-heading
+    %div.row
+      %div.col-md-11
+        %h4{ 'data-panel-header' => defaultTitle }
+      %div.col-md-1
+        %button.close{ 'data-toggle' => 'collapse', 'data-target' => "##{id}" } &times
+  %div.panel-body{ 'data-panel-body' => defaultText }

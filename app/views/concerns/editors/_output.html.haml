@@ -1,5 +1,6 @@
 - id ||= nil
 - content ||= nil
+- settings ||= {}
 
-%div.editor{ id: id, 'data-editor_ace' => 'output', }<
+%div.editor{ id: id, 'data-editor_ace' => 'output', 'data-editor_ace-settings' => settings.to_json }<
   = content

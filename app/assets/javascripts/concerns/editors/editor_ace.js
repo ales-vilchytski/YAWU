@@ -2,10 +2,15 @@ namespace('editors', function() {
     function AceEditor(id) {
         var $container = $('#' + id);
         var type = $container.data('editor_ace');
-
-        //TODO assert invariant
         
         var editor = ace.edit($container.attr('id'));
+        
+        var _settings = $container.data('editor_aceSettings') || {};
+        var settings = {
+            readOnly: _settings['readOnly'] || false,
+            mode: _settings['mode'] || 'xml',
+            theme: _settings['theme'] || 'eclipse'
+        }
         
         switch (type) {
         case 'output':
@@ -57,8 +62,11 @@ namespace('editors', function() {
         
         this.setTheme = function(theme) {
             editor.setTheme('ace/theme/' + theme);
-        }
-        
+        };        
+
+        this.setReadOnly(settings['readOnly']);
+        this.setMode(settings['mode']);
+        this.setTheme(settings['theme']);
     };
 
     var instances = {};

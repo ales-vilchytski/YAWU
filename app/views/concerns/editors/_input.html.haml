@@ -3,7 +3,7 @@
 - name ||= nil
 - settings ||= {}
 
-%div.editor{ id: id, 'data-editor_ace' => 'input', 'data-editor_ace-settings' => settings.to_json }<
+%div.editor{ id: id, 'data-concerns-editor' => 'input', 'data-concerns-options' => settings.to_json }<
   = content
 - if name
   %input{ id: "ace_text_area_#{id}", type: 'hidden', name: name }

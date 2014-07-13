@@ -1,11 +1,13 @@
 $(document).ready(function() {
-   var input_editor = editors.widget('input_xml');
-   var output_editor = editors.widget('output_xml');
-      
+   var input_editor = concerns.editor('input_xml');
+   var output_editor = concerns.editor('output_xml');
+
+   console.log(input_editor instanceof concerns.Base)
+   
    /*
     * AJAX handling
     */
-   var errorPanel = panels.widget('error_panel_xml');
+   var errorPanel = concerns.panel('error_panel_xml');
    
    $('#form')
        .on('ajax:beforeSend', function(e, xhr, settings) {

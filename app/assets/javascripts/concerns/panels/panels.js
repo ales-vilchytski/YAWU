@@ -1,61 +1,66 @@
-namespace('panels', function() {
-    widgets.inheritWidgetBase(this, 'panel', function (id, clazz) {
-        var $container = $('#' + id);
+(function() {
+    concerns.inheritWidgetBase('panel', {
+        options: {
+            type: 'plain',
+        },
         
-        var $header = $('[data-panel-header]', $container);
-        var $body = $('[data-panel-body]', $container);
-        
-        var defaultHeader = $header.data('panelHeader');
-        var defaultBody = $body.data('panelBody');
-        
-        switch(clazz) {
-        case 'plain':
-            var $collapseIcon = $('#' + id + '_form_panel_collapse_icon');
-            var shownClass = $collapseIcon.data('panelShown');
-            var hiddenClass = $collapseIcon.data('panelHidden');
+        _create: function() {
+            var id = this.widget().attr('id');
+            var $header = $('[data-panel-header]', this.widget());
+            var $body = $('[data-panel-body]', this.widget());
             
-            $body.on('shown.bs.collapse', function() {
-                $collapseIcon.attr('class', shownClass);
-            });
-            $body.on('hidden.bs.collapse', function() {
-                $collapseIcon.attr('class', hiddenClass);
-            });
-            break;
-        case 'error':
-            var $collapseTarget = $($('[data-target]', $container).data('target'));
+            var defaultHeader = $header.data('panelHeader');
+            var defaultBody = $body.data('panelBody');
             
-            this.show = function(title, text) {
-                $header.text(title || defaultHeader);
-                $body.text(text || defaultBody);
+            switch(this.options.type) {
+            case 'plain':
+                var $collapseIcon = $('#' + id + '_form_panel_collapse_icon', this.widget());
+                var shownClass = $collapseIcon.data('panelShown');
+                var hiddenClass = $collapseIcon.data('panelHidden');
                 
-                $collapseTarget.collapse('show');
+                $body.on('shown.bs.collapse', function() {
+                    $collapseIcon.attr('class', shownClass);
+                });
+                $body.on('hidden.bs.collapse', function() {
+                    $collapseIcon.attr('class', hiddenClass);
+                });
+                break;
+            case 'error':
+                var $collapseTarget = $($('[data-target]', this.widget()).data('target'));
+                
+                this.show = function(title, text) {
+                    $header.text(title || defaultHeader);
+                    $body.text(text || defaultBody);
+                    
+                    $collapseTarget.collapse('show');
+                };
+                
+                this.hide = function() {
+                    $collapseTarget.collapse('hide');
+                }
+                break;
+            default:
+                //TODO log error
+            }
+                    
+            this.setHeader = function(header) {
+                $header.text(header);
             };
             
-            this.hide = function() {
-                $collapseTarget.collapse('hide');
-            }
-            break;
-        default:
-            //TODO log error
+            this.getHeader = function() {
+                return $header.text();
+            };
+            
+            this.setBody = function(body) {
+                $body.text(body);
+            };
+            
+            this.getBody = function() {
+                return $body.text();
+            };
         }
-                
-        this.setHeader = function(header) {
-            $header.text(header);
-        };
-        
-        this.getHeader = function() {
-            return $header.text();
-        };
-        
-        this.setBody = function(body) {
-            $body.text(body);
-        };
-        
-        this.getBody = function() {
-            return $body.text();
-        };
         
     });
 
-});
+})();
 

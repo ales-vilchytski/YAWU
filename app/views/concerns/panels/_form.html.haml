@@ -1,12 +1,11 @@
 - id ||= nil
-- header ||= t('.form.title')
-- body ||= t('.form.text')
+- header ||= t('.header')
+- body ||= t('.body')
 
-%div.panel.panel-default.condensed{ id: id, 'data-concerns-panel' => 'plain' }
+%div.panel.panel-default.condensed{ id: id, 'data-concerns' => 'panelPlain' }
   %div.panel-heading
-    %div.row
-      %h4{ 'data-panel-header' => '' }
-        = header
+    %h4{ 'data-panel-header' => '' }
+      = header
 
   %div.panel-body.condensed.collapse.in{ 'data-panel-body' => '' }
     = body

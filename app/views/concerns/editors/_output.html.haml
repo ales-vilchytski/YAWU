@@ -1,6 +1,9 @@
 - id ||= nil
 - content ||= nil
+- size ||= nil # sm|md|lg
 - settings ||= {}
 
-%div.editor{ id: id, 'data-concerns-editor' => 'output', 'data-concerns-options' => settings.to_json }<
+%div{ id: id, 'data-concerns' => 'editorOutput', |
+  'data-concerns-options' => settings.to_json,   |
+  'class' => "concerns-editor#{size ? '-' + size : nil }" }<
   = content

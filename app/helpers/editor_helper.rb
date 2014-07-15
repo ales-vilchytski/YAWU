@@ -4,41 +4,6 @@ module EditorHelper
     File.read( File.join( Rails.root, 'samples', 'xml', name) )
   end
   
-  def settings_text_field_tag(opts)
-    opts = {
-      name: nil,
-      label: nil,
-      default: '', 
-      placeholder: '',
-      class: '',
-      type: nil,
-      display: 'block',
-      tab_allowed: false }.merge(opts)
-
-    div_attrs = opts[:div_attrs] ? opts[:div_attrs].merge({
-      'class' => opts[:div_attrs][:class] ? 'form-group ' + (opts[:div_attrs][:class]) : 'form-group'
-    }) : {};
-
-    content_tag(:div, div_attrs, nil, false) do
-      concat label_tag(opts[:name], opts[:label], 'class' => 'col-md-4 control-label')
-      
-      input = content_tag(:div, { 'class' => 'col-md-8' }, nil, false) do
-        html_opts = { 
-          'class' => 'form-control', 
-          'placeholder' => opts[:placeholder],
-          'type' => opts[:type],
-          'display' => opts[:display],
-        }
-        if (opts[:tab_allowed])
-          html_opts.merge!({ 'data-input' => 'tab-allowed' })
-        end
-        
-        concat text_field_tag(opts[:name], opts[:default], html_opts);
-      end
-      concat input
-    end       
-  end
-
   def settings_radio_button_tag(opts)
     opts = {
       name: nil,
@@ -98,12 +63,6 @@ module EditorHelper
     end
   end
   
-  def settings_text_field_tags(settings)
-    settings.each do |setting|
-      concat settings_text_field_tag(setting)
-    end
-  end
-  
   def submit_form_tag(opts, html_opts = nil)
     action = opts[:action]
     button_txt = opts[:name] ||= t('.form_submit.label')
@@ -126,6 +85,50 @@ module EditorHelper
     }.merge(html_opts ||= {})
 
     button_tag(button_txt, html_opts)
+  end
+  
+  #======== DEPRECATED =========
+  
+  # @deprecated - use helper/settings_text_field instead
+  def settings_text_field_tag(opts)
+    opts = {
+      name: nil,
+      label: nil,
+      default: '', 
+      placeholder: '',
+      class: '',
+      type: nil,
+      display: 'block',
+      tab_allowed: false }.merge(opts)
+
+    div_attrs = opts[:div_attrs] ? opts[:div_attrs].merge({
+      'class' => opts[:div_attrs][:class] ? 'form-group ' + (opts[:div_attrs][:class]) : 'form-group'
+    }) : {};
+
+    content_tag(:div, div_attrs, nil, false) do
+      concat label_tag(opts[:name], opts[:label], 'class' => 'col-md-4 control-label')
+      
+      input = content_tag(:div, { 'class' => 'col-md-8' }, nil, false) do
+        html_opts = { 
+          'class' => 'form-control', 
+          'placeholder' => opts[:placeholder],
+          'type' => opts[:type],
+          'display' => opts[:display],
+        }
+        if (opts[:tab_allowed])
+          html_opts.merge!({ 'data-input' => 'tab-allowed' })
+        end
+        
+        concat text_field_tag(opts[:name], opts[:default], html_opts);
+      end
+      concat input
+    end
+  end
+
+  def settings_text_field_tags(settings)
+    settings.each do |setting|
+      concat settings_text_field_tag(setting)
+    end
   end
   
 end

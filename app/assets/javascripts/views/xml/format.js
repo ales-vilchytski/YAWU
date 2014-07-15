@@ -1,14 +1,11 @@
 $(document).ready(function() {
-   var input_editor = concerns.editor('input_xml');
-   var output_editor = concerns.editor('output_xml');
+   var inputEditor = concerns.editorInput('input_xml');
+   var outputEditor = concerns.editorOutput('output_xml');
+   var errorPanel = concerns.panelError('error_panel_xml');
 
-   console.log(input_editor instanceof concerns.Base)
-   
    /*
     * AJAX handling
     */
-   var errorPanel = concerns.panel('error_panel_xml');
-   
    $('#form')
        .on('ajax:beforeSend', function(e, xhr, settings) {
            YAWU.debug.debugAjaxBeforeSend(e, xhr, settings);
@@ -17,7 +14,7 @@ $(document).ready(function() {
            if (data.error) {
                errorPanel.show(data.error.message, data.error.description);
            } else {
-               output_editor.setValue(data['result']);
+               outputEditor.setValue(data['result']);
            }
        })
        .on('ajax:error', function(e, xhr, status, error) {

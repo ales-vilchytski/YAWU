@@ -37,5 +37,17 @@ en:
         error: 'Error'
         clean_status: 'Clean status'
     buttons:
-      up: Up
-
+      up:
+        text: Up
+      down:
+        text: Down
+      submit:
+        text: Submit
+        disable: Processing
+    panels:
+      error:
+        header: Sorry, but something went wrong
+        body: There are error during processing request
+      form:
+        header: Panel
+        body: Text

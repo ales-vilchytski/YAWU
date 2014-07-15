@@ -16,6 +16,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require jquery-ui/core
 //= require jquery-ui/widget
+//= require jquery-ui/button
 //= require bootstrap
 //= require_tree ./application
 //= require_tree ./concerns

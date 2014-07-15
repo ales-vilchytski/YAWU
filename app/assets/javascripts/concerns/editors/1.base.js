@@ -1,7 +1,6 @@
 (function() {
-    concerns.inheritWidgetBase('editor', {
+    concerns.inheritWidgetBase('editorBase', {
         options: {
-            type: 'input', //can't be changed
             readOnly: false,
             mode: 'ruby',
             theme: 'eclipse',
@@ -10,22 +9,7 @@
         _create: function() {
             var id = this.widget().attr('id');
             var editor = ace.edit(id);
-            
-            switch (this.options.type) {
-            case 'output':
-                break;
-            case 'input':
-                var $input = $('#ace_text_area_' + id);
-                var sync = function() {
-                    $input.val(editor.getSession().getValue());
-                }
-                sync();
-                editor.addEventListener('change', sync);
-                break;
-            default:
-                //TODO log error 
-            }
-                                
+                                            
             this.getAce = function() {
                 return editor;
             };
@@ -66,4 +50,3 @@
     });
     
 })();
-

@@ -6,11 +6,10 @@ namespace('concerns', function() {
     
     /**
      * Namespace of widgets:
-     *   * $.concerns_ui./widget/ - in JS
-     *   * [data-concerns-/widget/='/type/'] - in HTML data-attributes
+     *   * $.concerns./widget/ - in JS
+     *   * [data-concerns='/widget/'] - in HTML data-attributes
      */
     this.NAMESPACE = 'concerns';
-    this.INT_SUFFIX = 'ui';
     
     /**
      * Base class for widgets using Bootstrap 3
@@ -19,6 +18,9 @@ namespace('concerns', function() {
         $.Widget.call(this);
     };
     this.Base.prototype = $.extend($.Widget.prototype, {
+        getId: function() {
+            return this.element.attr('id');
+        },
         show: function() {
             this.element.removeClass('hidden');
         },
@@ -31,14 +33,19 @@ namespace('concerns', function() {
     
     /**
      * Creates jQueryUI widget (plugin) with specified name and prototype object.
-     * All inherited widgets can be instantiated with this.createWidgets.
+     * All inherited widgets can be instantiated:
+     *  * concerns./widget/(id, options)
+     *  * or all at once - this.createWidgets()
      *
      * @see http://api.jqueryui.com/jQuery.widget
      */
-    this.inheritWidgetBase = function(clazz, widgetPrototype) {
+    this.inheritWidgetBase = function(clazz, /*optional*/_widgetBase, _widgetPrototype) {
+        var widgetPrototype = _widgetPrototype || _widgetBase;
+        var widgetBase = _widgetPrototype ? _widgetBase : concerns.Base;
+        
         $.widget(
-            this.NAMESPACE + '_' + this.NAMESPACE_SUFFIX + '.' + clazz, 
-            concerns.Base,
+            this.NAMESPACE + '.' + clazz, 
+            widgetBase,
             widgetPrototype);
         
         this.widgetClasses.push(clazz);
@@ -48,19 +55,10 @@ namespace('concerns', function() {
             var instance = $element[clazz]('instance');
             
             if (!instance) {
-                var camelName = this.NAMESPACE + clazz.replace(/^(.)/, function (match, c) {
-                    return c.toUpperCase();
-                });
-                
-                var _options = $.extend({
-                        type : $element.data(camelName),
-                    },
-                    $element.data(this.NAMESPACE + 'Options'),
-                    options);
-                
-                $element[clazz](_options); //creates widget: $(...).clazz(options)
+                $element[clazz](options); //creates widget: $(...).clazz(options)
+                instance = $element[clazz]('instance');
             }
-            return $element[clazz]('instance');
+            return instance;
         };
     };
     
@@ -71,20 +69,20 @@ namespace('concerns', function() {
      */
 
     /**
-     * Creates widgets for all HTML-elemnts with [data-concerns-/name/=/type/]
+     * Creates widgets for all HTML-elemnts with [data-concerns='/widget/']
      * Options for every widget include:
-     *   * value of data-concerns-/name/ as options.type
-     *   * json from [data-concerns-options] (overriding options.type if any)
+     *   * values from [data-concerns-options='/json/']
      */
     this.createWidgets = function() {
         this.widgetClasses.forEach(function(clazz) {
-            $('[data-' + this.NAMESPACE + '-' + clazz + ']').each(function(i, container) {
+            $('[data-' + concerns.NAMESPACE + '="' + clazz + '"]').each(function(i, container) {
                 var $element = $(container);
                 if (!$element.attr('id')) {
                     $element.uniqueId();
                 }
-
-                this[clazz]($element.attr('id'));
+                                
+                var options = $element.data(concerns.NAMESPACE + "Options");
+                concerns[clazz]($element.attr('id'), options);
             });
         });
     };

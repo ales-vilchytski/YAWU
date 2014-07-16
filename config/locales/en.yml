@@ -28,6 +28,7 @@ en:
     debug_panel:
       show: Show debug panel
       hide: Hide debug panel
+      clear: Clear
 
   concerns:
     uploads:

@@ -28,7 +28,11 @@
         show: function() {
             this._super();
             this.getAce().resize();
-            this.getAce().renderer.updateFull();
+            this.refresh();
+        },
+        
+        refresh: function() {
+            this.getAce().renderer.updateFull();  
         },
             
         _setOption: function(key, value) {

@@ -23,6 +23,13 @@
             $body.on('shown.bs.collapse', function() {
                 $header.text(shownText);
                 $collapseIcon.attr('class', shownClass);
+                
+                // Some widgets may need refresh on visible changed, e.g. Ace
+                concerns.createWidgetsOf($body).forEach(function(widget) {
+                    if (widget.refresh) {
+                        widget.refresh();
+                    }
+                });
             });
             $body.on('hidden.bs.collapse', function() {
                 $header.text(hiddenText);

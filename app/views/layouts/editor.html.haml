@@ -6,30 +6,33 @@
 - content_for :content do
   %div.row
     %div.col-md-8.col-md-offset-2
-      %div.panel.panel-danger.collapse#error_pane
-        %div.panel-heading
-          %div.row
-            %div.col-md-11
-              %h4{ 'data-editor' => 'error-heading', 'data-target' => '#error_pane'  }
-            %div.col-md-1
-              %button.close{ 'type' => 'button', 'data-toggle' => 'collapse', 'data-target' => '#error_pane' } &times
-        %div.panel-body{ 'data-editor' => 'error-body', 'data-default-error' => t('editor.error.default') }
+      = render 'concerns/panels/error', id: 'error_panel'
   
-  = yield
+  %div.row
+    %div.col-md-12
+      = yield
           
-= render template: 'layouts/application'
-
-%div.container-fluid
   %div.row
     %div.col-md-4
       = render 'concerns/buttons/up'
+
+= render template: 'layouts/application'
 
 %hr
 
 %div.row
   %div.col-md-8.col-md-offset-2
+    - content_for :debug_panel do
+      %div.row
+        %div.col-md-12
+          = render('concerns/editors/output', id: 'debug_output_editor', settings: { mode: 'text', theme: 'eclipse' }) |
+      %div.row
+        %div.col-md-4
+          %button#debug_output_clear_button.btn.btn-default
+            = t('editor.debug_panel.clear');
+      
     = render 'concerns/panels/collapsible',       |
       headerHidden: t('editor.debug_panel.show'), |
       headerShown: t('editor.debug_panel.hide'),  |
       shown: false, |
-      body: render('concerns/editors/output', id: 'debug_output_editor', settings: { mode: 'text', theme: 'eclipse' })
+      body: yield(:debug_panel)

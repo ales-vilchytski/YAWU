@@ -28,6 +28,7 @@ ru:
     debug_panel:
       show: Показать отладочную панель
       hide: Скрыть отладочную панель
+      clear: Очистить
 
   concerns:
     uploads:

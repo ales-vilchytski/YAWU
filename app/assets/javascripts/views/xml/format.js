@@ -1,14 +1,15 @@
 $(document).ready(function() {
    var inputEditor = concerns.editorInput('input_xml');
    var outputEditor = concerns.editorOutput('output_xml');
-   var errorPanel = concerns.panelError('error_panel_xml');
+   var errorPanel = YAWU.errorPanel;
+   var debug = YAWU.debug;
 
    /*
     * AJAX handling
     */
    $('#form')
        .on('ajax:beforeSend', function(e, xhr, settings) {
-           YAWU.debug.debugAjaxBeforeSend(e, xhr, settings);
+           debug.debugAjaxBeforeSend(e, xhr, settings);
        })
        .on('ajax:success', function(e, data, status, xhr) {
            if (data.error) {
@@ -21,6 +22,6 @@ $(document).ready(function() {
            errorPanel.show(String(xhr.status), error);
        })
        .on('ajax:complete', function(e, xhr, status) {
-           YAWU.debug.debugAjaxComplete(e, xhr, status);
+           debug.debugAjaxComplete(e, xhr, status);
        });
 });

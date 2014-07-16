@@ -26,6 +26,9 @@ namespace('concerns', function() {
         },
         hide: function() {
             this.element.addClass('hidden');
+        },
+        refresh: function() {
+            // called when widget needs to be refreshed
         }
     });
     //workaround for $.Widget._childConstructors
@@ -36,6 +39,7 @@ namespace('concerns', function() {
      * All inherited widgets can be instantiated:
      *  * concerns./widget/(id, options)
      *  * or all at once - this.createWidgets()
+     *  * plain jQuery-UI API can be used - $()./widget/(options_or_method)
      *
      * @see http://api.jqueryui.com/jQuery.widget
      */
@@ -49,8 +53,11 @@ namespace('concerns', function() {
             widgetPrototype);
         
         this.widgetClasses.push(clazz);
-                
+        
         this[clazz] = function(id, options) {
+            // Note, we use only id to reference element. No exceptions!
+            // If we use selectors there are many possibilities to occasionally
+            // manipulate group of widgets as single item
             var $element = $('#' + id);
             var instance = $element[clazz]('instance');
             
@@ -67,23 +74,45 @@ namespace('concerns', function() {
      * 
      * this.[widgetClass] = function(id, *options) { return new_or_existing_widget  }
      */
-
+    
+    function _getOptionsFromData($element) {
+        return 
+    }
+    
     /**
-     * Creates widgets for all HTML-elemnts with [data-concerns='/widget/']
-     * Options for every widget include:
+     * Creates or returns widgets (marked by [data-concerns='/widget/']) in specified 
+     * element.Options for every widget include:
      *   * values from [data-concerns-options='/json/']
+     * 
+     * Returns array of created or existing instances.
+     * 
+     * @example concerns.createWidgetsOf('html') //creates and returns all widgets.
+     */
+    this.createWidgetsOf = function(container) {
+        var $container = $(container);
+        var widgets = [];
+        $('[data-' + concerns.NAMESPACE + ']', $container).each(function(i, element) {
+           var $element = $(element);
+           var id = $element.attr('id');
+           if (!id) {
+               $element.uniqueId();
+               id = $element.attr('id');
+           }
+           
+           var clazz = $element.data(concerns.NAMESPACE);
+           var options = $element.data(concerns.NAMESPACE + "Options");
+           
+           if (concerns.widgetClasses.indexOf(clazz) != -1) {
+               widgets.push(concerns[clazz](id, options));
+           }
+        });
+        return widgets;
+    };
+    
+    /**
+     * Creates or returns widgets for all HTML-elements.
      */
     this.createWidgets = function() {
-        this.widgetClasses.forEach(function(clazz) {
-            $('[data-' + concerns.NAMESPACE + '="' + clazz + '"]').each(function(i, container) {
-                var $element = $(container);
-                if (!$element.attr('id')) {
-                    $element.uniqueId();
-                }
-                                
-                var options = $element.data(concerns.NAMESPACE + "Options");
-                concerns[clazz]($element.attr('id'), options);
-            });
-        });
+        return this.createWidgetsOf('html');
     };
 });

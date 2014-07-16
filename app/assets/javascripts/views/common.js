@@ -2,10 +2,29 @@ $(document).ready(function() {
     concerns.createWidgets();
 });
 
+/**
+ * Error panel in top of page for printing errors
+ */
+$(document).ready(function() {
+    window.namespace('YAWU.errorPanel');
+    YAWU.errorPanel = concerns.panelError('error_panel');
+});
+
+/**
+ * Debug panel in bottom of page for printing some useful info
+ */
 $(document).ready(function() {
     var debugEditor = concerns.editorOutput('debug_output_editor');
+    var $clearButton = $('#debug_output_clear_button');
+    
     debugEditor.getAce().getSession().setUseWrapMode(true);
     
+    $clearButton.button();
+    $clearButton.on('click', function() {
+       debugEditor.setValue(''); 
+    });
+    
+    //===== Common "debug panel" functions ======//
     window.namespace('YAWU.debug');
     
     YAWU.debug.clearDebugPanel = function() {

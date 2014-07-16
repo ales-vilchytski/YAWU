@@ -1,5 +1,5 @@
 (function() {
-    concerns.inheritWidgetBase('panelError', $.concerns.panelForm, {     
+    concerns.inheritWidgetBase('panelError', $.concerns.panelBase, {     
         _create: function() {
             this._super();
             

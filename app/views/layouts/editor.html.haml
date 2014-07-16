@@ -28,8 +28,8 @@
 
 %div.row
   %div.col-md-8.col-md-offset-2
-    %div.panel.panel-default
-      %div.panel-heading
-        %button.btn{ 'data-toggle' => 'collapse', 'data-target' => '#debug_editor_wrapper' }= t('editor.debug_panel.show')
-      %div.panel-body#debug_editor_wrapper.collapse
-        %div#debug_editor
+    = render 'concerns/panels/collapsible',       |
+      headerHidden: t('editor.debug_panel.show'), |
+      headerShown: t('editor.debug_panel.hide'),  |
+      shown: false, |
+      body: render('concerns/editors/output', id: 'debug_output_editor', settings: { mode: 'text', theme: 'eclipse' })

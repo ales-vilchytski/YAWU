@@ -27,6 +27,7 @@ en:
     up: Return up
     debug_panel:
       show: Show debug panel
+      hide: Hide debug panel
 
   concerns:
     uploads:

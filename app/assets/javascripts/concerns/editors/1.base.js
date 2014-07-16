@@ -7,7 +7,7 @@
         },
         
         _create: function() {
-            var id = this.widget().attr('id');
+            var id = this.getId();
             var editor = ace.edit(id);
                                             
             this.getAce = function() {

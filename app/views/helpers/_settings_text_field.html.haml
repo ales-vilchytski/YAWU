@@ -5,11 +5,12 @@
 - tab_allowed ||= false
 
 %div.form-group
-  %label.col-md-4.control-label{ name: name }= label
+  %label.col-md-4.control-label{ for: name }= label
   
   - data_attr = (tab_allowed)? { 'input' => 'tab-allowed' } : nil
   %div.col-md-8
     %input.form-control{        |
+      id: name,                 |
       name: name,               |
       placeholder: placeholder, |
       type: type,               |

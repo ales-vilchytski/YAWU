@@ -25,6 +25,8 @@ RSpec.configure do |config|
   config.after :all do
     DatabaseCleaner.clean
   end
+  
+  Capybara.default_wait_time = 5.seconds
 
   Capybara.default_driver = :selenium
   config.after :each, type: 'feature' do

@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 feature "XML formatting" do
-  include Features::Common
-  include Features::Ace
+  include Features::Concerns::Editor
   
   before do
     visit '/xml/format'
@@ -20,7 +19,7 @@ feature "XML formatting" do
     fill_in_editor(t('xml.format.editor.input'), with: sample_input)
     
     click_button(t 'xml.format.editor.form_submit.label')
-    
+        
     editor_value_should_eq(expected_output(' '), t('xml.format.editor.output'))
   end
   

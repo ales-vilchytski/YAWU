@@ -74,11 +74,7 @@ namespace('concerns', function() {
      * 
      * this.[widgetClass] = function(id, *options) { return new_or_existing_widget  }
      */
-    
-    function _getOptionsFromData($element) {
-        return 
-    }
-    
+        
     /**
      * Creates or returns widgets (marked by [data-concerns='/widget/']) in specified 
      * element.Options for every widget include:

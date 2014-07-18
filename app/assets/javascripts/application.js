@@ -20,4 +20,5 @@
 //= require bootstrap
 //= require_tree ./application
 //= require_tree ./concerns
+//= require_tree ./editor
 //= require views/common

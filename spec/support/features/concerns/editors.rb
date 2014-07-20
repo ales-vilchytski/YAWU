@@ -1,6 +1,6 @@
 module Features
   module Concerns
-    module Editor
+    module Editors
       extend ActiveSupport::Concern
       include Features::Concerns::Common
      

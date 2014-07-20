@@ -7,7 +7,7 @@
                 'click': function() {
                     scrollTo($pageDown);
                 }
-            })
+            });
         },
      });
 })();

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "XML formatting" do
-  include Features::Concerns::Editor
+  include Features::Concerns::Editors
   
   before do
     visit '/xml/format'

@@ -4,7 +4,6 @@ gem 'rails', '4.0.2'
 gem 'activerecord-jdbcderby-adapter', '1.3.6'
 gem "paperclip", "4.1"
 gem 'jquery-rails', '3.1.0'
-gem "jquery-fileupload-rails", "0.4.1"
 gem 'jquery-ui-rails', '5.0.0'
 
 gem 'sass-rails',   '4.0.2'

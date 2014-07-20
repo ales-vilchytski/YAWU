@@ -59,6 +59,9 @@ namespace('concerns', function() {
             // If we use selectors there are many possibilities to occasionally
             // manipulate group of widgets as single item
             var $element = $('#' + id);
+            if ($element.length != 1) {
+                throw "There are " + $element.length + " elements with id '" + id + "'";
+            }
             var instance = $element[clazz]('instance');
             
             if (!instance) {

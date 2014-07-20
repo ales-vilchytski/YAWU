@@ -37,6 +37,7 @@ en:
         label: 'Files will be loaded and will become accessible to use'
         success: 'Success'
         error: 'Error'
+        internal_server_error: 'Internal server error'
         clean_status: 'Clean status'
     buttons:
       up:

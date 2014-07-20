@@ -22,6 +22,17 @@
 {% }); %}
 </script>
 
+<script id="template-fail-element" type="text/x-tmpl">
+	<tr class='danger'>
+	    <td>
+	    	<%= t('concerns.uploads.form.error') %>
+	    </td>
+	    <td>
+	    	<%= t('concerns.uploads.form.internal_server_error') %>
+	    </td>
+	</tr>
+</script>
+
 <script id="template-list-element" type="text/x-tmpl">
 {% o.files.forEach(function(file) { %}
 	<option value="{%= file.id %}">{%= file.name %}</option>

@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
 //= require jquery-ui/core
 //= require jquery-ui/widget
 //= require jquery-ui/button
+//= require jquery-file-upload/vendor/javascript-templates
+//= require jquery-file-upload/jquery.fileupload
+//= require jquery-file-upload/jquery.fileupload-process
 //= require bootstrap
 //= require_tree ./application
 //= require_tree ./concerns

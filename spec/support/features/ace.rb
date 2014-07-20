@@ -1,3 +1,5 @@
+## DEPRECATED use concerns and according helpers instead (Features::Concerns::Editors)
+
 module Features
   module Ace
     include ActionView::Helpers::JavaScriptHelper

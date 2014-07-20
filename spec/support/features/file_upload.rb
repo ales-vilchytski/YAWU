@@ -1,3 +1,5 @@
+## DEPRECATED, use concerns and according helpers instead (Features::Concerns::Uploads)
+
 module Features
   module FileUpload
     # depends on Features::Common

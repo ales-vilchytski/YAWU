@@ -34,7 +34,7 @@ RSpec.configure do |config|
     # see https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist/
     # 
     # Example: PAUSE=1 bundle exec rspec
-    sleep (ENV['PAUSE'] || 0).to_i
+    sleep(ENV['PAUSE'] || 0).to_i
     
     if example.exception && example.metadata[:js]
       meta = example.metadata

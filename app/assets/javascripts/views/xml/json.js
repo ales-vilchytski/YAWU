@@ -1,5 +1,5 @@
 $(document).ready(function() {
-   var outputEditor = concerns.editorOutput('output_xml');
+   var outputEditor = concerns.editorOutput('output_json');
    var errorPanel = YAWU.errorPanel;
    var debug = YAWU.debug;
 

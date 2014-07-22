@@ -1,8 +1,3 @@
-%div.row
-  %div.col-md-8.col-md-offset-2
-    = render 'concerns/panels/error', id: 'error_panel_xml', |
-      defaultText: t('editor.error.default')
-
 %form{ id: 'form', action: xml_format_path, method: 'POST', data: { remote: 'true' } }
 
   %div.row
@@ -10,7 +5,7 @@
       = render 'concerns/panels/form', id: 'input_xml_panel', |
         header: t('.input'),                                  |
         body: render('concerns/editors/input', id: 'input_xml', name: 'input', |
-          settings: { mode: 'xml' }, |
+          options: { mode: 'xml' }, |
           content: get_sample_xml('sample.xml').gsub(/(>)\s+/, '\1'))
 
     %div.col-md-4
@@ -32,8 +27,7 @@
 
   %div.row
     %div.col-md-4
-      = render 'concerns/buttons/submit', id: 'submit_form', |
-        text:  t('.form_submit.label'), disable_with: t('.form_submit.disable')
+      = submit_button
 
   %div.row
     %div.col-md-8

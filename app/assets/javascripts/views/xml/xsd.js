@@ -1,5 +1,4 @@
 $(document).ready(function() {
-   var inputEditor = concerns.editorInput('input_xml_editor');
    var outputEditor = concerns.editorOutput('output_editor');
    var uploadForm = concerns.uploadForm('input_xsd_files_upload');
    var uploadList = concerns.uploadList('input_xsd_files_list');

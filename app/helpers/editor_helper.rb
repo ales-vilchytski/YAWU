@@ -87,6 +87,15 @@ module EditorHelper
     button_tag(button_txt, html_opts)
   end
   
+  def submit_button(opts = {})
+    opts = {
+      id: nil,
+      text: t('.form_submit.label'),
+      disable_with: t('.form_submit.disable')
+    }.merge(opts)
+    render('concerns/buttons/submit', opts)
+  end
+  
   #======== DEPRECATED =========
   
   # @deprecated - use helper/settings_text_field instead

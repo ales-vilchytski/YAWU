@@ -34,6 +34,6 @@
       = render 'concerns/panels/form', id: 'output_xml_panel', |
         header: t('.output'), |
         body: render('concerns/editors/output', id: 'output_xml', |
-          settings: { mode: 'xml' })
+          options: { mode: 'xml' })
 
 = javascript_include_tag 'views/xml/format'

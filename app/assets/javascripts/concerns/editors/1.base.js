@@ -2,7 +2,7 @@
     concerns.inheritWidgetBase('editorBase', {
         options: {
             readOnly: false,
-            mode: 'ruby',
+            mode: 'xml',
             theme: 'eclipse',
         },
         

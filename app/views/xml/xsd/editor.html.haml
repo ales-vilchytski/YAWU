@@ -6,14 +6,14 @@
         header: t('.xml'),             |
         body: render('concerns/editors/input', id: 'input_xml_editor', |
           name: 'xml',                                                 |
-          settings: { mode: 'xml' },                                   |
+          options: { mode: 'xml' },                                    |
           content: get_sample_xml('sample.xml'))
 
     %div.col-md-6
       - content_for :xsd_editor do
         = render 'concerns/editors/input', id: 'input_xsd_editor', |
           name: 'xsd',                                             |
-          settings: { mode: 'xml' },                               |
+          options: { mode: 'xml' },                                |
           content: get_sample_xml('sample.xsd')
           
       - content_for :file_upload do
@@ -40,6 +40,6 @@
       = render 'concerns/panels/form', |
         header: t('.output'),          |
         body: render('concerns/editors/output', id: 'output_editor', |
-          settings: { mode: 'xml' })
+          options: { mode: 'xml' })
 
 = javascript_include_tag 'views/xml/xsd'

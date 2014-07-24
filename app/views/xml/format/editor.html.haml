@@ -11,14 +11,14 @@
     %div.col-md-4
       - content_for :settings_panel do
         %div.form-horizontal{role: 'form'}
-          = render 'helpers/settings_text_field', |
-            name: 'indent_text', |
-            label: t('.indent_text.label'), |
+          = render 'concerns/fields/text',              |
+            name: 'indent_text',                        |
+            label: t('.indent_text.label'),             |
             placeholder: t('.indent_text.placeholder'), |
             tab_allowed: true
-          = render 'helpers/settings_text_field', |
-            name: 'encoding', |
-            label: t('.encoding.label'), |
+          = render 'concerns/fields/text',          |
+            name: 'encoding',                       |
+            label: t('.encoding.label'),            |
             placeholder: t('.encoding.placeholder')
 
       = render 'concerns/panels/form', id: 'settings_panel', |

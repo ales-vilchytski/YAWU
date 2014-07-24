@@ -10,10 +10,6 @@
 
 - content_for :content do
   %div.row
-    %div.col-md-8.col-md-offset-2
-      = render 'concerns/panels/error', id: 'error_panel'
-  
-  %div.row
     %div.col-md-12
       = yield
           

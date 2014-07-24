@@ -98,7 +98,7 @@ module EditorHelper
   
   #======== DEPRECATED =========
   
-  # @deprecated - use helper/settings_text_field instead
+  # @deprecated - use concerns/fields/text instead
   def settings_text_field_tag(opts)
     opts = {
       name: nil,

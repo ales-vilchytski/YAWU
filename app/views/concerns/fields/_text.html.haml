@@ -1,17 +1,16 @@
+- id ||= nil
 - name ||= nil
 - label ||= nil
 - placeholder ||= ''
 - type ||= 'text'
 - tab_allowed ||= false
 
-%div.form-group
+%div.form-group{ id: id, 'data-concerns' => 'fieldText', 'data-concerns-options' => { tabAllowed: tab_allowed }.to_json }
   %label.col-md-4.control-label{ for: name }= label
   
-  - data_attr = (tab_allowed)? { 'input' => 'tab-allowed' } : nil
   %div.col-md-8
     %input.form-control{        |
       id: name,                 |
       name: name,               |
       placeholder: placeholder, |
-      type: type,               |
-      data: data_attr }
+      type: type }

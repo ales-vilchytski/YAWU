@@ -11,6 +11,7 @@
             var type = this.options['type'];
             var action = this.options['action'];
             
+            var $tooltip = $('[data-toggle="tooltip"]', $form);
             var $progressBar = $('.progress-bar', $form);
             var $status = $('[data-uploads="status"]', $form);
             var $cleanStatus = $('[data-uploads="clean-status"]', $form);
@@ -18,12 +19,15 @@
             
             var uploadsLists = [];
             
+            $tooltip.tooltip();
+            
             $form.fileupload({
                 dataType: 'json',
                 dropZone: $form,
                 url: action,
                 start: function (e) {
                     $progressBar.css('width', '0%');
+                    $tooltip.tooltip('hide');
                 },
                 done: function (e, data) {
                     $status.collapse('show');
@@ -42,7 +46,7 @@
                     $progressBar.css('width', progress + '%');
                 },
                 stop: function (e) {
-                    setTimeout(function() { $progressBar.css('width', '0%'); }, 1e+3);
+                    setTimeout(function() { $progressBar.css('width', '0%'); }, 1.5e+3);
                 }
             });
             

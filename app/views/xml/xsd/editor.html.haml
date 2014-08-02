@@ -17,11 +17,11 @@
           content: get_sample_xml('sample.xsd')
           
       - content_for :file_upload do
-        %div.form-horizontal
+        %div.form-horizontal.separated
           = render 'concerns/uploads/list', id: 'input_xsd_files_list', |
             label: t('.file')
           = render 'concerns/uploads/form', id: 'input_xsd_files_upload', |
-            label: (t('concerns.uploads.form.label') + ' ' + t('.prolog_note'))
+            tooltip: (t('concerns.uploads.form.tooltip') + ' ' + t('.prolog_note'))
 
       = render 'concerns/panels/tabbed', id: 'xsd_tabbed_panel',                |
         tab_input_name: 'mode',                                                 |

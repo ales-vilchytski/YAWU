@@ -17,23 +17,23 @@
     %div.col-md-4
       = render 'concerns/buttons/up'
 
+  %hr
+
+  %div.row
+    %div.col-md-8.col-md-offset-2
+      - content_for :debug_panel do
+        %div.row
+          %div.col-md-12
+            = render('concerns/editors/output', id: 'debug_output_editor', settings: { mode: 'text', theme: 'eclipse' }) |
+        %div.row
+          %div.col-md-4
+            %button#debug_output_clear_button.btn.btn-default
+              = t('editor.debug_panel.clear');
+        
+      = render 'concerns/panels/collapsible',       |
+        headerHidden: t('editor.debug_panel.show'), |
+        headerShown: t('editor.debug_panel.hide'),  |
+        shown: false, |
+        body: yield(:debug_panel)
+
 = render template: 'layouts/application'
-
-%hr
-
-%div.row
-  %div.col-md-8.col-md-offset-2
-    - content_for :debug_panel do
-      %div.row
-        %div.col-md-12
-          = render('concerns/editors/output', id: 'debug_output_editor', settings: { mode: 'text', theme: 'eclipse' }) |
-      %div.row
-        %div.col-md-4
-          %button#debug_output_clear_button.btn.btn-default
-            = t('editor.debug_panel.clear');
-      
-    = render 'concerns/panels/collapsible',       |
-      headerHidden: t('editor.debug_panel.show'), |
-      headerShown: t('editor.debug_panel.hide'),  |
-      shown: false, |
-      body: yield(:debug_panel)

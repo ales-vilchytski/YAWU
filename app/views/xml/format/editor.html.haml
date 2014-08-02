@@ -10,7 +10,7 @@
 
     %div.col-md-4
       - content_for :settings_panel do
-        %div.form-horizontal{role: 'form'}
+        %div.form-horizontal.separated{role: 'form'}
           = render 'concerns/fields/text',              |
             name: 'indent_text',                        |
             label: t('.indent_text.label'),             |

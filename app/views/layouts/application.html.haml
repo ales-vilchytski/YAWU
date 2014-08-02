@@ -67,10 +67,10 @@
                   %li
                     %a{href: "#"} Another tool
 
-%div.container-fluid
-  %div.row
-    %div.col-md-8.col-md-offset-2
-      = render 'concerns/panels/error', id: 'error_panel'
-  
-  = (content_for? :content) ? (yield :content) : (yield)
+  %div.container-fluid
+    %div.row
+      %div.col-md-8.col-md-offset-2
+        = render 'concerns/panels/error', id: 'error_panel'
+    
+    = (content_for? :content) ? (yield :content) : (yield)
   

@@ -1,0 +1,22 @@
+- id ||= nil
+- tabs ||= [ { value: 'example', header: t('.header'), body: t('.body') } ]
+- tab_input_name ||= nil # name for input-field choosed in header
+
+- tab_panel_id_prefix = "#{id}_tab_panel"
+- tab_input_id_prefix = "#{id}_tab_input"
+- headers ||= tabs.map() { |tab| tab[:header] }
+- values ||= tabs.map() { |tab| tab[:value] }
+- bodies ||= tabs.map() { |tab| tab[:body] }
+
+%div.panel.panel-default.condensed{ 'data-concerns' => 'panelTabbed' }
+  %div.panel-heading
+    %div.btn-group{ 'data-toggle' => "buttons", 'data-panel-header' => '' }>
+      - headers.each_with_index do |header, i|
+        %button.btn.btn-default{ class: i == 0 ? 'active' : '', data: { toggle: "tab", target: "##{tab_panel_id_prefix}_#{i}" } }
+          %h4.condensed{ for: "#{tab_input_id_prefix}_#{i}" }= header
+          %input{ id: "#{tab_input_id_prefix}_#{i}", type: "radio", name: tab_input_name, value: values[i] }
+  
+  %div.panel-body.condensed.tab-content  
+    - bodies.each_with_index do |body, i|
+      %div.tab-pane{ id: "#{tab_panel_id_prefix}_#{i}", class: i == 0 ? 'active' : '' }
+        = body

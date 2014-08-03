@@ -1,47 +1,45 @@
-%form{ action: xml_xsd_validate_path, method: 'post', data: { remote: true, editor: 'form' } }
+%form#form{ action: xml_xsd_validate_path, method: 'post', data: { remote: true } }
   
   %div.row
     %div.col-md-6
-      = render( partial: 'editor/input_editor', locals: {  |
-        header: t('.xml'),   |
-        content: get_sample_xml('sample.xml'), |
-        settings_json: '{ "name": "xml", "mode": "ace/mode/xml" }' }) |
+      = render 'concerns/panels/form', |
+        header: t('.xml'),             |
+        body: render('concerns/editors/input', id: 'input_xml_editor', |
+          name: 'xml',                                                 |
+          options: { mode: 'xml' },                                    |
+          content: get_sample_xml('sample.xml'))
 
     %div.col-md-6
-      %div.panel.panel-default.condensed
-        %div.panel-heading.fixed-height
-          %div.btn-group{ data: { toggle: "buttons" } }>
-            %button.btn.btn-default.active{ data: { toggle: "tab", target: '#xsd_inline' } }
-              %input#inline{ type: "radio", name: "mode", value: "inline" }
-                %h4= t('.xsd')
-            %button.btn.btn-default{ data: { toggle: "tab", target: '#xsd_file' } }
-              %input#file{ type: "radio", name: "mode", value: "file" }
-                %h4= t('.xsd_file')
-                
-        %div.panel-body.condensed
-          %div.tab-content
-            %div.tab-pane.active#xsd_inline
-              %div.panel.panel-default.condensed
-                %div.panel-body.editor{ 'data-editor' => 'input', 'data-editor-settings' => '{ "name": "xsd", "mode": "ace/mode/xml" }'}<
-                  = get_sample_xml('sample.xsd')
-        
-            %div.tab-pane.separated#xsd_file
-              %div.form-horizontal
-                %div
-                  %label.col-md-4{ for: 'file_list' }= t '.file'
-                  %div.col-md-8
-                    = render( partial: 'concerns/uploads/list' )
-                %div
-                  = render( partial: 'concerns/uploads/form', locals: { opts: { label: t('concerns.uploads.form.label') + ' ' + t('.prolog_note') } })
-  
+      - content_for :xsd_editor do
+        = render 'concerns/editors/input', id: 'input_xsd_editor', |
+          name: 'xsd',                                             |
+          options: { mode: 'xml' },                                |
+          content: get_sample_xml('sample.xsd')
+          
+      - content_for :file_upload do
+        %div.form-horizontal.separated
+          = render 'concerns/uploads/list', id: 'input_xsd_files_list', |
+            label: t('.file')
+          = render 'concerns/uploads/form', id: 'input_xsd_files_upload', |
+            tooltip: (t('concerns.uploads.form.tooltip') + ' ' + t('.prolog_note'))
+
+      = render 'concerns/panels/tabbed', id: 'xsd_tabbed_panel',                |
+        tab_input_name: 'mode',                                                 |
+        tabs: [                                                                 | 
+          { value: 'inline', header: t('.xsd'), body: yield(:xsd_editor) },     |
+          { value: 'file', header: t('.xsd_file'), body: yield(:file_upload) }, |
+        ]
+
   %div.row
     %div.col-md-1
-      = submit_button_tag
+      = render 'concerns/buttons/submit', |
+        text:  t('.form_submit.label'), disable_with: t('.form_submit.disable')
   
   %div.row
     %div.col-md-8
-      = render( partial: 'editor/output_editor', locals: {  |
-        header: t('.output'),  |
-        anchor_id: 'result',   |
-        anchor_name: 'result', |
-        settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |
+      = render 'concerns/panels/form', |
+        header: t('.output'),          |
+        body: render('concerns/editors/output', id: 'output_editor', |
+          options: { mode: 'xml' })
+
+= javascript_include_tag 'views/xml/xsd'

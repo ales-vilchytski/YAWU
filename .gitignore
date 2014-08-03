@@ -22,3 +22,6 @@
 /public/development-assets
 /public/assets
 /public/test-assets
+
+# Ignore built .war
+/yawu.war

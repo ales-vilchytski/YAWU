@@ -16,6 +16,7 @@ namespace :war do
       relative = "RAILS_RELATIVE_URL_ROOT='/#{$WARBLER_CONFIG.jar_name}'"
       
       system "bundle exec jruby -S rake assets:precompile #{renv} #{relative}"
+      system "bundle exec jruby -S rake assets:non_digested_ace #{renv}"
       abort('ERROR precompiling assets') if $?.exitstatus != 0
     else
       puts 'WARNING: Assets precompilation was skipped for non-production environment'

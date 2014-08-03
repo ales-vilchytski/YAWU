@@ -1,6 +1,6 @@
 en:
   label: YAWU
-  title: YAWU - Yet Antother Web Utilities
+  title: YAWU - Yet Another Web Utilities
   
   welcome:
     hello: Welcome to YAWU - Yet Another Web Utilities
@@ -27,6 +27,8 @@ en:
     up: Return up
     debug_panel:
       show: Show debug panel
+      hide: Hide debug panel
+      clear: Clear
 
   concerns:
     uploads:
@@ -35,4 +37,20 @@ en:
         label: 'Files will be loaded and will become accessible to use'
         success: 'Success'
         error: 'Error'
+        internal_server_error: 'Internal server error'
         clean_status: 'Clean status'
+    buttons:
+      up:
+        text: Up
+      down:
+        text: Down
+      submit:
+        text: Submit
+        disable: Processing
+    panels:
+      error:
+        header: Sorry, but something went wrong
+        body: There are error during processing request
+      form:
+        header: Panel
+        body: Text

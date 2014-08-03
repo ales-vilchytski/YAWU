@@ -73,16 +73,10 @@ $(document).ready(function() {
         /*
          * AJAX handling
          */
-        var $errHead = $('[data-editor="error-heading"]');
-        var $errBody = $('[data-editor="error-body"]');
+        var errorPanel = concerns.panelError('error_panel');
        
         function showError(header, body) {
-            $errHead.text(header);
-            $errBody.text(body || $errBody.data('defaultError'));
-            
-            var collapseTarget = $errHead.data('target') || $errBody.data('target');
-            var $collapseTarget = $(collapseTarget);
-            $collapseTarget.collapse('show');
+            errorPanel.show(header, body);
         }
         
         $(form)

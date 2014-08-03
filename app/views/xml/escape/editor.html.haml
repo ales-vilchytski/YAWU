@@ -1,20 +1,25 @@
-%form{ action: xml_escape_path, method: 'post', data: { remote: true, editor: 'form' } }
+%form#form{ action: xml_escape_path, method: 'post', data: { remote: true } }
   
   %div.row
     %div.col-md-8
-      = render( partial: 'editor/input_editor', locals: { |
-        header: t('.input'),   |
-        content: get_sample_xml('sample.xml'), |
-        settings_json: '{ "name": "input", "mode": "ace/mode/xml" }' }) |
+      = render 'concerns/panels/form', |
+        header: t('.input'),           |
+        body: render('concerns/editors/input',   |
+          id: 'input_xml',                       | 
+          name: 'input',                         |
+          content: get_sample_xml('sample.xml'), |
+          options: { mode: "xml" })
 
   %div.row
     %div.col-md-4
-      = submit_button_tag
+      = submit_button
 
   %div.row
     %div.col-md-8
-      = render( partial: 'editor/output_editor', locals: {  |
-        header: t('.output'),  |
-        anchor_id: 'result',   |
-        anchor_name: 'result', |
-        settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |
+      = render 'concerns/panels/form', |
+        header: t('.output'),          |
+        body: render('concerns/editors/output', |
+          id: 'output_text',                    |
+          options: { mode: "text" })
+
+= javascript_include_tag 'views/xml/escape'

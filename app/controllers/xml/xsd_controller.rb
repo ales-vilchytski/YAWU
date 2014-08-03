@@ -3,7 +3,7 @@ module Xml
   class XsdController < EditorController
     include Uploads::Uploadable
     
-    upload_class :xsd_file 
+    upload_class :xsd_file
     
     def editor
       @files = Uploads::XsdFile.all

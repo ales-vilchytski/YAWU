@@ -16,7 +16,7 @@ YAWU::Application.configure do
   config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
   
-  config.assets.debug = true
+  config.assets.debug = false
   config.assets.prefix = "/test-assets"
   
   # Show full error reports and disable caching.

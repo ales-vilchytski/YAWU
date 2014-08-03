@@ -1,0 +1,33 @@
+[data-concerns*='editor'] {
+  width: 100%;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+}
+
+@media (max-height: 760px) {
+  .concerns-editor-sm {
+    height: 50px;
+  }
+  
+  .concerns-editor, .concerns-editor-md {
+    height: 350px;
+  }
+  
+  .concerns-editor-lg {
+    height: 500px;
+  }
+}
+
+@media (max-height: 600px) {
+  .concerns-editor-sm {
+    height: 50px;
+  }
+  
+  .concerns-editor, .concerns-editor-md {
+    height: 250px;
+  }
+  
+  .concerns-editor-lg {
+    height: 400px;
+  }
+}

@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 feature "XML escaping" do
-  include Features::Common
-  include Features::Ace
+  include Features::Concerns::Editors
   
   before do
     visit '/xml/escape'

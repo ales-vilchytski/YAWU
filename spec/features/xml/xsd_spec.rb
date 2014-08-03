@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 feature "XSD validating" do
-  include Features::Common
-  include Features::Ace
-  include Features::FileUpload
+  include Features::Concerns::Editors
+  include Features::Concerns::Uploads
   
   before do
     visit '/xml/xsd'

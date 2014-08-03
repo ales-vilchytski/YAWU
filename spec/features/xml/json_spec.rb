@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 feature "XML to JSON converting" do
-  include Features::Common
-  include Features::Ace
+  include Features::Concerns::Editors
   
   before do
     visit '/xml/json'

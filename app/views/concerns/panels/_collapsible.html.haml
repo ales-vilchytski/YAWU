@@ -1,0 +1,23 @@
+- id ||= nil
+- headerHidden ||= t('.header')
+- headerShown ||= t('.header')
+- hidden ||= false
+- body ||= t('.body')
+
+%div.panel.panel-default.condensed{ id: id, 'data-concerns' => 'panelCollapsible' }
+  %div.panel-heading
+    %div.row
+      %div.col-md-11
+        %h4{ 'data-panel-header' => '',             | 
+          'data-panel-header-shown' => headerShown, |
+          'data-panel-header-hidden' => headerHidden }
+          = hidden ? headerHidden : headerShown
+
+      %div.col-md-1
+        %h4{ 'data-panel-collapse' => '',                              |
+          'data-panel-shown' => 'glyphicon glyphicon-chevron-down',    |
+          'data-panel-hidden' => 'glyphicon glyphicon-chevron-right',  |
+          class: hidden ? 'glyphicon glyphicon-chevron-right' : 'glyphicon glyphicon-chevron-down' }
+
+  %div.panel-body.condensed.collapse{ class: hidden ? '' : 'in', 'data-panel-body' => '' }
+    = body

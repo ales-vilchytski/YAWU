@@ -1,5 +1,5 @@
 (function() {
-    concerns.inheritWidgetBase('uploadForm', $.blueimp.fileupload, {
+    concerns.inheritWidgetBase('uploadForm', {
         options: {
             action: null,
             type: null

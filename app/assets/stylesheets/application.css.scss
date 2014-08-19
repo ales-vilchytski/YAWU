@@ -10,5 +10,7 @@
  *
  *= require_self
  *= require bootstrap
+ *= require jquery-file-upload/jquery.fileupload
  *= require_tree ./application
+ *= require_tree ./concerns
  */

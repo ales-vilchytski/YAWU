@@ -9,20 +9,22 @@ $WARBLER_CONFIG = Warbler::Config.new do |config|
   # - executable: embed a web server and make the war executable
   # - compiled: compile .rb files to .class files
   # config.features = %w(gemjar)
-
+  
+  RAILS_ENV = ENV['RAILS_ENV'] || 'development'
+  
   # Application directories to be included in the webapp.
-  config.dirs = %w(app config db lib vendor public samples)
+  config.dirs = %w(app config db lib samples)
   
   # Additional files/directories to exclude
   config.excludes = FileList["lib/tasks/*"]
   
   # An array of Bundler groups to avoid including in the war file.
   # Defaults to ["development", "test", "assets"].
-  config.bundle_without = ["development", "test", "assets", "build"]
+  config.bundle_without = ["build"]
     
   # Pathmaps for controlling how application files are copied into the archive
   config.pathmaps.application = ["WEB-INF/%p"]
-    
+  
   # Name of the archive (without the extension). Defaults to the basename
   # of the project directory.
   config.jar_name = "yawu"
@@ -33,7 +35,7 @@ $WARBLER_CONFIG = Warbler::Config.new do |config|
   config.override_gem_home = true
   
   # Value of RAILS_ENV for the webapp -- default as shown below
-  config.webxml.rails.env = 'production'
+  config.webxml.rails.env = RAILS_ENV
   
   # Application booter to use, one of :rack, :rails, or :merb (autodetected by default)
   config.webxml.booter = :rails
@@ -42,7 +44,33 @@ $WARBLER_CONFIG = Warbler::Config.new do |config|
   config.webxml.jruby.compat.version = "1.9"
 
   # Additional files/directories to include, above those in config.dirs
-  # config.includes = FileList["db"]
+  # config.includes = FileList["foo/bar/**/*"]
+    
+  # Environment specific settings
+  assets_path = lambda { |env| (env == 'production' ? "public/assets" : "public/#{env}-assets") + "/**/*"}
+  db_path = lambda { |env| "db/#{env}/**/*" }
+   
+  case RAILS_ENV
+  when 'development'
+    config.excludes.include(
+      *(%w(production test).map &db_path), 
+      *(%w(production test development).map &assets_path))
+    config.bundle_without += ["test"]
+    
+  when 'production'
+    exclude_envs = %w(development test)
+    config.excludes.include(
+      *(exclude_envs.map &db_path), 
+      *(exclude_envs.map &assets_path), 
+      "app/assets/**/*")
+    config.bundle_without += ["development", "assets", "test"]
+    
+    # Hack for https://github.com/jruby/warbler/issues/169
+    config.includes = FileList["public/assets/manifest-*.*"]
+    
+  when 'test'
+    # TODO add test settings for .war
+  end
 
   # Additional Java .jar files to include.  Note that if .jar files are placed
   # in lib (and not otherwise excluded) then they need not be mentioned here.
@@ -125,7 +153,7 @@ $WARBLER_CONFIG = Warbler::Config.new do |config|
   # Files to be included in the root of the webapp.  Note that files in public
   # will have the leading 'public/' part of the path stripped during staging.
   # config.public_html = FileList["public/**/*", "doc/**/*"]
-
+  
   # Pathmaps for controlling how public HTML files are copied into the .war
   # config.pathmaps.public_html = ["%{public/,}p"]
 

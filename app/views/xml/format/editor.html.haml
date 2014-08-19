@@ -1,29 +1,39 @@
-%div.row{ 'data-editor' => 'form' }
-  
-  %div.col-md-8
-    = render( partial: 'editor/input_editor', locals: {  |
-      header: t('.input'),   |
-      content: get_sample_xml('sample.xml').gsub(/(>)\s+/, '\1'), |
-      settings_json: '{ "name": "input", "mode": "ace/mode/xml" }' }) |
-  
-  %div.col-md-4
-    %div.panel.panel-default
-      %div.panel-heading
-        %h4= t('.settings')
-      
-      %div.panel-body
-        %form.form-horizontal{role: 'form'}
-          = settings_text_field_tag(name: 'indent_text', label: t('.indent_text.label'), placeholder: t('.indent_text.placeholder'), tab_allowed: true)
-          = settings_text_field_tag(name: 'encoding', label: t('.encoding.label'), placeholder: t('.encoding.placeholder'))
+%form{ id: 'form', action: xml_format_path, method: 'POST', data: { remote: 'true' } }
 
-%div.row
-  %div.col-md-4
-    = submit_form_tag( action: 'format' )
-    
-%div.row
-  %div.col-md-8
-    = render( partial: 'editor/output_editor', locals: {  |
-      header: t('.output'),  |
-      anchor_id: 'result',   |
-      anchor_name: 'result', |
-      settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', id: 'input_xml_panel', |
+        header: t('.input'),                                  |
+        body: render('concerns/editors/input', id: 'input_xml', name: 'input', |
+          options: { mode: 'xml' }, |
+          content: get_sample_xml('sample.xml').gsub(/(>)\s+/, '\1'))
+
+    %div.col-md-4
+      - content_for :settings_panel do
+        %div.form-horizontal.separated{role: 'form'}
+          = render 'concerns/fields/text',              |
+            name: 'indent_text',                        |
+            label: t('.indent_text.label'),             |
+            placeholder: t('.indent_text.placeholder'), |
+            tab_allowed: true
+          = render 'concerns/fields/text',          |
+            name: 'encoding',                       |
+            label: t('.encoding.label'),            |
+            placeholder: t('.encoding.placeholder')
+
+      = render 'concerns/panels/form', id: 'settings_panel', |
+        header: t('.settings'), |
+        body: yield(:settings_panel)
+
+  %div.row
+    %div.col-md-4
+      = submit_button
+
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', id: 'output_xml_panel', |
+        header: t('.output'), |
+        body: render('concerns/editors/output', id: 'output_xml', |
+          options: { mode: 'xml' })
+
+= javascript_include_tag 'views/xml/format'

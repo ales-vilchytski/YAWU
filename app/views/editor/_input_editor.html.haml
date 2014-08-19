@@ -1,8 +1,9 @@
+-# DEPRECATED: use concersn/editors/input instead
 %div.panel.panel-default.condensed
-  %div.panel-heading
+  %div.panel-heading.fixed-height
     %h4= defined?(header) ? header : t('.input')
     
   %div.panel-body.condensed
     %div.panel.panel-default.condensed
-      %div.panel-body.editor{ 'data-editor' => 'input', 'data-editor-settings' => defined?(settings_json) ? settings_json : '' }<
+      %div.panel-body.editor{ 'data-editor' => 'input', 'data-editor-settings' => defined?(settings_json) ? settings_json : ''}<
         = defined?(content) ? content : nil

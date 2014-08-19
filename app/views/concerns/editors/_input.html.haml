@@ -1,0 +1,13 @@
+- id ||= nil
+- content ||= nil
+- name ||= nil
+- size ||= nil # sm|md|lg
+- options ||= {}
+
+%div{ id: id, 'data-concerns' => 'editorInput', |
+  'data-concerns-options' => options.to_json,  |
+  'class' => "concerns-editor#{size ? '-' + size : nil }" }<
+  = content
+- # we can sync Ace with text input to submit it's context in form
+- if name && id
+  %input{ id: "ace_text_area_#{id}", type: 'hidden', name: name }

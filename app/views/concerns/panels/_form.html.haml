@@ -1,0 +1,11 @@
+- id ||= nil
+- header ||= t('.header')
+- body ||= t('.body')
+
+%div.panel.panel-default.condensed{ id: id, 'data-concerns' => 'panelPlain' }
+  %div.panel-heading
+    %h4{ 'data-panel-header' => '' }
+      = header
+
+  %div.panel-body.condensed{ 'data-panel-body' => '' }
+    = body

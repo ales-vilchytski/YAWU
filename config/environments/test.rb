@@ -15,7 +15,10 @@ YAWU::Application.configure do
   # Configure static asset server for tests with Cache-Control for performance.
   config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
-
+  
+  config.assets.debug = false
+  config.assets.prefix = "/test-assets"
+  
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -33,4 +36,5 @@ YAWU::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  
 end

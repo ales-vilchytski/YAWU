@@ -1,0 +1,14 @@
+- id ||= 'file_list'
+- type ||= (defined?(upload_type)) ? (upload_type) : (nil)
+- name ||= 'file'
+- label ||= t '.file'
+- files ||= @files
+
+- input_id = "#{id}_file_select"
+
+%div.form-group{ id: id, 'data-concerns' => 'uploadList', 'data-concerns-options' => { type: type }.to_json }
+  %label.col-md-4.control-label{ for: input_id }= label
+  %div.col-md-8
+    %select.form-control{ id: input_id, name: name }
+      - files.each do |file|
+        %option{ value: "#{file.id}" }= file.uploaded_file_name

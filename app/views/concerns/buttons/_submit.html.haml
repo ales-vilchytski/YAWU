@@ -1,0 +1,9 @@
+- id ||= nil
+- text ||= t('.text')
+- disable_with ||= t('.disable')
+    
+%button.btn.btn-default.separated{ id: id, |
+  disable_with: disable_with,              |
+  'data-concerns' => 'buttonSubmit',       |
+  type: 'submit', name: 'submit' }
+  = text

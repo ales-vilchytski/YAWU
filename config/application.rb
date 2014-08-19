@@ -32,7 +32,7 @@ module YAWU
     config.assets.enabled = true
     config.assets.initialize_on_precompile = false
     
-    config.assets.precompile += %w( editor.js editor.css )
+    config.assets.precompile += %w( editor.js editor.css ace/*.js views/**.*)
     
   end
 end

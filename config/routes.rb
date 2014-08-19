@@ -2,21 +2,31 @@ YAWU::Application.routes.draw do
   
   root 'welcome#index'
   
+  # Helper defining routes for tools
+  # Creates get and post methods and optional upload path
+  # 
+  # @param name [String, #read] path and action
+  # @param tools [Array, #read] nested paths and actions instead of first-level action
+  def tool(name, tools = [])
+    get name => "#{name}#editor"
+    
+    if (!tools || tools.empty?)
+      post name => "#{name}##{name}"
+    else
+      tools.each { |t| post "#{name}/#{t}" => "#{name}##{t}" }
+    end
+  end
+  
   namespace :xml do
-    get 'format' => 'format#editor'
-    post 'format' => 'format#format'
+    tool('format')
     
-    get 'escape' => 'escape#editor'
-    post 'escape' => 'escape#escape'
+    tool('escape')
     
-    get 'json' => 'json#editor'
-    post 'json' => 'json#json'
+    tool('json')
+ 
+    tool('xslt')
     
-    get 'xslt' => 'xslt#editor'
-    post 'xslt' => 'xslt#xslt'
-    
-    get 'xsd' => 'xsd#editor'
-    post 'xsd' => 'xsd#xsd'
+    tool('xsd', ['validate', 'upload'])
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

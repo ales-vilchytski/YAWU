@@ -7,14 +7,21 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+# Ignore databases.
+/db/development
+/db/production
+/db/test
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/derby.log
 /tmp
+/uploads
 
 # Ignore compiled assets
+/public/development-assets
 /public/assets
-/public/dev-assets
+/public/test-assets
+
+# Ignore built .war
+/yawu.war

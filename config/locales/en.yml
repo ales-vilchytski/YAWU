@@ -34,7 +34,7 @@ en:
     uploads:
       form:
         button: 'Add files'
-        label: 'Files will be loaded and will become accessible to use'
+        tooltip: 'Files will be loaded and will become accessible to use'
         success: 'Success'
         error: 'Error'
         internal_server_error: 'Internal server error'

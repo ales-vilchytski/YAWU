@@ -11,7 +11,8 @@ Rails app with utilities such as JSON converters, HTTP stubs, XSLT transformatio
 
 TODO list (implemented and planned features):
 * ~~XML formatter~~
-* XML ~~escaper~~\unescaper
+* ~~XML escaper\unescaper~~
+* XPath evaluator
 * JSON -> XML converter
 * ~~XML -> JSON converter~~
 * Unicode entity translator

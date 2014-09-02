@@ -69,3 +69,12 @@ ru:
         form_submit:
           label: Валидировать
           disable: Обработка
+
+    xpath:
+      editor:
+        input_xml: Введите XML
+        input_xpath: Введите XPath
+        output_xml: Результат выполнения XPath
+        form_submit: 
+          label: Выполнить
+          disable: Обработка

@@ -1,0 +1,36 @@
+%form#form{ action: xml_xpath_path, method: 'post', data: { remote: true } }
+  
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.input_xml'),       |
+        body: render('concerns/editors/input',   |
+          id: 'input_xml',                       |
+          name: 'xml',                           |
+          content: get_sample_xml('sample.xml'), |
+          options: { mode: "xml" })
+
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.input_xpath'),     |
+        body: render('concerns/editors/input',     |
+          id: 'input_xpath',                       |
+          name: 'xpath',                           |
+          size: 'sm',                              |
+          content: get_sample_xml('sample.xpath'), |
+          options: { mode: "text" })
+
+  %div.row
+    %div.col-md-4
+      = submit_button
+     
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.output_xml'),          |
+        body: render('concerns/editors/output', |
+          id: 'output_xml',                     |
+          options: { mode: "xml" })
+
+= javascript_include_tag 'views/xml/xpath'

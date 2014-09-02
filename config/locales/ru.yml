@@ -13,6 +13,7 @@ ru:
       json: Преобразование в JSON
       xslt: XSLT трансформация
       xsd: XSD валидация
+      xpath: Выполнение XPath
       generic: Общий инструментарий
     js: 
       label: JavaScript

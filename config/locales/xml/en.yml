@@ -69,3 +69,12 @@ en:
         form_submit:
           label: Validate
           disable: Processing
+
+    xpath:
+      editor:
+        input_xml: Input XML
+        input_xpath: Input XPath
+        output_xml: XPath evaluation result
+        form_submit: 
+          label: Evaluate
+          disable: Processing

@@ -35,10 +35,23 @@
                 =link_to t('application.xml.xslt'), xml_xslt_path
               %li
                 =link_to t('application.xml.xsd'), xml_xsd_path
+              %li
+                =link_to t('application.xml.xmldsig'), xml_xmldsig_path
               / 
                 %li.divider
                   %li
                     %a{href: "#"}= t('application.xml.generic')
+          
+          %li.dropdown  
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              РБЦ
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                =link_to 'Росреестр', rbc_rosreestr_path
+              %li
+                =link_to 'ГИБДД', rbc_gibdd_path
+                               
           /
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}

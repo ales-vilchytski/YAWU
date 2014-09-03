@@ -27,6 +27,16 @@ YAWU::Application.routes.draw do
     tool('xslt')
     
     tool('xsd', ['validate', 'upload'])
+
+    get 'xmldsig' => 'xmldsig#editor'
+    post 'xmldsig' => 'xmldsig#xmldsig'
+    post 'file_upload' => 'xmldsig#file_upload'
+  end
+  
+  namespace :rbc do
+    tool('rosreestr', ['generate'])
+    
+    tool('gibdd', ['process_uin'])
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

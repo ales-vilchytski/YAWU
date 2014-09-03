@@ -1,0 +1,90 @@
+%form.form-horizontal{role: 'form', action: 'xmldsig', method: 'post', editor: 'submit', data: {remote: true}, 'data-editor' => 'form'}
+  %div.row
+
+    %div.col-md-6
+      = render( partial: 'editor/input_editor', locals: { |
+        header: t('.xml'),   |
+        content: get_sample_xml('xmldsig.xml'), |
+        settings_json: '{ "name": "xml", "mode": "ace/mode/xml" }' }) |
+
+    %div.col-md-6
+      = render( partial: 'editor/output_editor', locals: {  |
+        header: t('.output'),  |
+        anchor_id: 'result',   |
+        anchor_name: 'result', |
+        settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |
+
+  %div.row
+    %div.col-md-6
+      %div.panel.panel-default
+        %div.panel-heading
+          %h4= t('.settings')
+
+        %div.panel-body
+
+          = settings_radio_button_tag(name: 'provider', label: t('.provider.label'), default: 'bicrypt_fpsu',
+            options: {'bicrypt_fpsu' => t('.provider.bicrypt_fpsu.label'),
+                      'bicrypt_local_single_component_key' => t('.provider.bicrypt_local_single_component_key.label'),
+                      'bicrypt_local_double_component_key' => t('.provider.bicrypt_local_double_component_key.label'),
+                      'rsa' => t('.provider.rsa.label'),
+                      },
+            input_attrs: {'data-master' => 'true'})
+
+          = settings_select_field_tag(name: 'rsa_pkcs12_file', label: t('.rsa_pkcs12_file.label'), options: @files, default: @files.grep(/.?\.p12/), 
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'rsa'}})
+          = settings_text_field_tag(name: 'rsa_pkcs12_password', label: t('.rsa_pkcs12_password.label'), type: 'password', default: '123456',
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'rsa'}})
+          -#= settings_text_field_tag(name: 'rsa_pkcs12_alias', label: t('.rsa_pkcs12_alias.label'), 'data-master-name' => 'provider', 'data-master-values' => ['rsa'], class: 'clear provider_input rsa', display: 'none', default: '1')
+
+          = settings_text_field_tag(name: 'bicrypt_fpsu_host', label: t('.bicrypt_fpsu_host.label'), default: '10.76.112.249',
+            div_attrs: {class: 'clear', data: {'master-name' => 'provider', 'master-values' => 'bicrypt_fpsu'}})
+          = settings_text_field_tag(name: 'bicrypt_fpsu_port', label: t('.bicrypt_fpsu_port.label'), default: 850,
+            div_attrs: {class: 'clear', data: {'master-name' => 'provider', 'master-values' => 'bicrypt_fpsu'}})
+          = settings_text_field_tag(name: 'bicrypt_fpsu_timeout', label: t('.bicrypt_fpsu_timeout.label'), default: 200,
+            div_attrs: {class: 'clear', data: {'master-name' => 'provider', 'master-values' => 'bicrypt_fpsu'}})
+          = settings_text_field_tag(name: 'bicrypt_fpsu_key_number', label: t('.bicrypt_fpsu_key_number.label'), default: 10,
+            div_attrs: {class: 'clear', data: {'master-name' => 'provider', 'master-values' => 'bicrypt_fpsu'}})
+
+          = settings_select_field_tag(name: 'bicrypt_local_pk_file', label: t('.bicrypt_local_pk_file.label'), options: @files, default: @files.grep(/.?\.key/),
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'bicrypt_local_double_component_key bicrypt_local_single_component_key'}})
+          = settings_select_field_tag(name: 'bicrypt_local_double_mk_file', label: t('.bicrypt_local_double_mk_file.label'), options: @files, default: @files.grep(/.?\.key/),
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'bicrypt_local_double_component_key'}})
+          = settings_text_field_tag(name: 'bicrypt_local_single_pk_password', label: t('.bicrypt_local_single_pk_password.label'), type: 'password', default: 'ER2iHk',
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'provider_input bicrypt_local_single_component_key'}})
+          = settings_select_field_tag(name: 'bicrypt_local_gk_file', label: t('.bicrypt_local_gk_file.label'), options: @files, default: @files.grep(/.?gk.?\.db3/),
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'provider_input bicrypt_local_double_component_key bicrypt_local_single_component_key'}})
+          = settings_select_field_tag(name: 'bicrypt_local_uz_file', label: t('.bicrypt_local_uz_file.label'), options: @files, default: @files.grep(/.?uz.?\.db3/),
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'provider_input bicrypt_local_double_component_key bicrypt_local_single_component_key'}})
+          = settings_select_field_tag(name: 'bicrypt_local_prnd_file', label: t('.bicrypt_local_prnd_file.label'), options: @files, default: @files.grep(/.?prnd.?\.db3/),
+            div_attrs: {class: 'clear', style: 'display: none', data: {'master-name' => 'provider', 'master-values' => 'provider_input bicrypt_local_double_component_key bicrypt_local_single_component_key'}})
+
+          %div.clear
+            = submit_button_tag
+
+          -#%div.col-md-1
+            = submit_form_tag( action: 'xmldsig' )
+
+    %div.col-md-6
+      %div.panel.panel-default
+        %div.panel-heading
+          %h4= t('.file_upload')
+
+        %div.panel-body
+          -#%form.form-horizontal{id: 'file_upload', method: 'POST', enctype: 'multipart/form-data'}
+          %div.row.fileupload-buttonbar
+            %span.btn.btn-success.fileinput-button
+              %i.glyphicon.glyphicon-plus
+              %span
+                = t('.add_files')
+              %input{id: 'file_upload', type: 'file', name: 'files[]', multiple: ''}
+
+            -#%button.btn.btn-primary.start{type: 'submit'}
+              %i.glyphicon.glyphicon-upload
+              %span
+                = t('.start_upload')
+
+          %div.row.progress{id: 'progress'}
+            %div.progress-bar.progress-bar-success
+
+          %div.files{id: 'files'}
+

@@ -22,3 +22,6 @@
 /public/development-assets
 /public/assets
 /public/test-assets
+
+/spec/test_files/rbc_tools/private/*
+!/spec/test_files/rbc_tools/private/README.txt

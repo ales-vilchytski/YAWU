@@ -1,0 +1,37 @@
+<soapenv:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <soapenv:Header/>
+  <S:Body wsu:Id="body">
+    <ns9:UnifoTransferMsg xmlns:ns10="http://roskazna.ru/xsd/ExportQuittanceResponse" xmlns:ns11="http://roskazna.ru/xsd/ExportIncomesResponse" xmlns:ns12="http://roskazna.ru/xsd/ExportPaymentsResponse" xmlns:ns13="http://roskazna.ru/xsd/PGU_ChargesResponse" xmlns:ns14="http://roskazna.ru/xsd/PaymentInfo" xmlns:ns15="http://roskazna.ru/xsd/Charge" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://www.w3.org/2004/08/xop/include" xmlns:ns4="http://smev.gosuslugi.ru/rev111111" xmlns:ns5="http://roskazna.ru/xsd/PGU_ImportRequest" xmlns:ns6="http://rosrazna.ru/xsd/SmevUnifoService" xmlns:ns7="http://roskazna.ru/xsd/Ticket" xmlns:ns8="http://roskazna.ru/xsd/PGU_DataRequest" xmlns:ns9="http://roskazna.ru/SmevUnifoService/">
+      <ns4:Message>
+        <ns4:Sender>
+          <ns4:Code>RKZN35001</ns4:Code>
+          <ns4:Name>Казначейство России</ns4:Name>
+        </ns4:Sender>
+        <ns4:Recipient>
+          <ns4:Code>RKZN35001</ns4:Code>
+          <ns4:Name>Казначейство России</ns4:Name>
+        </ns4:Recipient>
+        <ns4:TypeCode>GFNC</ns4:TypeCode>
+        <ns4:Status>REQUEST</ns4:Status>
+        <ns4:Date>2011-08-24T12:35:39.121+04:00</ns4:Date>
+        <ns4:ExchangeType>6</ns4:ExchangeType>
+      </ns4:Message>
+      <ns4:MessageData>
+        <ns4:AppData>
+          <ns6:exportData>
+            <ns8:DataRequest kind="CHARGESTATUS">
+              <PostBlock>
+                <ID>7ba91a04-9f25-463e-8227-ca3e46354c43</ID>
+                <TimeStamp>2011-08-24T12:35:39.121+04:00</TimeStamp>
+                <SenderIdentifier>1234ABC123</SenderIdentifier>
+              </PostBlock>
+              <SupplierBillIDs>
+                <SupplierBillID>18800000000001786439</SupplierBillID>
+              </SupplierBillIDs>
+            </ns8:DataRequest>
+          </ns6:exportData>
+        </ns4:AppData>
+      </ns4:MessageData>
+    </ns9:UnifoTransferMsg>
+  </S:Body>
+</soapenv:Envelope>

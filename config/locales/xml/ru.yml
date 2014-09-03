@@ -59,3 +59,56 @@ ru:
         form_submit:
           label: Валидировать
           disable: Обработка
+
+    xmldsig:
+      editor:
+        xml: Введите XML
+        output: Подписанный XML
+        settings: Настройки
+        form_submit:
+          label: Подписать
+          disable: Обработка
+        signature_method_text:
+          label: Signature Method
+        digest_method_text:
+          label: Digest Method
+        provider:
+          label: Provider
+          bicrypt_fpsu:
+            label: Bicypt FPSU
+          bicrypt_local_double_component_key:
+            label: Bicypt Local Double Component Key
+          bicrypt_local_single_component_key:
+            label: Bicypt Local Single Component Key
+          rsa:
+            label: RSA
+        bicrypt_fpsu_host:
+          label: FPSU Хост
+        bicrypt_fpsu_port:
+          label: FPSU Порт
+        bicrypt_fpsu_timeout:
+          label: FPSU Таймаут
+        bicrypt_fpsu_key_number:
+          label: FPSU Номер ключа
+        bicrypt_local_gk_file:
+          label: GK файл
+        bicrypt_local_uz_file:
+          label: UZ файл
+        bicrypt_local_prnd_file:
+          label: PRND файл
+        bicrypt_local_pk_file:
+          label: PK файл
+        bicrypt_local_double_mk_file:
+          label: MK файл
+        rsa_pkcs12_file:
+          label: PKCS12 файл
+        rsa_pkcs12_password:
+          label: PKCS12 пароль
+        rsa_pkcs12_alias:
+          label: PK алиас
+        bicrypt_local_single_pk_password:
+          label: Пароль
+
+        file_upload: Загрузка Файлов
+        add_files: Добавить файлы...
+        start_upload: Начать загрузку

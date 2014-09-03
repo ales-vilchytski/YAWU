@@ -1,0 +1,35 @@
+== README
+
+* Vendor specific libraries
+
+* Бикрипт
+  Бикрипт - СКЗИ производства Инфокрипт: http://www.infocrypt.ru/index_prod.php?id=18
+  Платное закрытое ПО, на которое действуют экспортные ограничения - может эксплуатироваться
+  только в РФ.
+  Поэтому экземпляр Бикрипт придётся добыть самостоятельно.
+  
+* Состав файлов для работы
+  dll
+    32BIT
+	  asn1pars.dll
+	  bicr_adm.dll
+	  bicrfpsu.dll
+	  grn.dll
+	  jasn1pars_x86.dll
+    64BIT
+	  asn1pars64.dll
+	  bicr_adm64.dll
+	  bicrfpsu64.dll
+	  grn64.dll
+	  jasn1pars_amd64.dll
+  jar
+    bicrypt-4.92.jar
+	bicrypt-jcp-1.0.jar
+	bicrypt-xmldsigri-1.0.jar
+	commons-logging-1.1.1.jar
+	wss4j-1.6.9.jar
+	xmlsec-1.5.3.jar
+	  
+* Установка
+  Чтобы Бикрипт работал корректно, необходимо чтобы jar файлы были доступны в CLASSPATH, а dll в NATIVE_CLASSPATH.
+  Например, можно скопировать jar файлы в jre\lib\ext, а dll в jre\bin.

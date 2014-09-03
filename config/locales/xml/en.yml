@@ -59,3 +59,56 @@ en:
         form_submit:
           label: Validate
           disable: Processing
+
+    xmldsig:
+      editor:
+        xml: Input XML
+        output: Signed XML
+        settings: Settings
+        form_submit:
+          label: Sign
+          disable: Processing
+        signature_method_text:
+          label: Signature Method
+        digest_method_text:
+          label: Digest Method
+        provider:
+          label: Provider
+          bicrypt_fpsu:
+            label: Bicypt FPSU
+          bicrypt_local_double_component_key:
+            label: Bicypt Local Double Component Key
+          bicrypt_local_single_component_key:
+            label: Bicypt Local Single Component Key
+          rsa:
+            label: RSA
+        bicrypt_fpsu_host:
+          label: FPSU Host
+        bicrypt_fpsu_port:
+          label: FPSU Port
+        bicrypt_fpsu_timeout:
+          label: FPSU Timeout
+        bicrypt_fpsu_key_number:
+          label: FPSU Key Number
+        bicrypt_local_gk_file:
+          label: GK file
+        bicrypt_local_uz_file:
+          label: UZ file
+        bicrypt_local_prnd_file:
+          label: PRND file
+        bicrypt_local_pk_file:
+          label: PK file
+        bicrypt_local_double_mk_file:
+          label: MK file
+        rsa_pkcs12_file:
+          label: PKCS12 file
+        rsa_pkcs12_password:
+          label: PKCS12 password
+        rsa_pkcs12_alias:
+          label: PK Alias
+        bicrypt_local_single_pk_password:
+          label: PK Password
+
+        file_upload: File Upload
+        add_files: Add files
+        start_upload: Start upload

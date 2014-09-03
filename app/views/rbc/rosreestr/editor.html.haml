@@ -1,0 +1,30 @@
+%form{ action: rbc_rosreestr_generate_path, method: 'post', data: { remote: true, editor: 'form' } }
+  
+  %div.row{ 'data-editor' => 'form' }
+    %div.col-md-4
+      %div.panel.panel-default.condensed
+        %div.panel-heading
+          %h4 Параметры генерации
+
+        %div.panel-body
+          %div.form-horizontal{role: 'form'}
+            = settings_text_field_tag(name: 'date', label: 'Дата', placeholder: 'Дата в формате ГГГГ-ММ-ДД', div_attrs: {class: 'clear'})
+
+            %div.form-group
+              %label.col-md-3.control-label.clear{ 'name' => 'mode' } Режим генерации
+              %div.col-md-9
+                %select.form-control{ 'name' => 'mode' }
+                  %option{ 'value' => 'text' } Текстовый
+                  %option{ 'value' => 'json' } JSON
+
+  %div.row
+    %div.col-md-1
+      = submit_button_tag( {name: 'Генерировать'}, {'data' => { disable_with: 'Генерация'}} )
+
+  %div.row
+    %div.col-md-8
+      = render( partial: 'editor/output_editor', locals: {  |
+        header: 'Сгенерированные коды',  |
+        anchor_id: 'result',   |
+        anchor_name: 'result', |
+        settings_json: '{ "name": "result", "mode": "ace/mode/text" }' }) |

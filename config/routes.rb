@@ -28,9 +28,7 @@ YAWU::Application.routes.draw do
     
     tool('xsd', ['validate', 'upload'])
 
-    get 'xmldsig' => 'xmldsig#editor'
-    post 'xmldsig' => 'xmldsig#xmldsig'
-    post 'file_upload' => 'xmldsig#file_upload'
+    tool('xmldsig', ['sign', 'upload'])
   end
   
   namespace :rbc do

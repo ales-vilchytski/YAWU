@@ -28,3 +28,5 @@
 
 /spec/test_files/rbc_tools/private/*
 !/spec/test_files/rbc_tools/private/README.txt
+/samples/rbc_tools/private/*
+!/samples/rbc_tools/private/README.txt

@@ -70,7 +70,7 @@ module Xml
             mk_file_path,
             gk_file_path,
             uz_file_path,
-            prnd_file_path,
+            prnd_file_path
         );
 
         private_key = get_private_key(key_spec);
@@ -96,7 +96,7 @@ module Xml
             password,
             gk_file_path,
             uz_file_path,
-            prnd_file_path,
+            prnd_file_path
         );
 
         private_key = get_private_key(key_spec);

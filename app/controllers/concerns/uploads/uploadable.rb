@@ -8,25 +8,6 @@ module Uploads
   module Uploadable
     extend ActiveSupport::Concern
     
-    module ClassMethods
-      
-      # Defines class of upload in controller or returns the one if argument is nil
-      # 
-      # @param clazz [Class or Symbol, #read] class constant or name of upload model
-      def upload_class(clazz = nil)
-        if (clazz == nil)
-          return @@_upload_class
-        else
-          if (clazz.is_a? Class)
-            @@_upload_class = clazz
-          else
-            @@_upload_class = Uploads.const_get(clazz.to_s.camelize)
-          end
-        end
-      end
-      
-    end
-    
     # Action processing file upload
     def upload
       do_upload(self.class.upload_class)
@@ -39,6 +20,21 @@ module Uploads
     
     included do
       helper_method :upload_type
+      
+      # Defines class of upload in controller or returns the one if argument is nil
+      # 
+      # @param clazz [Class or Symbol, #read] class constant or name of upload model
+      def self.upload_class(clazz = nil)
+        if (clazz == nil)
+          return class_variable_get(:@@_upload_class)
+        else
+          if (clazz.is_a? Class)
+            class_variable_set(:@@_upload_class, clazz)
+          else
+            class_variable_set(:@@_upload_class, Uploads.const_get(clazz.to_s.camelize))
+          end
+        end
+      end
     end
     
     protected
@@ -91,7 +87,7 @@ module Uploads
       res = {
         name: uploaded.read_attribute(:uploaded_file_name),
         size: uploaded.read_attribute(:upload_file_size),
-        error: uploaded.errors.full_messages
+        error: uploaded.errors.full_messages,
       }
       return res
     end

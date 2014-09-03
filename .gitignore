@@ -23,5 +23,8 @@
 /public/assets
 /public/test-assets
 
+# Ignore built .war
+/yawu.war
+
 /spec/test_files/rbc_tools/private/*
 !/spec/test_files/rbc_tools/private/README.txt

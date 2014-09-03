@@ -1,26 +1,34 @@
-%form{ action: xml_xslt_path, method: 'post', data: { remote: true, editor: 'form' } }
+%form#form{ action: xml_xslt_path, method: 'post', data: { remote: true } }
   
-  %div.row{ 'data-editor' => 'form' }
+  %div.row
     %div.col-md-6
-      = render( partial: 'editor/input_editor', locals: { |
-        header: t('.xml'),   |
-        content: get_sample_xml('sample.xml'), |
-        settings_json: '{ "name": "xml", "mode": "ace/mode/xml" }' }) |
+      = render 'concerns/panels/form', |
+        header: t('.xml'),             |
+        body: render('concerns/editors/input',   |
+          id: 'input_xml',                       |
+          name: 'xml',                           |
+          content: get_sample_xml('sample.xml'), |
+          options: { mode: 'xml' })
 
     %div.col-md-6
-      = render( partial: 'editor/input_editor', locals: { |
-        header: t('.xslt'),   |
-        content: get_sample_xml('sample.xslt'), |
-        settings_json: '{ "name": "xslt", "mode": "ace/mode/xml" }' }) |
+      = render 'concerns/panels/form', |
+        header: t('.xslt'),            |
+        body: render('concerns/editors/input',    |
+          id: 'input_xslt',                       |
+          name: 'xslt',                           |
+          content: get_sample_xml('sample.xslt'), |
+          options: { mode: 'xml' })
 
   %div.row
     %div.col-md-1
-      = submit_button_tag
+      = submit_button
 
   %div.row
     %div.col-md-8
-      = render( partial: 'editor/output_editor', locals: {  |
-        header: t('.output'),  |
-        anchor_id: 'result',   |
-        anchor_name: 'result', |
-        settings_json: '{ "name": "result", "mode": "ace/mode/xml" }' }) |
+      = render 'concerns/panels/form', |
+        header: t('.output'),          |
+        body: render('concerns/editors/output', |
+          id: 'output_xml',                    |
+          options: { mode: "xml" })
+
+= javascript_include_tag 'views/xml/xslt'

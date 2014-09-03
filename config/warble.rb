@@ -13,7 +13,7 @@ $WARBLER_CONFIG = Warbler::Config.new do |config|
   RAILS_ENV = ENV['RAILS_ENV'] || 'development'
   
   # Application directories to be included in the webapp.
-  config.dirs = %w(app config db lib vendor samples)
+  config.dirs = %w(app config db lib samples)
   
   # Additional files/directories to exclude
   config.excludes = FileList["lib/tasks/*"]
@@ -52,7 +52,6 @@ $WARBLER_CONFIG = Warbler::Config.new do |config|
    
   case RAILS_ENV
   when 'development'
-    exclude_envs = 
     config.excludes.include(
       *(%w(production test).map &db_path), 
       *(%w(production test development).map &assets_path))

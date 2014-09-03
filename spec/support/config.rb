@@ -25,14 +25,22 @@ RSpec.configure do |config|
   config.after :all do
     DatabaseCleaner.clean
   end
-
+  
+  Capybara.default_wait_time = 5.seconds
+  
   Capybara.default_driver = :selenium
+  
+  # Uncomment next lines to run against deployed app. Not usual case, but still
+  #
+  # Capybara.run_server = false
+  # Capybara.app_host = 'http://localhost:8080/yawu'
+    
   config.after :each, type: 'feature' do
     # Optional delay for features
     # see https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist/
     # 
     # Example: PAUSE=1 bundle exec rspec
-    sleep (ENV['PAUSE'] || 0).to_i
+    sleep(ENV['PAUSE'] || 0).to_i
     
     if example.exception && example.metadata[:js]
       meta = example.metadata

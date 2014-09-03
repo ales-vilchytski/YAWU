@@ -1,5 +1,3 @@
-//= require ace/ace
-//= require ace/theme-eclipse.js
-//= require ace/mode-xml.js
-//= require_tree ./editor
-//= require_tree ./xml
+// require of ace moved to implicit javascript_include_tag's due to javascript-worker.js
+// load failures (when ace loads it dynamically and sends request to wrong URL)
+'';

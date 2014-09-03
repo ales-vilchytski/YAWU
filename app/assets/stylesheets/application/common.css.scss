@@ -1,11 +1,18 @@
 .condensed {
-    margin: 1px 1px 0px 1px;
+    margin: 1px 1px 1px 1px;
     padding: 0px 0px 0px 0px;
 }
 
+$separation_margin: 5px;
+
 .separated {
-    margin: 5px 5px 5px 5px;
+    margin: $separation_margin;
 }
+
+.form-group {
+  margin-bottom: $separation_margin;
+}
+
 
 .clear {
   clear: both;

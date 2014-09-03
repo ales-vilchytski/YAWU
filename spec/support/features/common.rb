@@ -15,7 +15,7 @@ module Features
     end
     
     def error_pane
-      find(:css, '#error_pane')
+      find(:css, '#error_panel')
     end
     
     # Visit page by clicking links in navbar

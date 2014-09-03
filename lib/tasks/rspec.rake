@@ -6,7 +6,10 @@ namespace :rspec do
   end
   
   task :run do
-    system "bundle exec jruby -S rspec spec/ -r spec/support/scr_html.rb -f ScrHtml -o tmp/rspec/report.html"
+    example = ENV['example']
+    args = example ? " --example '#{example}'" : ''
+    
+    system "bundle exec jruby -S rspec spec/ -r spec/support/scr_html.rb -f ScrHtml -o tmp/rspec/report.html #{args}"
     abort('ERROR running rspec') if $?.exitstatus != 0
   end
   

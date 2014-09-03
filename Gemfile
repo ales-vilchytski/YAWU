@@ -3,13 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 gem 'activerecord-jdbcderby-adapter', '1.3.6'
 gem "paperclip", "4.1"
-gem 'jquery-rails', '3.1.0'
-gem "jquery-fileupload-rails", "0.4.1"
 
-gem 'sass-rails',   '4.0.2'
-gem 'bootstrap-sass', '3.1.0'
-
-gem 'ace-rails-ap', '2.0.1'
 gem 'haml', '4.0.5'
 
 gem 'nokogiri', '1.6.1'
@@ -21,6 +15,10 @@ gem 'rubyzip', '1.0.0'
 # in production environments by default.
 group :assets do
   gem 'coffee-rails', '4.0.1'
+  gem 'sass-rails',   '4.0.2'
+  gem 'jquery-rails', '3.1.0'
+  gem 'jquery-ui-rails', '5.0.0'
+  gem 'bootstrap-sass', '3.1.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyrhino'

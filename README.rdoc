@@ -19,7 +19,8 @@
   Don't forget to set appropriate RAILS_ENV.
 
 * Database initialization
-  Not yet.
+  As usual - run 
+  $ bundle exec jruby -S rake db:migrate.
 
 * How to run the test suite
   Execute commands:
@@ -39,3 +40,4 @@
   	$ bundle exec jruby -S rake war:update
   All commands package all dependencies and JRuby libraries to single web-archive.
   This .war file can be deployed on any servlet or EAR container (e.g. Tomcat or WebSphere).
+  Don't forget to patch JVM with JCE Unlimited Strength Jurisdiction Policy.

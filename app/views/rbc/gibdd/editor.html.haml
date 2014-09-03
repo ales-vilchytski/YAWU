@@ -1,38 +1,40 @@
-%form{ action: rbc_gibdd_process_uin_path, method: 'post', data: { remote: true, editor: 'form' } }
+%form#form{ action: rbc_gibdd_process_uin_path, method: 'post', data: { remote: true } }
   
-  %div.row{ 'data-editor' => 'form' }
+  %div.row
     %div.col-md-4
-      %div.panel.panel-default.condensed
-        %div.panel-heading
-          %h4 Настройки
+    
+      - content_for :settings do
+        %div.form-horizontal{role: 'form'}
+          = render('concerns/fields/text', name: 'input', label: 'УИН', placeholder: 'Старый УИН для разбора или 19 цифр для КР')
 
-        %div.panel-body
-          %div.form-horizontal{role: 'form'}
-            = settings_text_field_tag(name: 'input', label: 'УИН', placeholder: 'Старый УИН для разбора или 19 цифр для КР')
+          %div.form-group
+            %label.col-md-3.control-label{ 'name' => 'mode' } Режим работы
+            %div.col-md-9
+              %select.form-control{ 'name' => 'mode' }
+                %option{ 'value' => 'GENERATE' } Генерация
+                %option{ 'value' => 'PARSE' } Разбор старого УИН
+                %option{ 'value' => 'CHECKSUM' } Добавление контрольного разряда
 
-            %div.form-group
-              %label.col-md-3.control-label{ 'name' => 'mode' } Режим работы
-              %div.col-md-9
-                %select.form-control{ 'name' => 'mode' }
-                  %option{ 'value' => 'GENERATE' } Генерация
-                  %option{ 'value' => 'PARSE' } Разбор старого УИН
-                  %option{ 'value' => 'CHECKSUM' } Добавление контрольного разряда
-
-            %div.form-group
-              %label.col-md-3.control-label{ 'name' => 'type' } Тип УИНа
-              %div.col-md-9
-                %select.form-control{ 'name' => 'type' }
-                  %option{ 'value' => 'OLD' } Старый (номер и дата пост.)
-                  %option{ 'value' => 'NEW' } Новый
+          %div.form-group
+            %label.col-md-3.control-label{ 'name' => 'type' } Тип УИНа
+            %div.col-md-9
+              %select.form-control{ 'name' => 'type' }
+                %option{ 'value' => 'OLD' } Старый (номер и дата пост.)
+                %option{ 'value' => 'NEW' } Новый
+  
+      = render 'concerns/panels/form', |
+        header: 'Настройки',           |
+        body: yield(:settings)
 
   %div.row
     %div.col-md-1
-      = submit_button_tag( {name: 'Обработать'}, {'data' => { disable_with: 'Обработка'}} )
+      = render('concerns/buttons/submit', text: 'Обработать', disable_with: 'Обработка')
   
   %div.row
     %div.col-md-8
-      = render( partial: 'editor/output_editor', locals: {  |
-        header: 'Результат',  |
-        anchor_id: 'result',   |
-        anchor_name: 'result', |
-        settings_json: '{ "name": "result", "mode": "ace/mode/text" }' }) |
+      = render 'concerns/panels/form', |
+        header: 'Результат',           |
+        body: render('concerns/editors/output', id: 'output_editor', |
+          options: { mode: 'text' })
+
+= javascript_include_tag 'views/rbc/gibdd'

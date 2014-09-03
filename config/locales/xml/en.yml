@@ -109,6 +109,4 @@ en:
         bicrypt_local_single_pk_password:
           label: PK Password
 
-        file_upload: File Upload
-        add_files: Add files
-        start_upload: Start upload
+        prolog_note: ''

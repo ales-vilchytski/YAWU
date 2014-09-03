@@ -109,6 +109,4 @@ ru:
         bicrypt_local_single_pk_password:
           label: Пароль
 
-        file_upload: Загрузка Файлов
-        add_files: Добавить файлы...
-        start_upload: Начать загрузку
+        prolog_note: ''

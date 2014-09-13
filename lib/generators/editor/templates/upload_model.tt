@@ -1,0 +1,10 @@
+module Uploads
+  
+  class <%= upload_class_name %> < UploadedFile
+    
+    validates_attachment_content_type :uploaded, :content_type => /mime-type\Z/
+    validates_attachment_file_name :uploaded, :matches => /\.(extension1)|(extension2)\Z/
+    
+  end
+  
+end

@@ -1,32 +1,35 @@
 <% module_namespacing do -%>class <%= class_name %>Controller < EditorController
   <% if actions.include? 'upload' %>
   include Uploads::Uploadable
-  upload_class :<%= singular_name %>_file
+  upload_class Uploads::<%= upload_class_name %>
   <% end %>
+  # GET /<%= file_path %>
   def editor
-    <% if actions.include? 'upload' %>
-	  @files = Uploads::<%= class_name %>File.all
+    <% if upload? %>
+	  @files = Uploads::<%= upload_class_name %>.all
     <% end %>
     respond_to do |format|
       format.html { render :editor }
     end
   end
-  
-  def <%= singular_name %>
-    result = execute_for_json do |r|
-      r[:result] = "Do some actions and assign result to hash with some key"
-    end
-      
-    respond_to do |format|
-      format.json { render :json => result }
-    end
-  end
-<% (actions.reject() {|a| [singular_name, 'upload'].include?(a.to_s) }).each do |action| -%>
+<% (actions.reject() {|a| ['upload'].include?(a.to_s) }).each do |action| -%>
+  # POST /<%= file_path %>/<%= action %>
   def <%= action %>
+  <% if upload? %>
     result = execute_for_json do |r|
-      r[:result] = "Do some actions (<%= action %>) and assign result to hash with some key"
+      input = if params[:mode] == 'file'
+        Uploads::<%= upload_class_name %>.find(params[:file]).read
+      else
+        params[:input]
+      end
+      r[:result] = <%= class_name %>.new.<%= action %>(input)
     end
-      
+  <% else %>
+    result = execute_for_json do |r|
+      r[:result] = <%= class_name %>.new.<%= action %>(params[:input])
+    end
+  <% end %>
+    
     respond_to do |format|
       format.json { render :json => result }
     end

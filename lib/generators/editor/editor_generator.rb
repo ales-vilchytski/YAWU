@@ -1,5 +1,5 @@
 class EditorGenerator < Rails::Generators::NamedBase
-  # Generator is mostly like rails generator 'controller'
+  # Generator is like rails generator 'controller'
   # Code copied and modified from here:
   # https://github.com/rails/rails/blob/v4.0.2/railties/lib/rails/generators/rails/controller/controller_generator.rb
   
@@ -7,7 +7,12 @@ class EditorGenerator < Rails::Generators::NamedBase
   
   argument :actions, type: :array, default: [], banner: "action action"
   
-  check_class_collision suffix: "Controller"
+  def initialize(*args)
+    super
+    if actions.empty?
+      actions << singular_name
+    end
+  end
   
   def create_controller_files
     template 'controller.tt', File.join('app/controllers', class_path, "#{file_name}_controller.rb")
@@ -15,6 +20,21 @@ class EditorGenerator < Rails::Generators::NamedBase
   
   def create_view_files
     template 'view.tt', File.join('app/views', class_path, singular_name, "editor.html.haml")
+  end
+  
+  def create_assets_javascript_files
+    template 'assets_javascript.tt', File.join('app/assets/javascripts/views', "#{file_path}.js")  
+  end
+  
+  def create_model_files
+    if (upload?)
+      upload_model_file = File.join('app/models/uploads', "#{upload_file_name}.rb")
+      template 'upload_model.tt', upload_model_file
+      
+      say "Don't forget to set up whitelist of mime-types and extensions for uploads"
+      say "  see #{upload_model_file}"
+    end
+    template 'model.tt', File.join('app/models', class_path, "#{file_name}.rb")
   end
   
   def add_routes
@@ -58,32 +78,46 @@ class EditorGenerator < Rails::Generators::NamedBase
     end
     
     tool_route = "" <<
-      "tool('#{file_name}'" + 
+      "tool('#{singular_name}'" + 
       ((actions.present?) ? (", [ '#{actions.join '\', \''}' ]") : ('')) + 
       ")\n\n"
     tool_route = indent(tool_route, needed_nesting_level * 2)
     
     if (needed_namespaces_count > 0 && needed_namespaces_count > existing_namespaces_count) # we need to create namespaces
-      namespace_decorator = lambda do |namespaces_txt, rest_of_class_path, i|
+      namespace_decorator = lambda do |namespaces_txt, rest_of_class_path, nesting_level|
         if (rest_of_class_path.empty?)
           namespaces_txt
         else
-          indent_val = (existing_nesting_level + i) * 2
+          indent_val = nesting_level * 2
           
           "" <<
             indent("namespace :#{rest_of_class_path.first} do\n", indent_val) +
-            namespace_decorator.call(namespaces_txt, rest_of_class_path.slice(1..-1), i + 1) +
+            namespace_decorator.call(namespaces_txt, rest_of_class_path.slice(1..-1), nesting_level + 1) +
             indent("end\n\n", indent_val)
         end
       end
       
       rest_of_cp = class_path.slice(-(needed_namespaces_count - existing_namespaces_count), needed_namespaces_count)
-      tool_route = namespace_decorator.call(tool_route, rest_of_cp, 0)
+      tool_route = namespace_decorator.call(tool_route, rest_of_cp, existing_nesting_level)
     end
-        
+    
     inject_into_file 'config/routes.rb', insert_guard do
       tool_route
     end
+  end
+  
+  private
+  
+  def upload?
+    actions.include? 'upload'
+  end
+  
+  def upload_class_name
+    "#{class_name}File"
+  end
+  
+  def upload_file_name
+    upload_class_name.underscore
   end
   
 end

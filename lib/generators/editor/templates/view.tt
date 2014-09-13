@@ -1,4 +1,4 @@
-%form#form{ action: <%= file_path.gsub('/', '_') %>_path, method: 'post', data: { remote: true } }
+%form#form{ action: <%= file_path.gsub('/', '_') %>_<%= actions.first %>_path, method: 'post', data: { remote: true } }
   
   %div.row
     %div.col-md-8
@@ -21,11 +21,13 @@
       = render 'concerns/panels/form', |
         header: t('.input_file'),      |
         body: yield(:file_upload)
+        
+      = submit_button text: t('.form_submit.label'), name: 'mode', value: 'file'
     <% end %>
   
   %div.row
     %div.col-md-4
-      = submit_button text: t('.form_submit.label')
+      = submit_button text: t('.form_submit.label')<% if upload? %>, name: 'mode', value: 'text' <% end %>
 
   %div.row
     %div.col-md-8

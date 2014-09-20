@@ -1,4 +1,4 @@
-[ 'routes_insertion.rb', 'nav_links_insertion.rb' ].each do |file|
+[ 'routes_insertion.rb', 'nav_links_insertion.rb', 'i18n_insertion.rb' ].each do |file|
   require File.expand_path("../#{file}", __FILE__)
 end
 
@@ -9,7 +9,8 @@ class EditorGenerator < Rails::Generators::NamedBase
   
   source_root File.expand_path('../templates', __FILE__)
   include RoutesInsertion
-  include NavLinksInsertion  
+  include NavLinksInsertion
+  include I18nInsertion
   
   argument :actions, type: :array, default: [], banner: "action action"
   
@@ -53,6 +54,10 @@ class EditorGenerator < Rails::Generators::NamedBase
     else
       do_add_nav_link("other")
     end
+  end
+  
+  def add_i18n_keys
+    do_add_i18n_keys
   end
   
   private

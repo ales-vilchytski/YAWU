@@ -1,4 +1,4 @@
-%form#form{ action: <%= file_path.gsub('/', '_') %>_<%= actions.first %>_path, method: 'post', data: { remote: true } }
+%form#form{ action: <%= file_path.gsub('/', '_') %>_<%= actions.find { |a| a != 'upload' } %>_path, method: 'post', data: { remote: true } }
   
   %div.row
     %div.col-md-8
@@ -9,7 +9,7 @@
           name: 'input',                            |
           content: "some sample content goes here", |
           options: { mode: "xml" })
-  	<% if actions.include? 'upload' %>
+  	<% if upload? %>
     %div.col-md-4
       - content_for :file_upload do
         %div.form-horizontal.separated
@@ -27,7 +27,7 @@
   
   %div.row
     %div.col-md-4
-      = submit_button text: t('.form_submit.label')<% if upload? %>, name: 'mode', value: 'text' <% end %>
+      = submit_button text: t('.form_submit.label'), name: 'mode', value: 'text'
 
   %div.row
     %div.col-md-8

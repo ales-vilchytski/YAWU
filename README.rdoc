@@ -15,29 +15,43 @@
 * Database creation
   App uses Apache Derby Embedded which is shipped with JVM 6 and later.
   To create DB execute default rake tasks, e.g.:
-  $ bundle exec jruby -S rake db:setup
+  $ bundle exec rake db:setup
   Don't forget to set appropriate RAILS_ENV.
 
 * Database initialization
   As usual - run 
-  $ bundle exec jruby -S rake db:migrate.
-
-* How to run the test suite
-  Execute commands:
-  * Setup test environment and run all test printing report to tmp/rspec/report.html
-    $ bundle exec jruby -S rake rspec:all
-  * Only run tests printing report to tmp/rspec/report.html:
-    $ bundle exec jruby -S rake rspec:run [example=PATTERN]
-  * Printing report to stdout (default rspec command)
-    $ bundle exec jruby -S rspec
-  Tests are written using RSpec and Capybara with Selenium using Firefox.
+  $ bundle exec rake db:migrate.
   
 * Deployment instructions
   To create .war distribution execute Rake tasks:
   * Create .war from scratch with DB recreation and assets precompilation
-  	$ bundle exec jruby -S rake war:create
+  	$ bundle exec rake war:create
   * Update DB and assets (if needed) and create .war:
-  	$ bundle exec jruby -S rake war:update
+  	$ bundle exec rake war:update
   All commands package all dependencies and JRuby libraries to single web-archive.
   This .war file can be deployed on any servlet or EAR container (e.g. Tomcat or WebSphere).
   Don't forget to patch JVM with JCE Unlimited Strength Jurisdiction Policy.
+  
+
+* How to run the test suite
+  Execute commands:
+  * Setup test environment and run all test printing report to tmp/rspec/report.html
+    $ bundle exec rake rspec:all
+  * Only run tests printing report to tmp/rspec/report.html:
+    $ bundle exec rake rspec:run [example=PATTERN]
+  * Printing report to stdout (default rspec command)
+    $ bundle exec rspec
+  Tests are written using RSpec and Capybara with Selenium using Firefox.
+  
+* Generators
+  There is useful generator for tools, based on text input and uploading files:
+  $ bundle exec rails g editor <ns/name> [actions]
+    where actions by default include name parameter, but can also include 'upload'. E.g.:
+  * create xml/format tool with method 'format':
+  	$ bundle exec rails g editor xml/format
+  * creates xml/xsd tool with method 'validate' and fileupload capabilities:
+  	$ bundle exec rails g editor xml/xsd validate upload
+  This generator creates skeleton of tool. It's recommended to apply it in clean
+  working tree, see git diff and upgrade generated code as needed. 
+  When using generator in clean working tree you can clean up generated things:
+    $ git checkout app && git checkout config && git clean app/**/* -df && git clean config/**/* -df

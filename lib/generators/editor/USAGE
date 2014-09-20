@@ -1,5 +1,5 @@
 Description:
-    Generates simple tool skeleton. Supports 1 action, 1 text and/or 1 file input.
+    Generates simple tool skeleton. Supports 1 action, 1 text and 1 file input.
 
 Example:
     rails generate editor xml/xsd validate upload
@@ -7,7 +7,11 @@ Example:
     This will create:
         route /xml/xsd for GET and /xml/xsd/validate for POST
         controller Xml::XsdController with action 'validate'
-        view Xml::Xsd::editor with text input and file upload form
+        view xml/xsd/editor.html.haml with text input and file upload form
+        view layouts/_navbar_links.html.haml with link to tool
         asset javascripts/views/xml/xsd.js with client-side controller
         model Xml::Xsd with method 'validate'
         model Uploads::Xml::Xsd (without mime-type and file extension settings, don't forget to set it up)
+        locale locales/en.yml with keys for application.xml.label and application.xml.xsd
+        locale locales/xml/en.yml with keys for xml.xsd.editor form
+        

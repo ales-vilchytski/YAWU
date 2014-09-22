@@ -34,14 +34,14 @@
   
 
 * How to run the test suite
-  Execute commands:
+  Prerequisite: Firefox 32 or near in default selenium-webdriver lookup path.
+  Run tests by any next command:
   * Setup test environment and run all test printing report to tmp/rspec/report.html
     $ bundle exec rake rspec:all
   * Only run tests printing report to tmp/rspec/report.html:
     $ bundle exec rake rspec:run [example=PATTERN]
   * Printing report to stdout (default rspec command)
     $ bundle exec rspec
-  Tests are written using RSpec and Capybara with Selenium using Firefox.
   
 * Generators
   There is useful generator for tools, based on text input and uploading files:
@@ -54,4 +54,4 @@
   This generator creates skeleton of tool. It's recommended to apply it in clean
   working tree, see git diff and upgrade generated code as needed. 
   When using generator in clean working tree you can clean up generated things:
-    $ git checkout app && git checkout config && git clean app/**/* -df && git clean config/**/* -df
+    $ git checkout app && git checkout config && git clean app/**/* -df && git clean config/**/* -df && git clean spec/features/**/* -df

@@ -82,7 +82,7 @@ class EditorGenerator < Rails::Generators::NamedBase
       text: "label: #{cp.last.camelize}\n"
     ))
     inject_with_namespace(inject_opts.merge(
-      text: "#{singular_name}: #{singular_name.camelize}  label\n"
+      text: "#{singular_name}: #{singular_name.camelize} label\n"
     ))
        
     # tool keys          
@@ -107,6 +107,10 @@ form_submit:
   disable: Processing},
       namespace_end: "\n"
     )
+  end
+  
+  def add_specs
+    template 'spec.tt', File.join('spec/features', class_path, "#{file_name}_spec.rb")
   end
   
   private

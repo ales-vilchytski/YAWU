@@ -14,4 +14,5 @@ Example:
         model Uploads::Xml::Xsd (without mime-type and file extension settings, don't forget to set it up)
         locale locales/en.yml with keys for application.xml.label and application.xml.xsd
         locale locales/xml/en.yml with keys for xml.xsd.editor form
+        test spec/features/xml/xsd_spec.rb with RSpec + Capybara test stub
         

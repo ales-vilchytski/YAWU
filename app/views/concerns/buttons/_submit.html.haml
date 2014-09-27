@@ -5,7 +5,7 @@
 - value ||= ''
 
 %button.btn.btn-default.separated{ id: id, |
-  disable_with: disable_with,              |
+  'data-disable-with' => disable_with,     |
   'data-concerns' => 'buttonSubmit',       |
   type: 'submit', name: name, value: value }
   = text

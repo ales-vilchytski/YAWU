@@ -1,4 +1,4 @@
-%form#form{ action: xml_escape_path, method: 'post', data: { remote: true } }
+%form#form{ action: xml_escape_path, method: 'post', data: { remote: 'true' } }
   
   %div.row
     %div.col-md-8
@@ -10,9 +10,19 @@
           content: get_sample_xml('sample.xml'), |
           options: { mode: "xml" })
 
+    - content_for :info_body do
+      - t('.info.body').each_line do |line|
+        %p~ line
+    
+    %div.col-md-4
+      = render 'concerns/panels/form', |
+        header: t('.info.header'),     |
+        body: yield(:info_body)
+
   %div.row
     %div.col-md-4
-      = submit_button
+      = submit_button text: t('.form_submit.label_escape'), name: 'mode', value: 'escape'
+      = submit_button text: t('.form_submit.label_unescape'), name: 'mode', value: 'unescape'
 
   %div.row
     %div.col-md-8
@@ -20,6 +30,6 @@
         header: t('.output'),          |
         body: render('concerns/editors/output', |
           id: 'output_text',                    |
-          options: { mode: "text" })
+          options: { mode: "xml" })
 
 = javascript_include_tag 'views/xml/escape'

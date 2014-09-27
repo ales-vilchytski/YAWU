@@ -13,6 +13,7 @@ en:
       json: To JSON
       xslt: XSLT
       xsd: XSD
+      xpath: XPath evaluation
       xmldsig: XMLDSig
       generic: Generic Tool
     js:

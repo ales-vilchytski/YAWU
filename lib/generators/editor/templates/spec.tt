@@ -1,0 +1,24 @@
+require 'spec_helper'
+
+feature "<%= class_path.collect(&:camelize).join " " %> <%= singular_name.camelize%> feature" do
+  include Features::Concerns::Editors
+  <% if upload? %>
+  include Features::Concerns::Uploads
+  <% end %>
+  before do
+    visit '/<%= file_path %>'
+  end
+  
+  scenario "Editor for <%= singular_name.camelize %> can be navigated through menu", js: true do
+    visit '/'
+    visit_by_menu(t('application.<%= class_path.first %>.label'), t('application.<%= i18n_path %>'))
+
+    expect(body).to have_text(t('<%= i18n_path %>.editor.input'))
+    expect(body).to have_text(t('<%= i18n_path %>.editor.output'))
+  end
+  
+  scenario "Some specific tests", js: true do
+    pending "implement specific tests"
+  end
+
+end

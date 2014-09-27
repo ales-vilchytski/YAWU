@@ -1,0 +1,40 @@
+%form#form{ action: <%= file_path.gsub('/', '_') %>_<%= actions.find { |a| a != 'upload' } %>_path, method: 'post', data: { remote: true } }
+  
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.input'),           |
+        body: render('concerns/editors/input',      |
+          id: 'input',                              | 
+          name: 'input',                            |
+          content: "some sample content goes here", |
+          options: { mode: "xml" })
+  	<% if upload? %>
+    %div.col-md-4
+      - content_for :file_upload do
+        %div.form-horizontal.separated
+          = render 'concerns/uploads/list', id: 'input_<%= singular_name %>_files_list', |
+            label: t('.file')
+          = render 'concerns/uploads/form', id: 'input_<%= singular_name %>_files_upload', |
+            tooltip: t('concerns.uploads.form.tooltip')
+      
+      = render 'concerns/panels/form', |
+        header: t('.input_file'),      |
+        body: yield(:file_upload)
+        
+      = submit_button text: t('.form_submit.label'), name: 'mode', value: 'file'
+    <% end %>
+  
+  %div.row
+    %div.col-md-4
+      = submit_button text: t('.form_submit.label'), name: 'mode', value: 'text'
+
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.output'),          |
+        body: render('concerns/editors/output', |
+          id: 'output',                         |
+          options: { mode: "xml" })
+
+= javascript_include_tag 'views/<%= file_path %>'

@@ -28,6 +28,8 @@ YAWU::Application.routes.draw do
     
     tool('xsd', ['validate', 'upload'])
 
+    
+    tool('xpath')
     tool('xmldsig', ['sign', 'upload'])
   end
   

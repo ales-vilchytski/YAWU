@@ -4,11 +4,12 @@ YAWU - Yet Another Web Utilities
 Description
 ---
 
-Rails app with utilities such as JSON converters, HTTP stubs, XSLT transformations and RegEx validators.
+Rails app with utilities such as JSON converter, XML formatter, XSLT transformation and XSD validator.
+* Licensed under the terms of the MIT license
 * Developed for closed networks (e.g. for enterprise network without internet access)
 * Oriented for modern browsers (mostly tested with Firefox 32)
 * Uses JRuby, thus can be deployed on almost any Servlet container (e.g. Tomcat, WebSphere) using Warbler or started as standalone server.
-* Can be easily extended with your own tools based on text input and output (using Ajax.org Ace editor or uploaded files).
+* Can be easily extended with your own tools based on text input and output (using Ajax.org Ace editor) or uploaded files.
 
 TODO list (implemented and planned features):
 ---

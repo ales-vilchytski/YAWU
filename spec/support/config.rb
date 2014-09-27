@@ -2,6 +2,18 @@ require 'database_cleaner'
 require 'capybara/rspec'
 require 'fileutils'
 
+FIREFOX_PATH = ENV['firefox_path']
+FIREFOX_PROFILE = ENV['firefox_profile']
+PAUSE = ENV['pause']
+  
+# Check usage of IPv4 only for Java 6.
+# If use IPv6 or both then selenium-webdriver from 2.27.0 up to 2.42.0 won't work 
+# (only in Java 6, Java 7 works great). It hangs finding free port due to error 
+# binding to IPv6 loopback (in method Selenium::Webdriver::PortProber.free?)
+if (java.lang.System.getProperty('java.version').start_with?('1.6.0'))
+  raise 'Set JAVA_OPTS to include "-Djava.net.preferIPv4Stack=true" or use Java 7' if java.lang.System.getProperty('java.net.preferIPv4Stack') != 'true'
+end
+
 # Set up database cleaner for Selenium
 DatabaseCleaner.strategy = :truncation
 
@@ -27,6 +39,14 @@ RSpec.configure do |config|
   end
   
   Capybara.default_wait_time = 5.seconds
+
+  if (FIREFOX_PATH) # else if firefox not specified then webdriver use instance from program files
+    Capybara.register_driver :selenium do |app|
+      require 'selenium/webdriver'
+      Selenium::WebDriver::Firefox::Binary.path = FIREFOX_PATH
+      Capybara::Selenium::Driver.new(app, :browser => :firefox, :profile => FIREFOX_PROFILE)
+    end
+  end
   
   Capybara.default_driver = :selenium
   

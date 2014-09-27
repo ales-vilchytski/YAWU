@@ -4,12 +4,24 @@
   margin: 0px 0px 0px 0px;
 }
 
+.concerns-editor-sm {
+  height: 100px;
+}
+
+.concerns-editor-md, .concerns-editor {
+  height: 400px;
+}
+
+.concerns-editor-lg {
+  height: 600px;
+}
+
 @media (max-height: 760px) {
   .concerns-editor-sm {
     height: 50px;
   }
   
-  .concerns-editor, .concerns-editor-md {
+  .concerns-editor-md, .concerns-editor {
     height: 350px;
   }
   
@@ -23,7 +35,7 @@
     height: 50px;
   }
   
-  .concerns-editor, .concerns-editor-md {
+  .concerns-editor-md, .concerns-editor {
     height: 250px;
   }
   

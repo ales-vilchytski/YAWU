@@ -1,0 +1,5 @@
+ru:
+  exceptions:
+    xml/unexpected_document_error:
+      unescape: 'XML-документ недопустим при данном действии. Пожалуйста, введите строку'
+      

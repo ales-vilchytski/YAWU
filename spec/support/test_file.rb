@@ -22,7 +22,7 @@ class TestFile
   
   def text
     if !@text
-      @text = File.open(path, 'r:utf-8').read
+      @text = File.open(path, 'r:utf-8').read.freeze
     end
     return @text
   end

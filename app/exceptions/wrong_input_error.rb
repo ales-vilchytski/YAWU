@@ -1,0 +1,3 @@
+class WrongInputError < BaseError
+    
+end

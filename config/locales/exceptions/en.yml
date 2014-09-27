@@ -1,0 +1,5 @@
+en:
+  exceptions:
+    xml/unexpected_document_error:
+      unescape: 'XML document is unexpected, please enter string instead'
+      

@@ -13,6 +13,7 @@ en:
       json: To JSON
       xslt: XSLT
       xsd: XSD
+      xpath: XPath evaluation
       generic: Generic Tool
     js:
       label: JavaScript
@@ -34,7 +35,7 @@ en:
     uploads:
       form:
         button: 'Add files'
-        label: 'Files will be loaded and will become accessible to use'
+        tooltip: 'Files will be loaded and will become accessible to use'
         success: 'Success'
         error: 'Error'
         internal_server_error: 'Internal server error'

@@ -31,7 +31,7 @@ module Features
 
       #===============================================#
       
-      def get_editor_value(label, opts)
+      def get_editor_value(label, opts = {})
         opts = {
           :in_widget => 'panel',
         }.merge(opts)

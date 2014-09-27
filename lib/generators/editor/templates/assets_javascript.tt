@@ -1,0 +1,12 @@
+$(document).ready(function() {
+    YAWU.views.common.bindAjaxToForm({
+        formId: 'form',
+        outputEditorId: 'output',
+        serverResultElement: 'result'
+    });
+<% if upload? %>
+    var uploadForm = concerns.uploadForm('input_<%= singular_name %>_files_upload');
+    var uploadList = concerns.uploadList('input_<%= singular_name %>_files_list');
+    uploadForm.addUploadList(uploadList);
+<% end %>
+});

@@ -1,0 +1,8 @@
+<% module_namespacing do -%>class <%= class_name %>
+<% (actions.reject() {|a| ['upload'].include?(a.to_s) }).each do |action| -%>
+  def <%= action %>(arg)
+    "Current argument: #{arg}\nImplement some logic in model."
+  end
+<% end %>
+end
+<% end %>

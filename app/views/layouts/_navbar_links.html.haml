@@ -1,0 +1,49 @@
+%ul.nav.navbar-nav
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+      = t('application.xml.label')
+      %b.caret
+    %ul.dropdown-menu
+      %li
+        =link_to t('application.xml.format'), xml_format_path
+      %li
+        =link_to t('application.xml.escape'), xml_escape_path
+      %li
+        =link_to t('application.xml.json'), xml_json_path
+      %li
+        =link_to t('application.xml.xslt'), xml_xslt_path
+      %li
+        =link_to t('application.xml.xsd'), xml_xsd_path
+      %li
+        =link_to t('application.xml.xpath'), xml_xpath_path
+      / 
+        %li.divider
+          %li
+            %a{href: "#"}= t('application.xml.generic')
+  /
+    %li.dropdown
+      %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+        = t('application.js.label')
+        %b.caret
+      %ul.dropdown-menu
+        %li
+          %a{href: "#"}= t('application.js.json_xml')
+        %li
+          %a{href: "#"}= t('application.js.xml_json')
+        %li
+          %a{href: "#"}= t('application.js.eval')
+        %li.divider
+        %li
+          %a{href: "#"}= t('application.js.generic')         
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+          Another stuff
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{href: "#"} Tool 1
+          %li
+            %a{href: "#"} Tool 2
+          %li.divider
+          %li
+            %a{href: "#"} Another tool

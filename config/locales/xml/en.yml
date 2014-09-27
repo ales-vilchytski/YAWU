@@ -3,11 +3,21 @@ en:
     escape:
       editor:
         input: Input text
-        output: Escaped text
+        output: Processed text
         sample: <sample><xml will='be'>escaped</xml></sample>
         form_submit: 
-          label: Escape
+          label_escape: Escape
+          label_unescape: Unescape
           disable: Processing
+        info:
+          header: Note!
+          body: |
+            Escapes only 5 XML predefined special characters:
+            - " quot U+0022 (34) XML 1.0 double quotation mark
+            - & amp  U+0026 (38) XML 1.0 ampersand
+            - ' apos U+0027 (39) XML 1.0 apostrophe (apostrophe-quote)
+            - < lt   U+003C (60) XML 1.0 less-than sign
+            - > gt   U+003E (62) XML 1.0 greater-than sign
       
     format:
       editor:
@@ -58,4 +68,13 @@ en:
         file: File
         form_submit:
           label: Validate
+          disable: Processing
+
+    xpath:
+      editor:
+        input_xml: Input XML
+        input_xpath: Input XPath
+        output_xml: XPath evaluation result
+        form_submit: 
+          label: Evaluate
           disable: Processing

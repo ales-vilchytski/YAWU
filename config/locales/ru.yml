@@ -6,6 +6,9 @@ ru:
     hello: Добро пожаловать в ЕщОВИ - Ещё Одни Веб-Инструменты
   
   application:
+    text:
+      base64: Base64 кодирование/декодирование
+      label: Текст
     xml:
       label: XML
       format: Форматирование

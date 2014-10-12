@@ -6,6 +6,9 @@ en:
     hello: Welcome to YAWU - Yet Another Web Utilities
   
   application:
+    text:
+      base64: Base64 encode/decode
+      label: Text
     xml:
       label: XML
       format: Format

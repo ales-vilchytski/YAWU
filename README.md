@@ -24,6 +24,8 @@ TODO list (implemented and planned features):
 - JavaScript
   * JavaScript evaluator (Rhino with configurable Java context)
   * JSON -> XML converter
+- Text
+  * ~~Base64 encoding/decoding~~
 - misc
   * Regexp validator (Ruby and Java syntax)
   * Unicode entity translator

@@ -1,0 +1,17 @@
+en:
+  text:
+    base64:
+      editor:
+        input: Input
+        input_file: From file
+        file: File
+        output: Output
+        form_submit:
+          label_encode_txt: Encode
+          label_decode_txt: Decode
+          label_encode_file: Encode file
+          label_decode_file: Decode file
+          disable: Processing
+
+
+  

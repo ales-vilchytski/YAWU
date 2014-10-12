@@ -34,7 +34,7 @@
                     $files.append(tmpl('template-uploaded', data.result));
                     
                     uploadsLists.forEach(function(list) {
-                        list.addFiles(data.result.files);
+                        list.addFiles(data.result.files.filter(function(file) { return file.error == null; }));
                     });
                 },
                 fail: function(e, data) {

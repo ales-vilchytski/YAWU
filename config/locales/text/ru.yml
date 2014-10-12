@@ -1,0 +1,17 @@
+ru:
+  text:
+    base64:
+      editor:
+        input: Входной текст
+        input_file: Файл
+        file: Файл
+        output: Результат
+        form_submit:
+          label_encode_txt: Кодировать
+          label_decode_txt: Декодировать
+          label_encode_file: Кодировать файл
+          label_decode_file: Декодировать файл
+          disable: Обработка
+
+
+  

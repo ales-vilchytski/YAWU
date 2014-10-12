@@ -17,6 +17,11 @@ YAWU::Application.routes.draw do
     end
   end
   
+  namespace :text do
+    tool('base64', [ 'encode_or_decode', 'upload' ])
+
+  end
+
   namespace :xml do
     tool('format')
     

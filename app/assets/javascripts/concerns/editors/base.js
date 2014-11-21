@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('editorBase', {
+module('concerns.editorBase', ['concerns'], function(concerns) {
+    return concerns.inheritWidgetBase('editorBase', {
         options: {
             readOnly: false,
             mode: 'xml',
@@ -53,4 +53,4 @@
         },
     });
     
-})();
+});

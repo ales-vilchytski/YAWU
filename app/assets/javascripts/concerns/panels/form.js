@@ -1,3 +1,3 @@
-(function() {
-    concerns.inheritWidgetBase('panelForm', $.concerns.panelBase, {});
-})();
+module('concerns.panelForm', ['concerns', 'concerns.panelBase'], function(concerns) {
+    return concerns.inheritWidgetBase('panelForm', $.concerns.panelBase, {});
+});

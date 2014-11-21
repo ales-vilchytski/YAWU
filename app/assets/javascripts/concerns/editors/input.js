@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('editorInput', $.concerns.editorBase, {
+module('concerns.editorInput', ['concerns', 'concerns.editorBase'], function(concerns) {
+    return concerns.inheritWidgetBase('editorInput', $.concerns.editorBase, {
        _create: function() {
            this._super();
            
@@ -8,10 +8,10 @@
            
            var sync = function() {
                $input.val(editor.getValue());
-           }
+           };
            
            sync();
            editor.addEventListener('change', sync);
        },
     });
-})();
+});

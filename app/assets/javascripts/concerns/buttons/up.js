@@ -1,6 +1,6 @@
-(function() {
+module('concerns.buttonUp', ['concerns', '$'], function(concerns, $) {
     var $pageUp = $('body');
-    concerns.inheritWidgetBase('buttonUp', $.ui.button, {
+    return concerns.inheritWidgetBase('buttonUp', $.ui.button, {
        _create: function() {
            this._super();
            this._on({
@@ -10,4 +10,4 @@
            });
        },
     });
-})();
+});

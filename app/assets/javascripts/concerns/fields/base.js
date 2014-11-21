@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('fieldBase', {
+module('concerns.fieldBase', ['concerns'], function(concerns) {
+    return concerns.inheritWidgetBase('fieldBase', {
         _create: function() {
             this._super();
             
@@ -18,4 +18,4 @@
             };
        },
     });
-})();
+});

@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('uploadList', {
+module('concerns.uploadList', ['concerns'], function(concerns) {
+    return concerns.inheritWidgetBase('uploadList', {
         options: {
             type: null
         },
@@ -13,4 +13,5 @@
         },
         
     });
-})();
+});
+

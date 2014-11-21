@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('panelCollapsible', $.concerns.panelBase, {        
+module('concerns.panelCollapsible', ['concerns', 'concerns.creator', 'concerns.panelBase'], function(concerns, creator) {
+    return concerns.inheritWidgetBase('panelCollapsible', $.concerns.panelBase, {        
         _create: function() {
             this._super();
             var $header = this._getHeader$();
@@ -25,7 +25,7 @@
                 $collapseIcon.attr('class', shownClass);
                 
                 // Some widgets may need refresh on visible changed, e.g. Ace
-                concerns.createWidgetsOf($body).forEach(function(widget) {
+                creator.createWidgetsOf($body).forEach(function(widget) {
                     if (widget.refresh) {
                         widget.refresh();
                     }
@@ -46,7 +46,7 @@
             
             this.collapseToggle = function() {
                 $body.collapse('toggle');
-            }
+            };
         }
     });
-})();
+});

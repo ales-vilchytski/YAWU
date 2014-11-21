@@ -1,6 +1,7 @@
-namespace('concerns', function() {
+module('concerns', ['$'], function($) {
+    return (function() {
     /**
-     * Registered (inherited) widgets
+     * Registered (inherited) widgets for debug purposes
      */
     this.widgetClasses = [];
     
@@ -45,7 +46,7 @@ namespace('concerns', function() {
      */
     this.inheritWidgetBase = function(clazz, /*optional*/_widgetBase, _widgetPrototype) {
         var widgetPrototype = _widgetPrototype || _widgetBase;
-        var widgetBase = _widgetPrototype ? _widgetBase : concerns.Base;
+        var widgetBase = _widgetPrototype ? _widgetBase : this.Base;
         
         $.widget(
             this.NAMESPACE + '.' + clazz, 
@@ -70,6 +71,7 @@ namespace('concerns', function() {
             }
             return instance;
         };
+        return this[clazz];
     };
     
     /**
@@ -77,41 +79,8 @@ namespace('concerns', function() {
      * 
      * this.[widgetClass] = function(id, *options) { return new_or_existing_widget  }
      */
-        
-    /**
-     * Creates or returns widgets (marked by [data-concerns='/widget/']) in specified 
-     * element.Options for every widget include:
-     *   * values from [data-concerns-options='/json/']
-     * 
-     * Returns array of created or existing instances.
-     * 
-     * @example concerns.createWidgetsOf('html') //creates and returns all widgets.
-     */
-    this.createWidgetsOf = function(container) {
-        var $container = $(container);
-        var widgets = [];
-        $('[data-' + concerns.NAMESPACE + ']', $container).each(function(i, element) {
-           var $element = $(element);
-           var id = $element.attr('id');
-           if (!id) {
-               $element.uniqueId();
-               id = $element.attr('id');
-           }
-           
-           var clazz = $element.data(concerns.NAMESPACE);
-           var options = $element.data(concerns.NAMESPACE + "Options");
-           
-           if (concerns.widgetClasses.indexOf(clazz) != -1) {
-               widgets.push(concerns[clazz](id, options));
-           }
-        });
-        return widgets;
-    };
     
-    /**
-     * Creates or returns widgets for all HTML-elements.
-     */
-    this.createWidgets = function() {
-        return this.createWidgetsOf('html');
-    };
+    return this;
+    
+    }).call({});
 });

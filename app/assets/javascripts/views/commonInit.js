@@ -1,19 +1,24 @@
 $(document).ready(function() {
-    concerns.createWidgets();
+    include('concerns.creator').createWidgets();
 });
 
 /**
  * Error panel in top of page for printing errors
  */
 $(document).ready(function() {
+    include('concerns.panelError');
+    
     window.namespace('YAWU.errorPanel');
-    YAWU.errorPanel = concerns.panelError('error_panel');
+    YAWU.errorPanel = include('concerns').panelError('error_panel');
 });
 
 /**
  * Debug panel in bottom of page for printing some useful info
  */
 $(document).ready(function() {
+    var concerns = include('concerns');
+    include('concerns.editorOutput');
+    
     var debugEditor = concerns.editorOutput('debug_output_editor');
     var $clearButton = $('#debug_output_clear_button');
     

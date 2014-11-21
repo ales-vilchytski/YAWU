@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('panelBase', {        
+module('concerns.panelBase', ['concerns'], function(concerns) {
+    return concerns.inheritWidgetBase('panelBase', {        
         _create: function() {
             var id = this.getId();
             var $header = $('[data-panel-header]', this.widget());
@@ -30,4 +30,4 @@
             };
         }
     });
-})();
+});

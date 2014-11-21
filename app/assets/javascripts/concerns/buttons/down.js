@@ -1,6 +1,6 @@
-(function() {
+module('concerns.buttonDown', ['concerns', '$'], function(concerns, $) {
     var $pageDown = $('body *').filter(':last');
-    concerns.inheritWidgetBase('buttonDown', $.ui.button, {
+    return concerns.inheritWidgetBase('buttonDown', $.ui.button, {
         _create: function() {
             this._super();
             this._on({
@@ -10,4 +10,4 @@
             });
         },
      });
-})();
+});

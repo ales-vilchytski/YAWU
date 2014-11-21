@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('panelError', $.concerns.panelBase, {     
+module('concerns.panelError', ['concerns', 'concerns.panelBase'], function(concerns) {
+    return concerns.inheritWidgetBase('panelError', $.concerns.panelBase, {     
         _create: function() {
             this._super();
             
@@ -19,7 +19,7 @@
             
             this.hide = function() {
                 $collapseTarget.collapse('hide');
-            }
+            };
             
             this.setDefaultHeader = function(header) {
                 $header.data('panelHeader', header);
@@ -38,4 +38,4 @@
             };
         }
     });
-})();
+});

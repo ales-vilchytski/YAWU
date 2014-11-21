@@ -1,5 +1,5 @@
-(function() {
-    concerns.inheritWidgetBase('fieldText', $.concerns.fieldBase, {
+module('concerns.fieldText', ['concerns', 'concerns.fieldBase'], function(concerns) {
+    return concerns.inheritWidgetBase('fieldText', $.concerns.fieldBase, {
         options: {
            tabAllowed: false,
         },
@@ -28,4 +28,4 @@
             }
        },
     });
-})();
+});

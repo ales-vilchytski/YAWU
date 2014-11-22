@@ -1,6 +1,6 @@
-module('concerns.buttonDown', ['concerns', '$'], function(concerns, $) {
+source('concerns/buttonDown', ['concerns/concerns'], function() {
     var $pageDown = $('body *').filter(':last');
-    return concerns.inheritWidgetBase('buttonDown', $.ui.button, {
+    concerns.inheritWidgetBase('buttonDown', $.ui.button, {
         _create: function() {
             this._super();
             this._on({

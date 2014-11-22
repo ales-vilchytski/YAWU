@@ -1,5 +1,5 @@
-module('concerns.fieldBase', ['concerns'], function(concerns) {
-    return concerns.inheritWidgetBase('fieldBase', {
+source('concerns/fieldBase', ['concerns/concerns'], function() {
+    concerns.inheritWidgetBase('fieldBase', {
         _create: function() {
             this._super();
             

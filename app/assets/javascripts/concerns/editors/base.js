@@ -1,5 +1,5 @@
-module('concerns.editorBase', ['concerns'], function(concerns) {
-    return concerns.inheritWidgetBase('editorBase', {
+source('concerns/editorBase', ['concerns/concerns'], function() {
+    concerns.inheritWidgetBase('editorBase', {
         options: {
             readOnly: false,
             mode: 'xml',

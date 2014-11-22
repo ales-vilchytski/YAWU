@@ -1,5 +1,5 @@
-module('concerns.panelError', ['concerns', 'concerns.panelBase'], function(concerns) {
-    return concerns.inheritWidgetBase('panelError', $.concerns.panelBase, {     
+source('concerns/panelError', ['concerns/concerns', 'concerns/panelBase'], function() {
+    concerns.inheritWidgetBase('panelError', $.concerns.panelBase, {     
         _create: function() {
             this._super();
             

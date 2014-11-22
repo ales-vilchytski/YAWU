@@ -1,5 +1,5 @@
-module('concerns.panelTabbed', ['concerns', 'concerns.panelBase'], function(concerns) {
-    return concerns.inheritWidgetBase('panelTabbed', $.concerns.panelBase, {
+source('concerns/panelTabbed', ['concerns/concerns', 'concerns/panelBase'], function() {
+    concerns.inheritWidgetBase('panelTabbed', $.concerns.panelBase, {
         
         /** TODO add functions:
          * - toggleTab(i)

@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require modulejs/modulejs
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/core
@@ -20,7 +19,6 @@
 //= require jquery-file-upload/jquery.fileupload
 //= require jquery-file-upload/jquery.fileupload-process
 //= require bootstrap
+//= require modulejs/modulejs
 //= require_tree ./application
 //= require_tree ./concerns
-//= require views/commonInit
-//= require views/commonBindings

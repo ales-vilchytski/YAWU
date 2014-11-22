@@ -1,5 +1,5 @@
-module('concerns.panelBase', ['concerns'], function(concerns) {
-    return concerns.inheritWidgetBase('panelBase', {        
+source('concerns/panelBase', ['concerns/concerns'], function() {
+    concerns.inheritWidgetBase('panelBase', {        
         _create: function() {
             var id = this.getId();
             var $header = $('[data-panel-header]', this.widget());

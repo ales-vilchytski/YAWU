@@ -1,5 +1,5 @@
-module('concerns.fieldText', ['concerns', 'concerns.fieldBase'], function(concerns) {
-    return concerns.inheritWidgetBase('fieldText', $.concerns.fieldBase, {
+source('concerns/fieldText', ['concerns/concerns', 'concerns/fieldBase'], function() {
+    concerns.inheritWidgetBase('fieldText', $.concerns.fieldBase, {
         options: {
            tabAllowed: false,
         },

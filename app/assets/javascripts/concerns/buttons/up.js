@@ -1,6 +1,6 @@
-module('concerns.buttonUp', ['concerns', '$'], function(concerns, $) {
+source('concerns/buttonUp', ['concerns/concerns'], function() {
     var $pageUp = $('body');
-    return concerns.inheritWidgetBase('buttonUp', $.ui.button, {
+    concerns.inheritWidgetBase('buttonUp', $.ui.button, {
        _create: function() {
            this._super();
            this._on({

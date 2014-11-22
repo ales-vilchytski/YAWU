@@ -1,3 +1,3 @@
-module('concerns.buttonSubmit', ['concerns', '$'], function(concerns, $) {
-    return concerns.inheritWidgetBase('buttonSubmit', $.ui.button, {});
+source('concerns/buttonSubmit', ['concerns/concerns'], function() {
+    concerns.inheritWidgetBase('buttonSubmit', $.ui.button, {});
 });

@@ -1,5 +1,5 @@
-module('concerns.panelCollapsible', ['concerns', 'concerns.creator', 'concerns.panelBase'], function(concerns, creator) {
-    return concerns.inheritWidgetBase('panelCollapsible', $.concerns.panelBase, {        
+source('concerns/panelCollapsible', ['concerns/concerns', 'concerns/panelBase'], function() {
+    concerns.inheritWidgetBase('panelCollapsible', $.concerns.panelBase, {        
         _create: function() {
             this._super();
             var $header = this._getHeader$();
@@ -25,7 +25,7 @@ module('concerns.panelCollapsible', ['concerns', 'concerns.creator', 'concerns.p
                 $collapseIcon.attr('class', shownClass);
                 
                 // Some widgets may need refresh on visible changed, e.g. Ace
-                creator.createWidgetsOf($body).forEach(function(widget) {
+                concerns.createWidgetsOf($body).forEach(function(widget) {
                     if (widget.refresh) {
                         widget.refresh();
                     }

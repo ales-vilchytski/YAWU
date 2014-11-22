@@ -1,3 +1,3 @@
-module('concerns.editorOutput', ['concerns', 'concerns.editorBase'], function(concerns) {
-    return concerns.inheritWidgetBase('editorOutput', $.concerns.editorBase, {});
+source('concerns/editorOutput', ['concerns/concerns', 'concerns/editorBase'], function() {
+    concerns.inheritWidgetBase('editorOutput', $.concerns.editorBase, {});
 });

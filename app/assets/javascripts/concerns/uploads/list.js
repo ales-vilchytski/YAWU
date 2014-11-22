@@ -1,5 +1,5 @@
-module('concerns.uploadList', ['concerns'], function(concerns) {
-    return concerns.inheritWidgetBase('uploadList', {
+source('concerns/uploadList', ['concerns/concerns'], function() {
+    concerns.inheritWidgetBase('uploadList', {
         options: {
             type: null
         },

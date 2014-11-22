@@ -1,5 +1,5 @@
-module('concerns.editorInput', ['concerns', 'concerns.editorBase'], function(concerns) {
-    return concerns.inheritWidgetBase('editorInput', $.concerns.editorBase, {
+source('concerns/editorInput', ['concerns/concerns', 'concerns/editorBase'], function() {
+    concerns.inheritWidgetBase('editorInput', $.concerns.editorBase, {
        _create: function() {
            this._super();
            

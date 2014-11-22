@@ -1,4 +1,4 @@
-(function() {
+source('concerns/panelBase', ['concerns/concerns'], function() {
     concerns.inheritWidgetBase('panelBase', {        
         _create: function() {
             var id = this.getId();
@@ -30,4 +30,4 @@
             };
         }
     });
-})();
+});

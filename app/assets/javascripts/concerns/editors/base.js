@@ -1,4 +1,4 @@
-(function() {
+source('concerns/editorBase', ['concerns/concerns'], function() {
     concerns.inheritWidgetBase('editorBase', {
         options: {
             readOnly: false,
@@ -53,4 +53,4 @@
         },
     });
     
-})();
+});

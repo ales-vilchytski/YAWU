@@ -1,3 +1,0 @@
-Assets pipeline lack of specifying order of inclusion of .js files.
-Therefore use alphabetic "hack" to specify order of files when necessary.
-TODO: http://requirejs.org/

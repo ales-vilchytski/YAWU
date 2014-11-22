@@ -1,4 +1,4 @@
-(function() {
+source('concerns/panelCollapsible', ['concerns/concerns', 'concerns/panelBase'], function() {
     concerns.inheritWidgetBase('panelCollapsible', $.concerns.panelBase, {        
         _create: function() {
             this._super();
@@ -46,7 +46,7 @@
             
             this.collapseToggle = function() {
                 $body.collapse('toggle');
-            }
+            };
         }
     });
-})();
+});

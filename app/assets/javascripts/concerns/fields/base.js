@@ -1,4 +1,4 @@
-(function() {
+source('concerns/fieldBase', ['concerns/concerns'], function() {
     concerns.inheritWidgetBase('fieldBase', {
         _create: function() {
             this._super();
@@ -18,4 +18,4 @@
             };
        },
     });
-})();
+});

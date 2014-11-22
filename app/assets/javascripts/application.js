@@ -19,7 +19,6 @@
 //= require jquery-file-upload/jquery.fileupload
 //= require jquery-file-upload/jquery.fileupload-process
 //= require bootstrap
+//= require modulejs/modulejs
 //= require_tree ./application
 //= require_tree ./concerns
-//= require views/commonInit
-//= require views/commonBindings

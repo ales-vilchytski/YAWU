@@ -6,7 +6,7 @@
         header: t('.input'),                                  |
         body: render('concerns/editors/input', id: 'input_xml', name: 'input', |
           options: { mode: 'xml' }, |
-          content: get_sample_xml('sample.xml').gsub(/(>)\s+/, '\1'))
+          content: get_sample('xml/sample.xml').gsub(/(>)\s+/, '\1'))
 
     %div.col-md-4
       - content_for :settings_panel do

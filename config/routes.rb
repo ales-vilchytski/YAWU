@@ -22,6 +22,11 @@ YAWU::Application.routes.draw do
 
   end
 
+  namespace :js do
+    tool('json_xml', [ 'convert' ])
+
+  end
+
   namespace :xml do
     tool('format')
     

@@ -22,7 +22,7 @@ module Xml
       doc = Nokogiri::XML.parse xml
       if doc.child
         # we can't unescape XML-document because it'll become invalid 
-        raise UnexpectedDocumentError.new({}, 'unescape')
+        raise UnexpectedDocumentError.new('unescape')
       else
         # not XML - use Nokogiri to deal with it
         Nokogiri::XML.fragment(xml).text

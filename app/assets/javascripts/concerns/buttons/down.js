@@ -1,4 +1,4 @@
-(function() {
+source('concerns/buttonDown', ['concerns/concerns'], function() {
     var $pageDown = $('body *').filter(':last');
     concerns.inheritWidgetBase('buttonDown', $.ui.button, {
         _create: function() {
@@ -10,4 +10,4 @@
             });
         },
      });
-})();
+});

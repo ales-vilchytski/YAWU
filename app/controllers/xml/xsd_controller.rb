@@ -3,10 +3,11 @@ module Xml
   class XsdController < EditorController
     include Uploads::Uploadable
     
-    upload_class :xsd_file
+    upload_class Uploads::Xml::XsdFile
     
     def editor
-      @files = Uploads::XsdFile.all
+      @files = Uploads::Xml::XsdFile.all
+      
       respond_to do |format|
         format.html { render :editor }
       end
@@ -15,7 +16,7 @@ module Xml
     def validate
       result = execute_for_json do |r|
         xsd_string = if (params[:mode] == 'file')
-          Uploads::XsdFile.find(params[:file]).read
+          Uploads::Xml::XsdFile.find(params[:file]).read
         else
           params[:xsd]
         end

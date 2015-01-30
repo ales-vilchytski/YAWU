@@ -1,4 +1,4 @@
-(function() {
+source('concerns/uploadForm', ['concerns/concerns'], function() {
     concerns.inheritWidgetBase('uploadForm', {
         options: {
             action: null,
@@ -66,4 +66,4 @@
             };
         },
     });
-})();
+});

@@ -38,7 +38,7 @@ feature "XSD validating" do
   scenario "User can validate XML with uploaded XSD file", js: true do
     fill_in_editor(t('xml.xsd.editor.xml'), with: TestFile['xml/catalog.xml'].text)
     
-    click_button(t 'xml.xsd.editor.xsd_file')
+    click_link(t 'xml.xsd.editor.xsd_file')
     
     test_xsd = TestFile['xml/catalog.xsd']
     
@@ -53,7 +53,7 @@ feature "XSD validating" do
   end
   
   scenario "User can't upload non-XML file" do
-    click_button(t 'xml.xsd.editor.xsd_file')
+    click_link(t 'xml.xsd.editor.xsd_file')
     
     # forbidden filename
     upload_file(t('concerns.uploads.form.button'), TestFile['xml/catalog.xslt'].path)

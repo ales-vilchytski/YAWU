@@ -1,15 +1,15 @@
-%form#form{ action: xml_json_path, method: 'post', data: { remote: 'true' } }
-
+%form#form{ action: js_json_xml_convert_path, method: 'post', data: { remote: true } }
+  
   %div.row
     %div.col-md-8
       = render 'concerns/panels/form', |
         header: t('.input'),           |
-        body: render('concerns/editors/input',   |
-          id: 'input_xml',                       | 
-          name: 'input',                         |
-          content: get_sample('xml/sample.xml'), |
-          options: { mode: "xml" })
-
+        body: render('concerns/editors/input',    |
+          id: 'input',                            | 
+          name: 'input',                          |
+          content: get_sample('js/sample.json'),  |
+          options: { mode: "javascript" })
+  	
     %div.col-md-4
       - content_for :settings_panel do
         %div.form-horizontal.separated{role: 'form'}
@@ -23,17 +23,17 @@
       = render 'concerns/panels/form', |
         header: t('.settings'),        |
         body: yield(:settings_panel)
-
+  
   %div.row
     %div.col-md-4
-      = submit_button
+      = submit_button text: t('.form_submit.label')
 
   %div.row
     %div.col-md-8
       = render 'concerns/panels/form', |
         header: t('.output'),          |
         body: render('concerns/editors/output', |
-          id: 'output_json',                    |
-          options: { mode: "javascript" })
+          id: 'output',                         |
+          options: { mode: "xml" })
 
-= javascript_include_tag 'views/xml/json'
+= javascript_include_tag 'views/js/json_xml'

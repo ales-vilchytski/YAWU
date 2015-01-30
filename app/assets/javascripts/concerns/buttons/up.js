@@ -1,4 +1,4 @@
-(function() {
+source('concerns/buttonUp', ['concerns/concerns'], function() {
     var $pageUp = $('body');
     concerns.inheritWidgetBase('buttonUp', $.ui.button, {
        _create: function() {
@@ -10,4 +10,4 @@
            });
        },
     });
-})();
+});

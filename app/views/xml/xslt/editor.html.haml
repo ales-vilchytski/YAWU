@@ -7,7 +7,7 @@
         body: render('concerns/editors/input',   |
           id: 'input_xml',                       |
           name: 'xml',                           |
-          content: get_sample_xml('sample.xml'), |
+          content: get_sample('xml/sample.xml'), |
           options: { mode: 'xml' })
 
     %div.col-md-6
@@ -16,7 +16,7 @@
         body: render('concerns/editors/input',    |
           id: 'input_xslt',                       |
           name: 'xslt',                           |
-          content: get_sample_xml('sample.xslt'), |
+          content: get_sample('xml/sample.xslt'), |
           options: { mode: 'xml' })
 
   %div.row

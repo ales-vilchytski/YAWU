@@ -1,4 +1,4 @@
-(function() {
+source('concerns/fieldText', ['concerns/concerns', 'concerns/fieldBase'], function() {
     concerns.inheritWidgetBase('fieldText', $.concerns.fieldBase, {
         options: {
            tabAllowed: false,
@@ -28,4 +28,4 @@
             }
        },
     });
-})();
+});

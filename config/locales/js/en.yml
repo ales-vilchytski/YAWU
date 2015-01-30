@@ -1,0 +1,17 @@
+en:
+  js:
+    json_xml:
+      editor:
+        input: Input JSON
+        output: Output XML
+        settings: Settings
+        mode:
+          label: Output mode
+          pretty: Pretty printed
+          one_line: Oneliner
+        form_submit:
+          label: Convert
+          disable: Processing
+
+
+  

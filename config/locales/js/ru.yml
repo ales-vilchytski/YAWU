@@ -1,0 +1,17 @@
+ru:
+  js:
+    json_xml:
+      editor:
+        input: Введите JSON
+        output: Введите XML
+        settings: Настройки
+        mode:
+          label: Режим вывода
+          pretty: Форматированный
+          one_line: В одну строку
+        form_submit:
+          label: Преобразовать
+          disable: Обработка
+
+
+  

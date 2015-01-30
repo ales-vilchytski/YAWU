@@ -15,9 +15,9 @@ module Xml
         })
       )
       result = execute_for_json do |r|
-        json = Xml::Json.new(opts)
+        xmljson = Converters::XmlJson.new(opts)
         
-        r[:result] = json.xml_to_json(params[:input])
+        r[:result] = xmljson.xml_to_json(params[:input])
       end
       
       respond_to do |format|

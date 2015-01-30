@@ -1,7 +1,7 @@
 module EditorHelper
-  
-  def get_sample_xml(name)
-    File.read( File.join( Rails.root, 'samples', 'xml', name) )
+    
+  def get_sample(name)
+    File.read( File.join( Rails.root, 'samples', name) );
   end
   
   def settings_radio_button_tag(opts)

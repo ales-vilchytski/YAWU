@@ -23,9 +23,9 @@ class Text::Base64Controller < EditorController
       end
       
       r[:result] = if params[:mode].include? 'encode'
-        Text::Base64.new.encode(input)
+        Text::Base64.new.encode(input, params[:encoding])
       else
-        Text::Base64.new.decode(input)
+        Text::Base64.new.decode(input, params[:encoding])
       end
     end
     

@@ -17,6 +17,10 @@
             label: t('.file')
           = render 'concerns/uploads/form', id: 'input_base64_files_upload', |
             tooltip: t('concerns.uploads.form.tooltip')
+          = render 'concerns/fields/text',          |
+            name: 'encoding',                       |
+            label: t('.encoding.label'),            |
+            placeholder: t('.encoding.placeholder')
       
       = render 'concerns/panels/form', |
         header: t('.input_file'),      |

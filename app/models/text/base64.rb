@@ -1,17 +1,19 @@
 class Text::Base64
 
   def encode(arg, encoding)
-    if (encoding)
+    if (encoding.present?)
       arg.encode!(encoding)
     end
     
-    return Base64.encode64 arg
+    return Base64.encode64(arg)
   end
   
   def decode(arg, encoding)
     res = Base64.decode64 arg
-    enc = encoding || Encoding.default_external.name
-    res.force_encoding(enc)
+    if (encoding.blank?)
+      encoding = Encoding.default_external.name
+    end
+    res.force_encoding(encoding)
     
     return res
   end

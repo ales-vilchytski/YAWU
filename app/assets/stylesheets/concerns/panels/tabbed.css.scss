@@ -1,9 +1,9 @@
 [data-concerns='panelTabbed'] {
   [data-panel-header] {
-    .btn-group {  // condense tabs
-      .btn {
-        padding-bottom: 0px;
-        padding-top: 0px;
+    li.active {
+      background-color: #F5F5F5;
+      a {
+        background-color: #F5F5F5;
       }
     }
   }

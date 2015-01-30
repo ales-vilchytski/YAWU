@@ -12,6 +12,8 @@ ru:
           label_encode_file: Кодировать файл
           label_decode_file: Декодировать файл
           disable: Обработка
-
+        encoding:
+          label: Кодировка
+          placeholder: кодировка строки в base64
 
   

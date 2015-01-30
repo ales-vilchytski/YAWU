@@ -1,4 +1,4 @@
-(function() {
+source('concerns/uploadList', ['concerns/concerns'], function() {
     concerns.inheritWidgetBase('uploadList', {
         options: {
             type: null
@@ -13,4 +13,5 @@
         },
         
     });
-})();
+});
+

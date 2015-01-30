@@ -12,6 +12,8 @@ en:
           label_encode_file: Encode file
           label_decode_file: Decode file
           disable: Processing
-
+        encoding:
+          label: Encoding
+          placeholder: Encoding of string inside base64
 
   

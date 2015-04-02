@@ -18,6 +18,8 @@ YAWU::Application.routes.draw do
   end
   
   namespace :text do
+    tool('url_coding', [ 'encode_or_decode', 'upload' ])
+
     tool('base64', [ 'encode_or_decode', 'upload' ])
 
   end

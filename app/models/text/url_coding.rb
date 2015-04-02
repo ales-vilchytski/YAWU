@@ -1,15 +1,15 @@
-class Text::Base64
+class Text::UrlCoding
 
   def encode(arg, encoding = nil)
     if (encoding.present?)
       arg = arg.encode(encoding)
     end
     
-    return Base64.encode64(arg)
+    return URI.encode(arg, /\W/)
   end
   
   def decode(arg, encoding = nil)
-    res = Base64.decode64 arg
+    res = URI.decode(arg)
     if (encoding.blank?)
       encoding = Encoding.default_external.name
     end

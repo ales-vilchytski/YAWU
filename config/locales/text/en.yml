@@ -1,5 +1,21 @@
 en:
   text:
+    url_coding:
+      editor:
+        input: Input URL or text
+        input_file: From file
+        file: File
+        output: Output URL or text
+        form_submit:
+          label_encode_text: Encode
+          label_decode_text: Decode
+          label_encode_file: Encode file
+          label_decode_file: Decode file
+          disable: Processing
+        encoding:
+          label: Encoding
+          placeholder: Encoding of text or string inside URL
+
     base64:
       editor:
         input: Input

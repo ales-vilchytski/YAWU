@@ -1,5 +1,21 @@
 ru:
   text:
+    url_coding:
+      editor:
+        input: Входной URL или текст
+        input_file: Файл
+        file: Файл
+        output: Выходной URL или текст
+        form_submit:
+          label_encode_text: Кодировать
+          label_decode_text: Декодировать
+          label_encode_file: Кодировать файл
+          label_decode_file: Декодировать файл
+          disable: Обработка
+        encoding:
+          label: Кодировка
+          placeholder: Кодировка текста или строки в URL
+    
     base64:
       editor:
         input: Входной текст

@@ -23,9 +23,8 @@ module Converters
     end
     
     def json_to_xml(json)
-      hash = JSON.parse(json)
-      root = hash.keys.first
-      hash_for_xml = hash[root]
+      hash_for_xml = JSON.parse(json)
+      root = 'json'
       
       # TODO: implement array conversion as elements sequence without extra surrounding tag
       # TODO: implement xml attributes

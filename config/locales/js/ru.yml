@@ -1,5 +1,16 @@
 ru:
   js:
+    pretty:
+      editor:
+        input: Ввод
+        output: Вывод
+        indent_num:
+          label: Выравнивание
+          placeholder: Кол-во пробелов для выравнивания
+        form_submit:
+          label: Выровнять
+          disable: Обработка
+
     json_xml:
       editor:
         input: Введите JSON

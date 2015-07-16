@@ -1,1 +1,2 @@
-require 'lib/util.rb'
+require 'lib/util'
+require 'lib/java_util'

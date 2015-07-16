@@ -19,7 +19,8 @@ ru:
       xsd: XSD валидация
       xpath: Выполнение XPath
       generic: Общий инструментарий
-    js: 
+    js:
+      pretty: Выравнивание JSON
       label: JavaScript
       json_xml: Преобразование JSON в XML
       xml_json: Преобразование XML to JSON

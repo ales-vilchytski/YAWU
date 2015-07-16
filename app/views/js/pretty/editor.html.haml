@@ -1,0 +1,38 @@
+%form#form{ action: js_pretty_prettify_path, method: 'post', data: { remote: true } }
+  
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.input'),           |
+        body: render('concerns/editors/input',      |
+          id: 'input',                              | 
+          name: 'input',                            |
+          content: get_sample('js/oneline_sample.json'), |
+          options: { mode: "javascript" })
+
+    %div.col-md-4
+      - content_for :settings_panel do
+        %div.form-horizontal.separated{role: 'form'}
+          = render 'concerns/fields/text',             |
+            name: 'indent_num',                        |
+            label: t('.indent_num.label'),             |
+            placeholder: t('.indent_num.placeholder'), |
+              tab_allowed: true
+
+      = render 'concerns/panels/form', |
+        header: t('.settings'),        |
+        body: yield(:settings_panel)
+  
+  %div.row
+    %div.col-md-4
+      = submit_button text: t('.form_submit.label'), name: 'mode', value: 'text'
+
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.output'),          |
+        body: render('concerns/editors/output', |
+          id: 'output',                         |
+          options: { mode: "javascript" })
+
+= javascript_include_tag 'views/js/pretty'

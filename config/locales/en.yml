@@ -20,6 +20,7 @@ en:
       xpath: XPath evaluation
       generic: Generic Tool
     js:
+      pretty: Prettify JSON
       label: JavaScript
       json_xml: JSON to XML
       xml_json: XML to JSON

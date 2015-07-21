@@ -1,5 +1,16 @@
 en:
   js:
+    pretty:
+      editor:
+        input: Input
+        output: Output
+        indent_num:
+          label: Indent
+          placeholder: Number of indentation spaces
+        form_submit:
+          label: Submit
+          disable: Processing
+
     json_xml:
       editor:
         input: Input JSON

@@ -45,14 +45,16 @@ feature "JSON to XML converting" do
   def expected_output(mode)
     return case mode
     when 'one_line'
-%Q{<?xml version="1.0" encoding="UTF-8"?><some><simple><json>with text</json></simple></some>}
+%Q{<?xml version="1.0" encoding="UTF-8"?><json><some><simple><json>with text</json></simple></some></json>}
     when 'pretty'
 %Q{<?xml version="1.0" encoding="UTF-8"?>
-<some>
-  <simple>
-    <json>with text</json>
-  </simple>
-</some>
+<json>
+  <some>
+    <simple>
+      <json>with text</json>
+    </simple>
+  </some>
+</json>
 }
     else 
       raise 'unsupported mode'

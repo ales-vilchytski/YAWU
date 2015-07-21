@@ -18,11 +18,15 @@ YAWU::Application.routes.draw do
   end
   
   namespace :text do
+    tool('url_coding', [ 'encode_or_decode', 'upload' ])
+
     tool('base64', [ 'encode_or_decode', 'upload' ])
 
   end
 
   namespace :js do
+    tool('pretty', [ 'prettify' ])
+
     tool('json_xml', [ 'convert' ])
 
   end

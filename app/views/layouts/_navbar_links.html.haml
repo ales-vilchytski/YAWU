@@ -5,6 +5,8 @@
       %b.caret
     %ul.dropdown-menu
       %li
+        =link_to t('application.text.url_coding'), text_url_coding_path
+      %li
         =link_to t('application.text.base64'), text_base64_path
 
   %li.dropdown
@@ -34,6 +36,8 @@
       = t('application.js.label')
       %b.caret
     %ul.dropdown-menu
+      %li
+        =link_to t('application.js.pretty'), js_pretty_path
       %li
         =link_to t('application.js.json_xml'), js_json_xml_path
     /  

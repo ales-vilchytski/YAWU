@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'
 gem 'activerecord-jdbcderby-adapter', '1.3.6'
-gem "paperclip", "4.1"
+gem 'paperclip', '4.1'
 
 gem 'haml', '4.0.5'
 
@@ -19,10 +19,11 @@ group :assets do
   gem 'jquery-rails', '3.1.0'
   gem 'jquery-ui-rails', '5.0.0'
   gem 'bootstrap-sass', '3.1.0'
-  gem 'modulejs-rails', '1.5.0.0'
+  gem 'modulejs-rails', '1.9.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyrhino'
+  gem 'therubyrhino', '2.0.4'
+  gem 'therubyrhino_jar', '1.7.6'
 
   gem 'yui-compressor', '0.12.0'
 end
@@ -42,8 +43,8 @@ group :test do
 end
 
 group :build do
-  gem 'rake', '10.1.1'
-  gem 'warbler', '1.4.0'
-  gem 'jruby-jars', '1.7.10'
-  gem 'jruby-rack', '1.1.13.3'
+  gem 'rake', '10.4.2'
+  gem 'warbler', '1.4.9'
+  gem 'jruby-jars', '1.7.21'
+  gem 'jruby-rack', '1.1.19'
 end

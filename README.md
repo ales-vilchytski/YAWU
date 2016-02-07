@@ -49,7 +49,6 @@ Implemented features:
 - XML
   * XML formatter
   * XML escaper\unescaper
-  * XPath evaluator
   * XML -> JSON converter
   * XSLT transformations
   * XSD validation (with XSD definitions placed in multiple files)
@@ -59,8 +58,6 @@ Implemented features:
 - Text
   * Base64 encoding/decoding
   * URL encoding/decoding
-- Toolchains (configurable chains of transformations)
-- etc.
 
 Screenshots
 ---
@@ -76,6 +73,7 @@ TODO list:
 - JavaScript
   * JavaScript evaluator (Rhino with configurable Java context)
 - misc
+  * Toolchains
   * Regexp validator (Ruby and Java syntax)
   * Unicode entity translator
   * HTTP-service stub (responses with configurable delay, status, headers and body)

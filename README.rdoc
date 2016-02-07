@@ -1,7 +1,7 @@
 == README
 
 * Ruby version
-  Developed on Ruby 1.9.3 with JRuby 1.7.10 (Java 7).
+  Developed on Ruby 1.9.3 with JRuby 1.7.10 (Java 7) and/or JRuby 9.0.5.0 (Java 8).
 
 * System dependencies
   JRuby 1.7.10 and later (Ruby 1.9.3);

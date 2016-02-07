@@ -1,6 +1,8 @@
 source('concerns/panelBase', ['concerns/concerns'], function() {
     concerns.inheritWidgetBase('panelBase', {        
         _create: function() {
+            this.options = $.extend({}, this.defaultOptions || {}, this.options);
+
             var id = this.getId();
             var $header = $('[data-panel-header]', this.widget());
             var $body = $('[data-panel-body]', this.widget());

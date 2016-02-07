@@ -39,7 +39,7 @@ namespace :war do
       end
       
       war_url = ENV['war_url'] || ['file://', File.join(Rails.root, $WARBLER_CONFIG.jar_name + '.war').gsub('\\', '/')].join('/')
-      war_path = "/#{ENV['war_path']}" || "/#{$WARBLER_CONFIG.jar_name}"
+      war_path = ENV['war_path']? "/#{ENV['war_path']}" : "/#{$WARBLER_CONFIG.jar_name}"
       
       puts "Deploying WAR '#{war_url}' to '#{tomcat_url}#{war_path}'"
       request_uri = URI("#{tomcat_url}/manager/text/deploy")

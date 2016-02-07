@@ -1,7 +1,7 @@
 == README
 
 * Ruby version
-  Developed on Ruby 1.9.3 with JRuby 1.7.10 (Java 7).
+  Developed on Ruby 1.9.3 with JRuby 1.7.10 (Java 7) and/or JRuby 9.0.5.0 (Java 8).
 
 * System dependencies
   JRuby 1.7.10 and later (Ruby 1.9.3);
@@ -23,7 +23,7 @@
 
 * Database initialization
   As usual - run 
-  $ bundle exec rake db:migrate.
+  $ bundle exec rake db:migrate
   
 * Deployment instructions
   To create .war distribution execute Rake tasks:
@@ -34,6 +34,13 @@
   All commands package all dependencies and JRuby libraries to a single web-archive.
   This .war file can be deployed on any servlet or EAR container (e.g. Tomcat or WebSphere).
   Don't forget to patch JVM with JCE Unlimited Strength Jurisdiction Policy.
+
+  To run Rails server in production mode:
+   * precompile assets:
+    $ bundle exec rake assets:precompile RAILS_ENV=production
+    $ bundle exec rake assets:non_digested_ace RAILS_ENV=production
+   * run as usual:
+    $ bundle exec rails s -e production
   
 * How to run the test suite
   Prerequisite: Firefox 32 or near in default selenium-webdriver lookup path. However, path to firefox executable

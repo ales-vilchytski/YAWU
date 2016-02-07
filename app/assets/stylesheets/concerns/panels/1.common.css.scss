@@ -2,4 +2,8 @@
   .panel-heading {
     height: 60px; // empiric constant for h4 and button group
   }
+
+  .tooltip-inner {
+    max-width: 80%;
+  }
 }

@@ -1,8 +1,9 @@
 - id ||= nil
 - defaultHeader ||= t(".header")
 - defaultBody ||= t(".body")
+- options ||= {}
 
-%div.panel.panel-danger.collapse{ id: id, 'data-concerns' => 'panelError' }
+%div.panel.panel-danger.collapse{ id: id, 'data-concerns' => 'panelError', 'data-concerns-options' => options.to_json }
   %div.panel-heading
     %div.row
       %div.col-md-11

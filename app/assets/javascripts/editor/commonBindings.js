@@ -19,8 +19,12 @@ source('editor/commonBindings', ['concerns/concerns', 'editor/debugPanel'], func
             })
             .on('ajax:success', function(e, data, status, xhr) {
                 if (data.error) {
-                    errorPanel.show(data.error.message, data.error.description);
+                    var timestamp = new Date();
+                    errorPanel.show(
+                        data.error.message + ' (' + timestamp.getHours() + ':' + timestamp.getMinutes() + ':' + timestamp.getSeconds() + ')',
+                        data.error.description);
                 } else {
+                    errorPanel.hide();
                     outputEditor.setValue(data[serverResultElement]);
                 }
             })

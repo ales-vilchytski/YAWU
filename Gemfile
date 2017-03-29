@@ -19,7 +19,7 @@ group :assets do
   gem 'jquery-rails', '3.1.0'
   gem 'jquery-ui-rails', '5.0.0'
   gem 'bootstrap-sass', '3.1.0'
-  gem 'modulejs-rails', '1.9.0'
+  gem 'modulejs-rails', '2.2.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyrhino', '2.0.4'

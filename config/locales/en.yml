@@ -6,6 +6,9 @@ en:
     hello: Welcome to YAWU - Yet Another Web Utilities
   
   application:
+    misc:
+      finance: MyFinance
+      label: Misc
     text:
       url_coding: URL encode/decode
       base64: Base64 encode/decode

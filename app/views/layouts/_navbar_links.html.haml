@@ -1,6 +1,14 @@
 %ul.nav.navbar-nav
   %li.dropdown
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+      = t('application.misc.label')
+      %b.caret
+    %ul.dropdown-menu
+      %li
+        =link_to t('application.misc.finance'), misc_finance_path
+
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
       = t('application.text.label')
       %b.caret
     %ul.dropdown-menu

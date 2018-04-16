@@ -73,6 +73,7 @@ TODO list:
 - JavaScript
   * JavaScript evaluator (Rhino with configurable Java context)
 - misc
+  * 'autosubmit' option (on input change)
   * Toolchains
   * Regexp validator (Ruby and Java syntax)
   * Unicode entity translator

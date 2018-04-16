@@ -1,0 +1,14 @@
+en:
+  misc:
+    finance:
+      editor:
+        input: String-based input
+        output: Table-based output
+        form_submit:
+          label: Submit
+          disable: Processing
+        num_to_dollar_rate:
+          placeholder: 1.95
+          label: Num to Dollar rate
+
+  

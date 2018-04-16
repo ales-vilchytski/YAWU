@@ -31,6 +31,11 @@ YAWU::Application.routes.draw do
 
   end
 
+  namespace :misc do
+    tool('finance', [ 'parse_string_to_table' ])
+
+  end
+
   namespace :xml do
     tool('format')
     

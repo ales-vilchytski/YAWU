@@ -1,13 +1,14 @@
 class Misc::FinanceController < EditorController
 
-  @@input = '2018-01-01:: о1.2 прод20'
+  @@input = '2018-01-01:: abc1.2 qwe20'
   @@output = ''
-  @@num_to_dollar_rate = 2
+  @@num_to_dollar_rate = 1.99
 
   # GET /misc/finance
   def editor
     @input = @@input
     @output = @@output
+    @num_to_dollar_rate = @@num_to_dollar_rate
     respond_to do |format|
       format.html { render :editor }
     end
@@ -15,11 +16,13 @@ class Misc::FinanceController < EditorController
 
   # POST /misc/finance/parse_string_to_table
   def parse_string_to_table
+    input = (params[:input] || '').strip
     result = execute_for_json do |r|
-      r[:result] = @@output = Misc::Finance.new.parse_string_to_table(params[:input], params[:num_to_dollar_rate])
+      r[:result] = Misc::Finance.new.parse_string_to_table(input, params[:num_to_dollar_rate])
     end
 
-    @@input = params[:input]
+    @@input = input
+    @@output = result[:result]
     @@num_to_dollar_rate = params[:num_to_dollar_rate]
 
     respond_to do |format|

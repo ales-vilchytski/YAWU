@@ -56,6 +56,8 @@ en:
       submit:
         text: Submit
         disable: Processing
+      clear:
+        text: Clear
     panels:
       error:
         header: Sorry, but something went wrong

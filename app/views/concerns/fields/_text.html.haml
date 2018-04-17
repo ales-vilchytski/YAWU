@@ -3,6 +3,7 @@
 - label ||= nil
 - placeholder ||= ''
 - type ||= 'text'
+- value ||= ''
 - tab_allowed ||= false
 
 %div.form-group{ id: id, 'data-concerns' => 'fieldText', 'data-concerns-options' => { tabAllowed: tab_allowed }.to_json }
@@ -12,5 +13,6 @@
     %input.form-control{        |
       id: name,                 |
       name: name,               |
+      value: value,             |
       placeholder: placeholder, |
       type: type }

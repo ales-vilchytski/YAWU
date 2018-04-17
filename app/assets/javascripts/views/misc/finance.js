@@ -5,5 +5,5 @@ $(document).ready(function() {
         serverResultElement: 'result'
     });
 
-    $('#form').submit()
+    $('#form').submit();
 });

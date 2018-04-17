@@ -1,0 +1,6 @@
+- editor_id ||= ''
+- editor_type ||= 'editorInput'
+
+%button.btn.btn-clear{ type: 'button', 'data-concerns' => "buttonClear", 'data-editor-id' => editor_id, 'data-editor-type' => editor_type }
+  %span.glyphicon.glyphicon-trash
+  = t('.text')

@@ -1,9 +1,13 @@
 %form#form{ action: misc_finance_parse_string_to_table_path, method: 'post', data: { remote: true } }
   
   %div.row
+    -content_for :input_panel_header do
+      %span= t('.input')
+      %span= render 'concerns/buttons/clear', editor_id: 'input'
+
     %div.col-md-8
       = render 'concerns/panels/form', |
-        header: t('.input'),           |
+        header: yield(:input_panel_header),    |
         body: render('concerns/editors/input', |
           id: 'input',                         |
           name: 'input',                       |
@@ -13,8 +17,9 @@
     %div.col-md-4
       - content_for :settings_panel do
         %div.form-horizontal.separated{role: 'form'}
-          = render 'concerns/fields/text',             |
+          = render 'concerns/fields/text',                     |
             name: 'num_to_dollar_rate',                        |
+            value: @num_to_dollar_rate,                        |
             label: t('.num_to_dollar_rate.label'),             |
             placeholder: t('.num_to_dollar_rate.placeholder'), |
               tab_allowed: false

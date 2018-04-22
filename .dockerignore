@@ -1,0 +1,10 @@
+tmp
+log
+db/test
+db/production
+db/development
+public/assets
+yawu.war
+derby.log
+.project
+uploads

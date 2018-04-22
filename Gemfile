@@ -44,7 +44,7 @@ end
 
 group :build do
   gem 'rake', '10.4.2'
-  gem 'warbler', '1.4.9'
-  gem 'jruby-jars', '1.7.21'
+  gem 'warbler', '2.0.4'
+  gem 'jruby-jars', '9.1.16'
   gem 'jruby-rack', '1.1.19'
 end

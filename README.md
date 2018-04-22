@@ -43,6 +43,14 @@ RAILS_ENV=production bundle exec rake war:create
 
 It creates `yawu.war` ready for deploy. Application uses embedded database (Apache Derby), so updating `war` will erase old data.
 
+Dockerfile for production run which embeds DB and assets is available too:
+```
+docker build -f docker/Dockerfile -t yawu:<version> .
+docker run -it yawu:<version> -p 3000
+# or using docker-compose:
+cd docker && docker-compose -f docker-compose.yml up -d
+```
+
 Implemented features:
 ---
 

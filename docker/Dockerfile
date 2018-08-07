@@ -10,6 +10,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
 COPY . .
+RUN chmod +x docker/start.sh
 
 ENV RAILS_ENV=production
 RUN bundle exec rake db:setup && bundle exec rake db:migrate
@@ -18,4 +19,4 @@ RUN bundle exec rake assets:precompile RAILS_ENV=production && \
 
 EXPOSE 3000/tcp
 
-CMD ["/opt/jruby/bin/jruby", "-S", "rails", "server"]
+CMD ["./docker/start.sh"]

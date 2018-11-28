@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "properties": {
+    "catalog": {
+      "type": "object",
+      "properties": {
+        "cd": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "artist": { "type": "string" },
+              "country": { "type": "string" },
+              "company": { "type": "string" },
+              "price": { "type": "string" },
+              "year": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

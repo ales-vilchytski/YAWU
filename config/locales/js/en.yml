@@ -24,5 +24,13 @@ en:
           label: Convert
           disable: Processing
 
+    schema:
+      editor:
+        input_json: JSON
+        input_schema: Schema (Draft 4)
+        output: Output
+        form_submit:
+          label: Validate
+          disable: Processing
 
   

@@ -1,0 +1,34 @@
+%form#form{ action: js_schema_validate_path, method: 'post', data: { remote: true } }
+  
+  %div.row
+    %div.col-md-6
+      = render 'concerns/panels/form',      |
+        header: t('.input_json'),           |
+        body: render('concerns/editors/input',      |
+          id: 'input',                              | 
+          name: 'input',                            |
+          content: get_sample("js/sample.json"), |
+          options: { mode: "javascript" })
+
+    %div.col-md-6
+      = render 'concerns/panels/form', |
+      header: t('.input_schema'),      |
+      body: render('concerns/editors/input',      |
+        id: 'input_shcmea',                       |
+        name: 'schema',                           |
+        content: get_sample('js/schema_sample.json'),
+        options: { mode: "javascript" })
+  
+  %div.row
+    %div.col-md-4
+      = submit_button text: t('.form_submit.label'), name: 'mode', value: 'text'
+
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.output'),          |
+        body: render('concerns/editors/output', |
+          id: 'output',                         |
+          options: { mode: "xml" })
+
+= javascript_include_tag 'views/js/schema'

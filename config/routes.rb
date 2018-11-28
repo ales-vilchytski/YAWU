@@ -25,6 +25,8 @@ YAWU::Application.routes.draw do
   end
 
   namespace :js do
+    tool('schema', [ 'validate' ])
+
     tool('pretty', [ 'prettify' ])
 
     tool('json_xml', [ 'convert' ])

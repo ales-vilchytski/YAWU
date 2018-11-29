@@ -10,6 +10,7 @@ gem 'nokogiri', '1.6.1'
 gem 'http_accept_language', '2.0.1'
 
 gem 'rubyzip', '1.0.0'
+gem 'json-schema', '2.8.1'
 
 # Gems used only for assets and not required
 # in production environments by default.

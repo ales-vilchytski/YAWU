@@ -1,0 +1,30 @@
+%form#form{ action: text_uuid_generate_path, method: 'post', data: { remote: true } }
+  
+  %div.row
+    %div.col-md-4
+      - content_for :settings_panel do
+        %div.form-horizontal.separated{role: 'form'}
+          = render 'concerns/fields/text',     |
+            name: 'quantity',                  |
+            label: t('.quantity'),             |
+            placeholder: '1',
+            tab_allowed: false
+
+      = render 'concerns/panels/form', |
+        header: t('.settings'),
+        body: yield(:settings_panel)
+  	
+  
+  %div.row
+    %div.col-md-4
+      = submit_button text: t('.form_submit.label'), name: 'mode', value: 'text'
+
+  %div.row
+    %div.col-md-8
+      = render 'concerns/panels/form', |
+        header: t('.output'),          |
+        body: render('concerns/editors/output', |
+          id: 'output',                         |
+          options: { mode: "text" })
+
+= javascript_include_tag 'views/text/uuid'

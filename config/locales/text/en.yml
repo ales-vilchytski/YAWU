@@ -32,4 +32,10 @@ en:
           label: Encoding
           placeholder: Encoding of string inside base64
 
-  
+    uuid:
+      editor:
+        quantity: Quantity
+        output: Output
+        form_submit:
+          label: Generate
+          disable: Processing

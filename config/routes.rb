@@ -18,6 +18,8 @@ YAWU::Application.routes.draw do
   end
   
   namespace :text do
+    tool('uuid', [ 'generate' ])
+
     tool('url_coding', [ 'encode_or_decode', 'upload' ])
 
     tool('base64', [ 'encode_or_decode', 'upload' ])
@@ -25,6 +27,8 @@ YAWU::Application.routes.draw do
   end
 
   namespace :js do
+    tool('schema', [ 'validate' ])
+
     tool('pretty', [ 'prettify' ])
 
     tool('json_xml', [ 'convert' ])

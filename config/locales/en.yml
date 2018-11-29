@@ -10,9 +10,11 @@ en:
       finance: MyFinance
       label: Misc
     text:
+      label: Text
       url_coding: URL encode/decode
       base64: Base64 encode/decode
       label: Text
+      uuid: UUID Generation
     xml:
       label: XML
       format: Format
@@ -23,12 +25,14 @@ en:
       xpath: XPath evaluation
       generic: Generic Tool
     js:
+      label: JS
       pretty: Prettify JSON
       label: JavaScript
       json_xml: JSON to XML
       xml_json: XML to JSON
       eval: Evaluate
       generic: Generic tool
+      schema: JSON Schema (Draft 4)
   
   editor:
     error:

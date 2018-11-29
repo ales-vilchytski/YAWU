@@ -16,6 +16,8 @@
         =link_to t('application.text.url_coding'), text_url_coding_path
       %li
         =link_to t('application.text.base64'), text_base64_path
+      %li
+        =link_to t('application.text.uuid'), text_uuid_path
 
   %li.dropdown
     %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
@@ -48,6 +50,8 @@
         =link_to t('application.js.pretty'), js_pretty_path
       %li
         =link_to t('application.js.json_xml'), js_json_xml_path
+      %li
+        =link_to t('application.js.schema'), js_schema_path
     /  
       %li
         %a{href: "#"}= t('application.js.xml_json')

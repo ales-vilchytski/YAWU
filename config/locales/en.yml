@@ -10,9 +10,11 @@ en:
       finance: MyFinance
       label: Misc
     text:
+      label: Text
       url_coding: URL encode/decode
       base64: Base64 encode/decode
       label: Text
+      uuid: UUID Generation
     xml:
       label: XML
       format: Format
